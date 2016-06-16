@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, , maximum-scale=1.0" />
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<!-- Draw2d CSS-->
+<link type="text/css" rel="stylesheet" href="css/draw2d.css" />
+<link type="text/css" rel="stylesheet" href="css/contextmenu.css" />
+<!-- ESTDesigner CSS-->
+<link href="js/ESTDesigner/designer.css" type="text/css"
+	rel="stylesheet" />
+<!-- JQuery EasyUi CSS-->
+<link type="text/css" href="js/easyui/themes/default/easyui.css"
+	rel="stylesheet" title="blue">
+<link href="js/easyui/themes/icon.css" type="text/css" rel="stylesheet" />
+
+<SCRIPT src="js/draw2D/lib/jquery-1.12.0.min.js"></SCRIPT>
+<!-- JQuery EasyUi JS-->
+<script src="js/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<!-- Draw2d JS-->
+<SCRIPT src="js/draw2D/lib/shifty.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/raphael.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/jquery.autoresize.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/jquery-touch_punch.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/jquery.contextmenu.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/rgbcolor.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/canvg.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/Class.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/json2.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/pathfinding-browser.min.js"></SCRIPT>
+<SCRIPT src="js/draw2D/draw2d.js"></SCRIPT>
+<!-- ESTDesigner JS-->
+<SCRIPT src="js/ESTDesigner/Application.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Canvas.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Task.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Event.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Connection.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Gateway.js"></SCRIPT>
+
+</head>
+<script type="text/javascript">
+	$(window)
+			.load(
+					function() {
+						var canvas = new ESTDesigner.Canvas("paintarea");
+						var start = new ESTDesigner.event.Start();
+						var end = new ESTDesigner.event.End();
+						canvas.add(start, 200, 50);
+						canvas.add(end, 200, 400);
+
+						$('.easyui-linkbutton')
+								.draggable(
+										{
+											proxy : function(source) {
+												var n = $('<div class="draggable-model-proxy"></div>');
+												n.html($(source).html())
+														.appendTo('body');
+												return n;
+											},
+											deltaX : 0,
+											deltaY : 0,
+											revert : true,
+											cursor : 'auto',
+											onStartDrag : function() {
+												$(this).draggable('options').cursor = 'not-allowed';
+											},
+											onStopDrag : function() {
+												$(this).draggable('options').cursor = 'auto';
+											}
+										});
+						$('#paintarea')
+								.droppable(
+										{
+											accept : '.easyui-linkbutton',
+											onDragEnter : function(e, source) {
+												$(source).draggable('options').cursor = 'auto';
+											},
+											onDragLeave : function(e, source) {
+												$(source).draggable('options').cursor = 'not-allowed';
+											},
+											onDrop : function(e, source) {
+												//$(this).append(source)
+												//$(this).removeClass('over');
+												var wfModel = $(source).attr(
+														'wfModel');
+												var shape = $(source).attr(
+														'iconImg');
+												var modelType = $(source).attr(
+														'modelType');
+												if (wfModel) {
+													var x = $(source)
+															.draggable('proxy')
+															.offset().left;
+													var y = $(source)
+															.draggable('proxy')
+															.offset().top;
+													var xOffset = canvas
+															.getAbsoluteX();
+													var yOffset = canvas
+															.getAbsoluteY();
+													var scrollLeft = canvas
+															.getScrollLeft();
+													var scrollTop = canvas
+															.getScrollTop();
+													//alert(xOffset+"|"+yOffset+"|"+scrollLeft+"|"+scrollTop);
+													//alert(shape);
+													addModel(wfModel, x
+															- xOffset
+															+ scrollLeft, y
+															- yOffset
+															+ scrollTop, shape,
+															modelType);
+												}
+											}
+										});
+						function addModel(name, x, y, icon, type) {
+							var model = null;
+							model = eval("new " + name);
+							canvas.add(model, x, y);
+						}
+						//产生xml
+						$('#process-definition-tab').tabs({
+							fit:true,
+							onSelect:function(title){
+								if(title=='Diagram'){
+									
+								}else if(title=='XML'){
+									$('#descriptorarea').val(canvas.toXML());
+									/*
+									if(document.body.innerText)
+										jq('#xml-area').get(0).innerText=workflow.toXML();
+									else if(document.body.textContent)
+										jq('#xml-area').get(0).textContent=workflow.toXML();
+									*/
+								}
+							}
+						});
+					});
+</script>
+<body id="designer" class="easyui-layout">
+	<div region="west" split="true" iconCls="palette-icon" title="Palette"
+		style="width: 150px;">
+		<div class="easyui-accordion" fit="true" border="false">
+			<div id="event" title="Event" iconCls="palette-menu-icon"
+				class="palette-menu">
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="start-event-icon">Start</a><br> <a href="##"
+					class="easyui-linkbutton" plain="true" iconCls="end-event-icon">End</a><br>
+			</div>
+			<div id="task" title="Task" iconCls="palette-menu-icon"
+				selected="true" class="palette-menu">
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="user-task-icon" wfModel="ESTDesigner.task.UserTask">User
+					Task</a><br> <a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="manual-task-icon" wfModel="ESTDesigner.task.ManualTask">Manual
+					Task</a><br> <a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="service-task-icon" wfModel="ESTDesigner.task.ServiceTask">Service
+					Task</a><br> <a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="script-task-icon" wfModel="ESTDesigner.task.ScriptTask">Script Task</a><br>
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="mail-task-icon" wfModel="ESTDesigner.task.MailTask">Mail
+					Task</a><br> <a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="receive-task-icon" wfModel="ESTDesigner.task.ReceiveTask">Receive
+					Task</a><br> <a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="business-rule-task-icon"
+					wfModel="ESTDesigner.task.BusinessRuleTask">Business Rule Task</a><br>
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="subprocess-icon" wfModel="SubProcess"
+					modelType="container">SubProcess</a><br> <a href="##"
+					class="easyui-linkbutton" plain="true" iconCls="callactivity-icon"
+					wfModel="ESTDesigner.task.CallActivityTask">CallActivity</a><br>
+			</div>
+			<div id="gateway" title="Gateway" iconCls="palette-menu-icon"
+				class="palette-menu">
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="parallel-gateway-icon"
+					wfModel="ESTDesigner.gateway.ParallelGateway"
+					iconImg="js/designer/icons/type.gateway.parallel.png">ParallelGateway</a><br>
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="exclusive-gateway-icon"
+					wfModel="ESTDesigner.gateway.ExclusiveGateway"
+					iconImg="js/designer/icons/type.gateway.exclusive.png">ExclusiveGateway</a><br>
+			</div>
+			<div id="boundary-event" title="Boundary event"
+				iconCls="palette-menu-icon" class="palette-menu">
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="timer-boundary-event-icon">TimerBoundaryEvent</a><br>
+				<a href="##" class="easyui-linkbutton" plain="true"
+					iconCls="error-boundary-event-icon">ErrorBoundaryEvent</a><br>
+			</div>
+		</div>
+	</div>
+	<div id="process-panel" region="center" split="true"
+		iconCls="process-icon" title="Process">
+		<div id="process-definition-tab">
+			<div id="designer-area" title="Diagram"
+				style="POSITION: absolute; width: 100%; height: 100%; padding: 0; border: none; overflow: auto;">
+				<div id="paintarea"
+					onselectstart="javascript:/*IE8 hack*/return false"
+					style="POSITION: absolute; WIDTH: 3000px; HEIGHT: 3000px"></div>
+			</div>
+			<div id="xml-area" title="XML"
+				style="width: 100%; height: 100%; overflow: hidden; overflow-x: hidden; overflow-y: hidden;">
+				<textarea id="descriptorarea" rows="38"
+					style="width: 100%; height: 100%; padding: 0; border: none;"
+					readonly="readonly"></textarea>
+			</div>
+		</div>
+	</div>
+	<div id="properties-panel" region="east" split="true"
+		iconCls="properties-icon" title="Properties" style="width: 300px;">
+
+	</div>
+
+	<!-- toolbar -->
+	<div id="toolbar-panel" region="north" border="false"
+		style="height: 36px; background: #E1F0F2;">
+		<div style="background: #E1F0F2; padding: 5px;">
+			<a href="javascript:void(0)" id="sb1" class="easyui-splitbutton"
+				menu="#edit-menu" iconCls="icon-edit">Edit</a>
+			<!--			<a href="javascript:void(0)" id="sb2" class="easyui-splitbutton" menu="#mm2" iconCls="icon-ok" onclick="javascript:alert(workflow.toXML())">Ok</a>-->
+			<!--			<a href="javascript:void(0)" id="mb2" class="easyui-menubutton" menu="#xml/diagram" onclick="viewXMLOrDiagram()">XML/Diagram</a>-->
+			<a href="javascript:void(0)" id="mb3" class="easyui-menubutton"
+				menu="#mm3" iconCls="icon-help">Help</a>
+		</div>
+		<div id="edit-menu" style="width: 150px;">
+			<div iconCls="icon-undo" onclick="undo()">Undo</div>
+			<div iconCls="icon-redo" onclick="redo()">Redo</div>
+			<div class="menu-sep"></div>
+			<!--		<div onclick="openProcessDef()">Open</div>-->
+			<div iconCls="icon-save" onclick="saveProcessDef()">Save</div>
+			<div>
+				<a href="#" onclick="exportProcessDef(this)">Export</a>
+			</div>
+		</div>
+		<div id="mm3" style="width: 150px;">
+			<div>Help</div>
+			<div class="menu-sep"></div>
+			<div>About</div>
+		</div>
+	</div>
+	<!-- task context menu -->
+	<div id="task-context-menu" class="easyui-menu" style="width: 120px;">
+		<div id="properties-task-context-menu" iconCls="properties-icon">Properties</div>
+		<div id="delete-task-context-menu" iconCls="icon-remove">Delete</div>
+	</div>
+	<!-- form configuration window -->
+	<div id="form-win" title="Form Configuration"
+		style="width: 750px; height: 500px;"></div>
+	<!-- listener configuration window -->
+	<div id="listener-win" title="Listener Configuration"
+		style="width: 750px; height: 500px;"></div>
+	<!-- candidate configuration window -->
+	<div id="task-candidate-win" title=""
+		style="width: 750px; height: 500px;"></div>
+</body>
+</html>

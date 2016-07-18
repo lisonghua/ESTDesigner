@@ -1,9 +1,8 @@
 ESTDesigner.Canvas=draw2d.Canvas.extend({
 	init:function(attr){
 		this.name = null;
-		this._super($.extend({
-			id:draw2d.util.UUID.create()
-		},attr));
+		this.process= new ESTDesigner.model.Process();
+		this._super(attr);
 		this.installEditPolicy(new draw2d.policy.canvas.FadeoutDecorationPolicy());//鼠标移入编辑区连接点消失和显示效果
 		this.installEditPolicy(new draw2d.policy.canvas.WheelZoomPolicy());//鼠标滚轮放大缩小效果
 		this.installEditPolicy(new draw2d.policy.connection.DragConnectionCreatePolicy({//拖拽连接点划线效果
@@ -42,26 +41,14 @@ ESTDesigner.Canvas=draw2d.Canvas.extend({
 		var models = this.getFigures();
 		for(var i=0;i<models.getSize();i++){
 			var model=models.get(i);
-			for(var j=0;j<DefaultModelTypeEnum.length;j++){
-				if(DefaultModelTypeEnum[j]==model.type){
-					//alert(model.type);
-					xml=xml+model.toXML();
-					bpmnDigramXml=bpmnDigramXml+model.toBpmnDI();
-					break;
-				}
-			}
+			xml=xml+model.toXML();
+			bpmnDigramXml=bpmnDigramXml+model.toBpmnDI();
 		}
 		var lines = this.getLines();
 		for(var i=0;i<lines.getSize();i++){
 			var line = lines.get(i);
-			for(var j=0;j<DefaultModelTypeEnum.length;j++){
-				if(DefaultModelTypeEnum[j]==line.type){
-					//alert(line.type);
-					xml=xml+line.toXML();
-					bpmnDigramXml=bpmnDigramXml+line.toBpmnDI();
-					break;
-				}
-			}
+			xml=xml+line.toXML();
+			bpmnDigramXml=bpmnDigramXml+line.toBpmnDI();
 		}
 		xml=xml+'</process>\n';
 		bpmnDigramXml=bpmnDigramXml+'</bpmndi:BPMNPlane>\n'

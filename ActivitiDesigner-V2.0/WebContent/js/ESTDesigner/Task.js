@@ -5,6 +5,14 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		this.iconPath = null;// icon path
 		this.listeners = new draw2d.util.ArrayList();
 		this.type = null;
+		this.documentation=null;
+		this.asynchronous=null;
+		this.exclusive=true;
+		this.isSequential=false;
+		this._loopCardinality=null;
+		this._collection=null;
+		this._elementVariable=null;
+		this._completionCondition=null;
 		this._super($.extend({
 			id : draw2d.util.UUID.create()
 		}, attr), $.extend({
@@ -35,6 +43,7 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 			bold : true,
 			fontSize : 13
 		});
+		ico.add(taskTypeLabel, new draw2d.layout.locator.RightLocator());
 		taskTypeLabel.setResizeable(true);
 		taskTypeLabel.setText(this.type);
 		taskTypeLabel.stroke = 0;
@@ -49,16 +58,16 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 				callback : $.proxy(function(key, options) {
 					switch (key) {
 					case "Properties":
-
+						//console.log(emitter.getParent());
+						emitter.getParent().getParent().propHandler();
 						break;
 					case "Delete":
 						// without undo/redo support
 						// this.getCanvas().remove(this);
 
 						// with undo/redo support
-						var cmd = new draw2d.command.CommandDelete(this
-								.getParent());
-						this.getCanvas().getCommandStack().execute(cmd);
+						var cmd = new draw2d.command.CommandDelete(emitter.getParent().getParent());
+						emitter.getCanvas().getCommandStack().execute(cmd);
 					default:
 						break;
 					}
@@ -77,7 +86,7 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 				}
 			});
 		});
-		ico.add(taskTypeLabel, new draw2d.layout.locator.RightLocator());
+		
 		// task name label
 		var taskNameLabel = new draw2d.shape.basic.Label();
 		taskNameLabel.setText("Task Name");
@@ -113,6 +122,9 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		});
 		return this;
 	},
+	propHandler:function(){
+		
+	},
 	toXML : function() {
 		return "";
 	},
@@ -134,18 +146,6 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 	setListeners : function(listeners) {
 		this.listeners = listeners;
 	},
-	toBpmnDI : function() {
-		var w = this.getWidth();
-		var h = this.getHeight();
-		var x = this.getX();
-		var y = this.getY();
-		var xml = '<bpmndi:BPMNShape bpmnElement="' + this.getId()
-				+ '" id="BPMNShape_' + this.getId() + '">\n';
-		xml = xml + '<omgdc:Bounds height="' + h + '" width="' + w + '" x="'
-				+ x + '" y="' + y + '"/>\n';
-		xml = xml + '</bpmndi:BPMNShape>\n';
-		return xml;
-	},
 	onContextMenu : function(x, y) {
 		$.contextMenu({
 			selector : 'body',
@@ -157,7 +157,7 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 			callback : $.proxy(function(key, options) {
 				switch (key) {
 				case "Properties":
-
+					this.propHandler();
 					break;
 				case "Delete":
 					// without undo/redo support
@@ -183,6 +183,50 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 				}
 			}
 		});
+	},
+	getGeneralXML:function(){
+		var name = this.id;
+		var taskName = $.trim(this.name);
+		if(taskName != null && taskName != "")
+			name = taskName;
+		var xml=' id="'+this.id+'" name="'+name+'" ';
+		if(this.asynchronous){
+			xml=xml+'activiti:async="true" '
+		}
+		if(!this.exclusive){
+			xml=xml+'activiti:exclusive="false" '
+		}
+		return xml;
+	},
+	getMultiInstanceXML:function(){
+		var xml = '';
+		if(this.isSequential){
+			xml=xml+'<multiInstanceLoopCharacteristics ';
+			if(this._elementVariable!=null&&this._elementVariable!='')
+				xml=xml+'activiti:elementVariable="'+this._elementVariable+'" ';
+			if(this._collection!=null&&this._collection!='')
+				xml=xml+'activiti:collection="'+this._collection+'" ';
+			xml=xml+'>\n'
+			if(this._loopCardinality!=null&&this._loopCardinality!='')
+				xml=xml+'<loopCardinality>'+this._loopCardinality+'</loopCardinality>\n';
+			if(this._completionCondition!=null&&this._completionCondition!='')
+				xml=xml+'<completionCondition>'+this._completionCondition+'</completionCondition>\n'
+			xml=xml+'</multiInstanceLoopCharacteristics>\n';
+		}
+		return xml;
+	},
+	toXML:function(){
+		return "";
+	},
+	toBpmnDI:function(){
+		var w=this.getWidth();
+		var h=this.getHeight();
+		var x=this.getAbsoluteX();
+		var y=this.getAbsoluteY();
+		var xml='<bpmndi:BPMNShape bpmnElement="'+this.getId()+'" id="BPMNShape_'+this.getId()+'">\n';
+		xml=xml+'<omgdc:Bounds height="'+h+'" width="'+w+'" x="'+x+'" y="'+y+'"/>\n';
+		xml=xml+'</bpmndi:BPMNShape>\n';
+		return xml;
 	}
 });
 ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
@@ -191,6 +235,113 @@ ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 			type : "User Task",
 			iconPath : "js/ESTDesigner/icons/type.user.png"
 		}, attr), setter, getter);
+		this.performerType=null;
+		this.dueDate=null;
+		this.priority=null;
+		this.formKey = null;
+		this.expression=null;
+		this.isUseExpression=null;
+		this.assignee=null;
+		this.candidateUsers=new draw2d.util.ArrayList();
+		this.candidateGroups=new draw2d.util.ArrayList();
+		this.formProperties=new draw2d.util.ArrayList();
+		this.taskListeners=new draw2d.util.ArrayList();
+	},
+	getIconClassName:function(){
+		return "user-task-icon";
+	},
+	getStartElementXML:function(){
+		var xml='<userTask ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+this.getPerformersXML();
+		xml=xml+'>\n';
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</userTask>\n';
+		return xml;
+	},
+	getDocumentationXML:function(){
+		if(this.documentation==null||this.documentation=='')return '';
+		var xml='<documentation>';
+		xml=xml+this.documentation;
+		xml=xml+'</documentation>';
+		return xml;
+	},
+	getPerformersXML:function(){
+		var xml='';
+		if(this.isUseExpression){
+			if(this.expression!=null&&this.expression!=''){
+				if(this.performerType=='assignee'){
+					xml=xml+'activiti:assignee="'+this.expression+'" ';
+				}else if(this.performerType=='candidateUsers'){
+					xml=xml+'activiti:candidateUsers="'+this.expression+'" ';
+				}else if(this.performerType=='candidateGroups'){
+					xml=xml+'activiti:candidateGroups="'+this.expression+'" ';
+				}
+			}
+		}else{
+			if(this.performerType=='assignee'){
+				if(this.assignee!=null&&this.assignee!='')
+					xml=xml+this.assignee;
+			}else if(this.performerType=='candidateUsers'){
+				for(var i=0;i<this.candidateUsers.getSize();i++){
+					var user = this.candidateUsers.get(i);
+					xml=xml+user.sso+',';
+				}
+			}else if(this.performerType=='candidateGroups'){
+				for(var i=0;i<this.candidateGroups.getSize();i++){
+					var group = this.candidateGroups.get(i);
+					xml=xml+group+',';
+				}
+			}
+		}
+		if(this.dueDate!=null&&this.dueDate!=''){
+			xml=xml+'activiti:dueDate="'+this.dueDate+'" '
+		}
+		if(this.formKey != null && this.formKey != ""){
+			xml=xml+'activiti:formKey="'+this.formKey+'" ';
+		}
+		if(this.priority!=null&&this.priority!=''){
+			xml=xml+'activiti:priority="'+this.priority+'" '
+		}
+		
+		return xml;
+	},
+	getExtensionElementsXML:function(){
+		if(this.listeners.getSize()==0&&this.formProperties.getSize()==0)return '';
+		var xml = '<extensionElements>\n';
+		xml=xml+this.getFormPropertiesXML();
+		xml=xml+this.getListenersXML();
+		xml=xml+'</extensionElements>\n';
+		return xml;
+	},
+	getListenersXML:function(){
+		var xml = draw2d.Task.prototype.getListenersXML.call(this);
+		for(var i=0;i<this.taskListeners.getSize();i++){
+			var listener = this.taskListeners.get(i);
+			xml=xml+listener.toXML();
+		}
+		return xml;
+	},
+	getFormPropertiesXML:function(){
+		var xml = '';
+		for(var i=0;i<this.formProperties.getSize();i++){
+			var formProperty = this.formProperties.get(i);
+			xml=xml+formProperty.toXML();
+		}
+		return xml;
+	},
+	propHandler:function(){
+		
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getDocumentationXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
 ESTDesigner.task.ServiceTask = ESTDesigner.task.BaseTask.extend({

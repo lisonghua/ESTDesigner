@@ -60,5 +60,19 @@ ESTDesigner.connection.Connection=draw2d.Connection.extend({
 				}
 			}
 		});
+	},
+	toXML:function(){
+		return "";
+	},
+	toBpmnDI:function(){
+		var xml='<bpmndi:BPMNEdge bpmnElement="'+this.getId()+'" id="BPMNEdge_'+this.getId()+'">\n';
+		var startX = this.getSource().getAbsoluteX();
+		var startY = this.getSource().getAbsoluteY();
+		var endX = this.getTarget().getAbsoluteX();
+		var endY = this.getTarget().getAbsoluteY();
+		xml=xml+'<omgdi:waypoint x="'+startX+'" y="'+startY+'"/>\n';
+	    xml=xml+'<omgdi:waypoint x="'+endX+'" y="'+endY+'"/>\n';
+		xml=xml+'</bpmndi:BPMNEdge>\n';
+		return xml;
 	}
 });

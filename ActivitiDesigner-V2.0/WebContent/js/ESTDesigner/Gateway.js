@@ -6,6 +6,19 @@ ESTDesigner.event.BaseEvent=draw2d.shape.basic.Image.extend({
 			height:40,
 			resizeable:false
 		},attr));
+	},
+	toXML:function(){
+		return "";
+	},
+	toBpmnDI:function(){
+		var w=this.getWidth();
+		var h=this.getHeight();
+		var x=this.getAbsoluteX();
+		var y=this.getAbsoluteY();
+		var xml='<bpmndi:BPMNShape bpmnElement="'+this.taskId+'" id="BPMNShape_'+this.taskId+'">\n';
+		xml=xml+'<omgdc:Bounds height="'+h+'" width="'+w+'" x="'+x+'" y="'+y+'"/>\n';
+		xml=xml+'</bpmndi:BPMNShape>\n';
+		return xml;
 	}
 });
 ESTDesigner.gateway.ParallelGateway=ESTDesigner.event.BaseEvent.extend({

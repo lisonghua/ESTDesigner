@@ -1,3 +1,6 @@
+/*
+ * 所有task节点的基类
+ */
 ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 	init : function(attr, setter, getter) {
 		// additional attribute
@@ -215,6 +218,21 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		}
 		return xml;
 	},
+	getExtensionElementsXML:function(){
+		if(this.listeners.getSize()==0)return '';
+		var xml = '<extensionElements>\n';
+		xml=xml+this.getListenersXML();
+		xml=xml+'</extensionElements>\n';
+		return xml;
+	},
+	getListenersXML:function(){
+		var xml = '';
+		for(var i=0;i<this.listeners.getSize();i++){
+			var listener = this.listeners.get(i);
+			xml=xml+listener.toXML();
+		}
+		return xml;
+	},
 	toXML:function(){
 		return "";
 	},
@@ -229,6 +247,9 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		return xml;
 	}
 });
+/*
+ * User Task类型的结点对应的类
+ */
 ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
@@ -344,46 +365,282 @@ ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 		return xml;
 	}
 });
+/*
+ * service task类型结点对应的类
+ */
 ESTDesigner.task.ServiceTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
 			type : "Service Task",
 			iconPath : "js/ESTDesigner/icons/type.service.png"
 		}, attr), setter, getter);
+		this._type=null;
+		this._javaClass=null;
+		this._expression=null;
+		this.delegateExpression=null;
+		this.resultVariable=null;
+		this.fields=new draw2d.util.ArrayList();
+	},
+	getStartElementXML:function(){
+		var xml='<serviceTask ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+this.getServiceXML();
+		xml=xml+'>\n';
+		return xml;
+	},
+	getServiceXML:function(){
+		var xml='';
+		if(this._type=='javaClass'){
+			if(this._javaClass!=null&&this._javaClass!='')
+				xml=xml+' activiti:class="'+this._javaClass+'" '
+		}else if(this._type=='expression'){
+			if(this._expression!=null&&this._expression!='')
+				xml=xml+' activiti:expression="'+this._expression+'" '
+		}else if(this._type=='delegateExpression'){
+			if(this.delegateExpression!=null&&this.delegateExpression!='')
+				xml=xml+' activiti:delegateExpression="'+this.delegateExpression+'" '
+		}
+		if(this.resultVariable!=null&&this.resultVariable!=''){
+			xml=xml+'activiti:resultVariableName="'+this.resultVariable+'" '
+		}
+		return xml;
+	},
+	getDocumentationXML:function(){
+		if(this.documentation==null||this.documentation=='')return '';
+		var xml='<documentation>';
+		xml=xml+this.documentation;
+		xml=xml+'</documentation>';
+		return xml;
+	},
+	getExtensionElementsXML:function(){
+		if(this.listeners.getSize()==0&&this.fields.getSize()==0)return '';
+		var xml = '<extensionElements>\n';
+		xml=xml+this.getListenersXML();
+		xml=xml+this.getFieldsXML();
+		xml=xml+'</extensionElements>\n';
+		return xml;
+	},
+	getFieldsXML:function(){
+		var xml = "";
+		for(var i=0;i<this.fields.getSize();i++){
+			var field = this.fields.get(i);
+			xml=xml+field.toXML();
+		}
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</serviceTask>\n';
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getDocumentationXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
+/*
+ * script task类型结点对应的类
+ */
 ESTDesigner.task.ScriptTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
 			type : "Script Task",
 			iconPath : "js/ESTDesigner/icons/type.script.png"
 		}, attr), setter, getter);
+		this.scriptLanguage=null;
+		this.script=null;
+	},
+	getStartElementXML:function(){
+		var xml='<scriptTask ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+this.getScriptLanguageXML();
+		xml=xml+'>\n';
+		return xml;
+	},
+	getScriptLanguageXML:function(){
+		var xml=''
+		if(this.scriptLanguage!=null&&this.scriptLanguage!='')
+			xml=xml+' scriptFormat="'+this.scriptLanguage+'" activiti:autoStoreVariables="true" '
+		return xml;
+	},
+	getScriptXML:function(){
+		var xml=''
+		if(this.script!=null&&this.script!='')
+			xml=xml+'<script>'+this.script+'</script>\n'
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</scriptTask>\n';
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getScriptXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
+/*
+ * receive task类型结点对应的类
+ */
 ESTDesigner.task.ReceiveTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
 			type : "Receive Task",
 			iconPath : "js/ESTDesigner/icons/type.receive.png"
 		}, attr), setter, getter);
+	},
+	getStartElementXML:function(){
+		var xml='<receiveTask ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+'>\n';
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</receiveTask>\n';
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
+/*
+ * manual task类型结点对应的类
+ */
 ESTDesigner.task.ManualTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
 			type : "Manual Task",
 			iconPath : "js/ESTDesigner/icons/type.manual.png"
 		}, attr), setter, getter);
+	},
+	getStartElementXML:function(){
+		var xml='<task ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+'>\n';
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</task>\n';
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
+/*
+ * mail task类型结点对应的类
+ */
 ESTDesigner.task.MailTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
 			type : "Mail Task",
 			iconPath : "js/ESTDesigner/icons/type.send.png"
 		}, attr), setter, getter);
+		this.to=null;
+		this.from=null;
+		this.subject=null;
+		this.cc=null;
+		this.bcc=null;
+		this._charset=null;
+		this._text=null;
+		this._html=null;
+	},
+	getStartElementXML:function(){
+		var xml='<serviceTask ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+' activiti:type="mail">\n';
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</serviceTask>\n';
+		return xml;
+	},
+	getExtensionElementsXML:function(){
+		if(this.listeners.getSize()==0
+		&&(this.to==null||this.to=='')
+		&&(this.from==null||this.from=='')
+		&&(this.subject==null||this.subject=='')
+		&&(this.cc==null||this.cc=='')
+		&&(this.bcc==null||this.bcc=='')
+		&&(this._charset==null||this._charset=='')
+		&&(this._text==null||this._text=='')
+		&&(this._html==null||this._html==''))
+			return '';
+		var xml = '<extensionElements>\n';
+		xml=xml+this.getListenersXML();
+		xml=xml+this.getFieldsXML();
+		xml=xml+'</extensionElements>\n';
+		return xml;
+	},
+	getFieldsXML:function(){
+		var xml = "";
+		if(this.to!=null&&this.to!=''){
+			xml=xml+'<activiti:field name="to">\n';
+			xml=xml+'<activiti:string>'+this.to+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this.from!=null&&this.from!=''){
+			xml=xml+'<activiti:field name="from">\n';
+			xml=xml+'<activiti:string>'+this.from+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this.subject!=null&&this.subject!=''){
+			xml=xml+'<activiti:field name="subject">\n';
+			xml=xml+'<activiti:string>'+this.subject+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this.cc!=null&&this.cc!=''){
+			xml=xml+'<activiti:field name="cc">\n';
+			xml=xml+'<activiti:string>'+this.cc+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this.bcc!=null&&this.bcc!=''){
+			xml=xml+'<activiti:field name="bcc">\n';
+			xml=xml+'<activiti:string>'+this.bcc+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this._charset!=null&&this._charset!=''){
+			xml=xml+'<activiti:field name="charset">\n';
+			xml=xml+'<activiti:string>'+this.to+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this._html!=null&&this._html!=''){
+			xml=xml+'<activiti:field name="html">\n';
+			xml=xml+'<activiti:string>'+this._html+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		if(this._text!=null&&this._text!=''){
+			xml=xml+'<activiti:field name="text">\n';
+			xml=xml+'<activiti:string>'+this._text+'</activiti:string>\n';
+			xml=xml+'</activiti:field>\n'
+		}
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
+/*
+ * call activity类型结点对应的类
+ */
 ESTDesigner.task.CallActivityTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
@@ -392,8 +649,130 @@ ESTDesigner.task.CallActivityTask = ESTDesigner.task.BaseTask.extend({
 			iconPath : "js/ESTDesigner/icons/callactivity.png"
 		}, attr), setter, getter);
 		this.setDimension(160, 60);
+		this.callElement=null;
+		this.inputParams=new draw2d.util.ArrayList();
+		this.outputParams=new draw2d.util.ArrayList();
+	},
+	getStartElementXML:function(){
+		var xml='<callActivity ';
+		xml=xml+this.getGeneralXML();
+		if(this.callElement!=null&&this.callElement!='')
+			xml=xml+' calledElement="'+this.callElement+'"';
+		xml=xml+'>\n';
+		return xml;
+	},
+	getExtensionElementsXML:function(){
+		if(this.listeners.getSize()==0&&this.inputParams.getSize()==0&&this.outputParams.getSize()==0)
+			return '';
+		var xml = '<extensionElements>\n';
+		xml=xml+this.getListenersXML();
+		xml=xml+this.getInputParamsXML();
+		xml=xml+this.getOutputParamsXML();
+		xml=xml+'</extensionElements>\n';
+		return xml;
+	},
+	getInputParamsXML:function(){
+		var xml='';
+		for(var i=0;i<this.inputParams.getSize();i++){
+			var param = this.inputParams.get(i);
+			xml=xml+param.toXML();
+		}
+		return xml;
+	},
+	getOutputParamsXML:function(){
+		var xml='';
+		for(var i=0;i<this.outputParams.getSize();i++){
+			var param = this.outputParams.get(i);
+			xml=xml+param.toXML();
+		}
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</callActivity>\n';
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
+	},
+	getInputParam:function(id){
+		for(var i=0;i<this.inputParams.getSize();i++){
+			var param = this.inputParams.get(i);
+			if(param.id== id){
+				return param;
+			}
+		}
+	},
+	deleteInputParam:function(id){
+		var param=this.getInputParam(id);
+		this.inputParams.remove(param);
+	},
+	getOutputParam:function(id){
+		for(var i=0;i<this.outputParams.getSize();i++){
+			var param = this.outputParams.get(i);
+			if(param.id== id){
+				return param;
+			}
+		}
+	},
+	deleteOutputParam:function(id){
+		var param=this.getOutputParam(id);
+		this.outputParams.remove(param);
+	}
+
+});
+ESTDesigner.task.CallActivityTask.Parameter=ESTDesigner.task.CallActivityTask.extend({
+	init : function(attr) {
+		this._super(attr);
+		this.source=null;
+		this.sourceExpression=null;
+		this.target=null;
+	},
+	getStartElementName:function(){
+	},
+	getEndElementXML:function(){
+		var xml='</'+this.getStartElementName()+'>\n'
+		return xml;
+	},
+	getStartElementXML:function(){
+		var xml='<'+this.getStartElementName();
+		if(this.source!=null&&this.source!='')
+			xml=xml+' source="'+this.source+'"';
+		if(this.source!=null&&this.source!='')
+			xml=xml+' sourceExpression="'+this.sourceExpression+'"';
+		xml=xml+' target="'+this.target+'"';
+		xml=xml+'>'
+		return xml;
+	},
+	toXML:function(){
+		var xml=''
+		xml=xml+this.getStartElementXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });
+ESTDesigner.task.CallActivityTask.Parameter.InputParameter=ESTDesigner.task.CallActivityTask.Parameter.extend({
+	init:function(attr){
+		this._super(attr);
+	},
+	getStartElementName:function(){
+		return 'activiti:in';
+	}
+});
+ESTDesigner.task.CallActivityTask.Parameter.OutputParameter=ESTDesigner.task.CallActivityTask.Parameter.extend({
+	init:function(attr){
+		this._super(attr);
+	},
+	getStartElementName:function(){
+		return 'activiti:out';
+	}
+});
+/*
+ * business rule task类型结点对应的类
+ */
 ESTDesigner.task.BusinessRuleTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
@@ -401,5 +780,39 @@ ESTDesigner.task.BusinessRuleTask = ESTDesigner.task.BaseTask.extend({
 			iconPath : "js/ESTDesigner/icons/type.business.rule.png"
 		}, attr), setter, getter);
 		this.setDimension(170, 60);
+		this.ruleName=null;
+		this.inputVariable=null;
+		this.excluded=null;
+		this.resultVariable=null;
+	},
+	getStartElementXML:function(){
+		var xml='<businessRuleTask ';
+		xml=xml+this.getGeneralXML();
+		xml=xml+this.getMainConfigXML();
+		xml=xml+'>\n';
+		return xml;
+	},
+	getMainConfigXML:function(){
+		var xml='';
+		if(this.inputVariable!=null&&this.inputVariable!='')
+			xml=xml+' activiti:ruleVariablesInput="'+this.inputVariable+'"'; 
+		if(this.ruleName!=null&&this.ruleName!='')
+			xml=xml+' activiti:rules="'+this.ruleName+'"';
+		if(this.resultVariable!=null&&this.resultVariable!='') 
+			xml=xml+' activiti:resultVariable="'+this.resultVariable+'"'; 
+		if(this.excluded!=null&&this.excluded!='')
+			xml=xml+' activiti:exclude="'+this.excluded+'"';
+		return xml;
+	},
+	getEndElementXML:function(){
+		var xml = '</businessRuleTask>\n';
+		return xml;
+	},
+	toXML:function(){
+		var xml=this.getStartElementXML();
+		xml=xml+this.getExtensionElementsXML();
+		xml=xml+this.getMultiInstanceXML();
+		xml=xml+this.getEndElementXML();
+		return xml;
 	}
 });

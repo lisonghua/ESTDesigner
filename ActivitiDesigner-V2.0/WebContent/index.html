@@ -46,6 +46,18 @@
 	$(window)
 			.load(
 					function() {
+						_designer = $('#designer');
+						_properties_panel_obj = _designer.layout('panel','east');
+						_properties_panel_obj.panel({
+							onOpen:function(){
+								is_open_properties_panel = true;
+							},
+							onClose:function(){
+								is_open_properties_panel = false;
+							}
+						});
+						_process_panel_obj = _designer.layout('panel','center');
+						_designer.layout('collapse','east');
 						var canvas = new ESTDesigner.Canvas("paintarea");
 						var start = new ESTDesigner.event.Start();
 						var end = new ESTDesigner.event.End();

@@ -132,7 +132,13 @@
 						function addModel(name, x, y, icon, type) {
 							var model = null;
 							model = eval("new " + name);
+							model.contextMenuHandler=contextMenuHandler;
 							canvas.add(model, x, y);
+						}
+						function contextMenuHandler(task,key){
+							
+							if(task.type=="ESTDesigner.task.UserTask")
+								_properties_panel_obj.panel('refresh','userTaskProperties.html');
 						}
 						//产生xml
 						$('#process-definition-tab').tabs({

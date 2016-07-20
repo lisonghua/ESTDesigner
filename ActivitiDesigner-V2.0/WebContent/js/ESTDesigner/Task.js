@@ -8,8 +8,10 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		this.iconPath = null;// icon path
 		this.listeners = new draw2d.util.ArrayList();
 		this.type = null;
+		this.title = null;
 		this.documentation=null;
 		this.asynchronous=null;
+		this.contextMenuHandler=null;
 		this.exclusive=true;
 		this.isSequential=false;
 		this._loopCardinality=null;
@@ -20,9 +22,11 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 			id : draw2d.util.UUID.create()
 		}, attr), $.extend({
 			type : this.setType,
+			title : this.setTitle,
 			iconPath : this.setIconPath
 		}, setter), $.extend({
 			type : this.getType,
+			title : this.getTitle,
 			iconPath : this.getIconPath
 		}, getter));
 		this.setBackgroundColor("#93d7f3");
@@ -48,7 +52,7 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		});
 		ico.add(taskTypeLabel, new draw2d.layout.locator.RightLocator());
 		taskTypeLabel.setResizeable(true);
-		taskTypeLabel.setText(this.type);
+		taskTypeLabel.setText(this.title);
 		taskTypeLabel.stroke = 0;
 		taskTypeLabel.on("contextmenu", function(emitter, event) {
 			$.contextMenu({
@@ -62,7 +66,12 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 					switch (key) {
 					case "Properties":
 						//console.log(emitter.getParent());
-						emitter.getParent().getParent().propHandler();
+						var task = emitter.getParent().getParent();
+						//task.propHandler();
+						if(task.contextMenuHandler!=null){
+							if(typeof task.contextMenuHandler=="function")
+								task.contextMenuHandler(task,key);
+						}
 						break;
 					case "Delete":
 						// without undo/redo support
@@ -115,6 +124,16 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		});
 		return this;
 	},
+	getTitle : function(){
+		return this.title;
+	},
+	setTitle : function(title){
+		this.title = title;
+		this.fireEvent("change:title", {
+			value : this.title
+		});
+		return this;
+	},
 	getIconPath : function() {
 		return this.iconPath;
 	},
@@ -124,9 +143,6 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 			value : this.iconPath
 		});
 		return this;
-	},
-	propHandler:function(){
-		
 	},
 	toXML : function() {
 		return "";
@@ -160,7 +176,10 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 			callback : $.proxy(function(key, options) {
 				switch (key) {
 				case "Properties":
-					this.propHandler();
+					if(this.contextMenuHandler!=null){
+						if(typeof this.contextMenuHandler=="function")
+							this.contextMenuHandler(this,key);
+					}
 					break;
 				case "Delete":
 					// without undo/redo support
@@ -253,7 +272,8 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "User Task",
+			type : "ESTDesigner.task.UserTask",
+			title : "User Task",
 			iconPath : "js/ESTDesigner/icons/type.user.png"
 		}, attr), setter, getter);
 		this.performerType=null;
@@ -353,9 +373,6 @@ ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 		}
 		return xml;
 	},
-	propHandler:function(){
-		
-	},
 	toXML:function(){
 		var xml=this.getStartElementXML();
 		xml=xml+this.getDocumentationXML();
@@ -371,7 +388,8 @@ ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 ESTDesigner.task.ServiceTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "Service Task",
+			type : "ESTDesigner.task.ServiceTask",
+			title : "Service Task",
 			iconPath : "js/ESTDesigner/icons/type.service.png"
 		}, attr), setter, getter);
 		this._type=null;
@@ -447,7 +465,8 @@ ESTDesigner.task.ServiceTask = ESTDesigner.task.BaseTask.extend({
 ESTDesigner.task.ScriptTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "Script Task",
+			type : "ESTDesigner.task.ScriptTask",
+			title:"Script Task",
 			iconPath : "js/ESTDesigner/icons/type.script.png"
 		}, attr), setter, getter);
 		this.scriptLanguage=null;
@@ -491,7 +510,8 @@ ESTDesigner.task.ScriptTask = ESTDesigner.task.BaseTask.extend({
 ESTDesigner.task.ReceiveTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "Receive Task",
+			type : "ESTDesigner.task.ReceiveTask",
+			title:"Receive Task",
 			iconPath : "js/ESTDesigner/icons/type.receive.png"
 		}, attr), setter, getter);
 	},
@@ -519,7 +539,8 @@ ESTDesigner.task.ReceiveTask = ESTDesigner.task.BaseTask.extend({
 ESTDesigner.task.ManualTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "Manual Task",
+			type : "ESTDesigner.task.ManualTask",
+			title:"Manual Task",
 			iconPath : "js/ESTDesigner/icons/type.manual.png"
 		}, attr), setter, getter);
 	},
@@ -547,7 +568,8 @@ ESTDesigner.task.ManualTask = ESTDesigner.task.BaseTask.extend({
 ESTDesigner.task.MailTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "Mail Task",
+			type : "ESTDesigner.task.MailTask",
+			title:"Mail Task",
 			iconPath : "js/ESTDesigner/icons/type.send.png"
 		}, attr), setter, getter);
 		this.to=null;
@@ -645,7 +667,8 @@ ESTDesigner.task.CallActivityTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
 			width:150,
-			type : "Call Activity Task",
+			type : "ESTDesigner.task.CallActivityTask",
+			title : "Call Activity Task",
 			iconPath : "js/ESTDesigner/icons/callactivity.png"
 		}, attr), setter, getter);
 		this.setDimension(160, 60);
@@ -776,7 +799,8 @@ ESTDesigner.task.CallActivityTask.Parameter.OutputParameter=ESTDesigner.task.Cal
 ESTDesigner.task.BusinessRuleTask = ESTDesigner.task.BaseTask.extend({
 	init : function(attr, setter, getter) {
 		this._super($.extend({
-			type : "Business Rule Task",
+			type : "ESTDesigner.task.BusinessRuleTask",
+			title : "Business Rule Task",
 			iconPath : "js/ESTDesigner/icons/type.business.rule.png"
 		}, attr), setter, getter);
 		this.setDimension(170, 60);

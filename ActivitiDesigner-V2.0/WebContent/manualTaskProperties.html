@@ -4,23 +4,23 @@
 //var tid = "";
 //var task = workflow.getFigure(tid);
 var listenerId="";
-jq(function(){
-	jq('#task-properties-accordion').accordion({
+$(function(){
+	$('#task-properties-accordion').accordion({
 		onSelect:function(title,index){
 				if(title=='General'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskGeneral.html');
 					}
 				}else if(title=='Multi Instance'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskMultiInstance.html');
 					}
 				}
 			}
 		});
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -31,7 +31,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#task-listeners-list').datagrid({
+	$('#task-listeners-list').datagrid({
 		title:"Execution Listeners",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -59,13 +59,13 @@ jq(function(){
 	});
 	
 	populateTaskProperites();
-	//switchTaskCandidatesList(jq('#performerType').combobox('getValue'));
+	//switchTaskCandidatesList($('#performerType').combobox('getValue'));
 });
 
 function listenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -109,7 +109,7 @@ function loadTaskListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#task-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#task-listeners-list').datagrid('loadData',listener_grid_data);
 }
 //-->
 </script>

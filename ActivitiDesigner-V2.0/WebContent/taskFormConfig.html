@@ -1,21 +1,21 @@
 <script type="text/javascript">
 <!--
 var formValuesEditCount = 0;
-jq(function(){
+$(function(){
 	
-	_form_property_type=jq('#propertyType').combobox({
+	_form_property_type=$('#propertyType').combobox({
 		editable:false
 	});
-	_form_property_readable=jq('#readable').combobox({
+	_form_property_readable=$('#readable').combobox({
 		editable:false
 	});
-	_form_property_writeable=jq('#writeable').combobox({
+	_form_property_writeable=$('#writeable').combobox({
 		editable:false
 	});
-	_form_property_required=jq('#required').combobox({
+	_form_property_required=$('#required').combobox({
 		editable:false
 	});
-	_task_form_values_dg=jq('#task-form-values-list').datagrid({
+	_task_form_values_dg=$('#task-form-values-list').datagrid({
 		singleSelect:true,
 		width:600,
 		height:300,
@@ -27,16 +27,16 @@ jq(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(formValuesEditCount>0){
-						//jq.messager.alert("error","ÓÐ¿É±à¼­µÄµ¥Ôª¸ñ£¬²»ÄÜÌí¼Ó",'error');
+						//jq.messager.alert("error","ï¿½Ð¿É±à¼­ï¿½Äµï¿½Ôªï¿½ñ£¬²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",'error');
 						return;
 					}
-					jq('#task-form-values-list').datagrid('appendRow',{
+					$('#task-form-values-list').datagrid('appendRow',{
 					id:'',
 					name:'',
 					action:''
 					});
-						var index = jq('#task-form-values-list').datagrid('getRows').length-1;
-						jq('#task-form-values-list').datagrid('beginEdit', index);
+						var index = $('#task-form-values-list').datagrid('getRows').length-1;
+						$('#task-form-values-list').datagrid('beginEdit', index);
 	        }
 	    }],
 		
@@ -46,25 +46,25 @@ jq(function(){
 		
 		onBeforeEdit:function(index,row){
 			row.editing = true;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			formValuesEditCount++;
 		},
 		onAfterEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			formValuesEditCount--;
 		},
 		onCancelEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			formValuesEditCount--;
 		}
 	});
 	
-	jq('#formSaveBt').linkbutton({
+	$('#formSaveBt').linkbutton({
 		iconCls:"icon-save"
 	});
-	jq('#formCancelBt').linkbutton({
+	$('#formCancelBt').linkbutton({
 		iconCls:"icon-cancel"
 	});
 	populateFormProperties();
@@ -72,10 +72,10 @@ jq(function(){
 
 function formValuesActionFormatter(value,rowData,rowIndex){
 	var id = rowIndex;
-	var s='<img onclick="saveFormValue('+id+')" src="../../image/ok.png" title="Save" style="cursor:hand;"/>';
-	var c='<img onclick="cancelFormValue('+id+')" src="../../image/cancel.png" title="Cancel" style="cursor:hand;"/>';
-	var e='<img onclick="editFormValue('+id+')" src="../../image/modify.png" title="Update" style="cursor:hand;"/>';
-	var d='<img onclick="deleteFormValue('+id+')" src="../../image/delete.gif" title="Delete" style="cursor:hand;"/>';
+	var s='<img onclick="saveFormValue('+id+')" src="image/ok.png" title="Save" style="cursor:hand;"/>';
+	var c='<img onclick="cancelFormValue('+id+')" src="image/cancel.png" title="Cancel" style="cursor:hand;"/>';
+	var e='<img onclick="editFormValue('+id+')" src="image/modify.png" title="Update" style="cursor:hand;"/>';
+	var d='<img onclick="deleteFormValue('+id+')" src="image/delete.gif" title="Delete" style="cursor:hand;"/>';
 	if(rowData.editing){
 		return s;
 	}else{
@@ -157,13 +157,13 @@ function saveTaskFormConfig(){
 	_form_win.window('close');
 }
 function insertNewProperty(prop){
-	prop.id=jq('#propertyId').val();
-	prop.name=jq('#propertyName').val();
+	prop.id=$('#propertyId').val();
+	prop.name=$('#propertyName').val();
 	prop.type=_form_property_type.combobox('getValue');
-	prop.expression=jq('#expressionValue').val();
-	prop.variable=jq('#variable').val();
-	prop.defaultValue=jq('#default').val();
-	prop.datePattern=jq('#datePattern').val();
+	prop.expression=$('#expressionValue').val();
+	prop.variable=$('#variable').val();
+	prop.defaultValue=$('#default').val();
+	prop.datePattern=$('#datePattern').val();
 	prop.readable=_form_property_readable.combobox('getValue');
 	prop.writeable=_form_property_writeable.combobox('getValue');
 	prop.required=_form_property_required.combobox('getValue');
@@ -183,13 +183,13 @@ function insertNewProperty(prop){
 	return true;
 }
 function updateExistingProperty(prop){
-	prop.id=jq('#propertyId').val();
-	prop.name=jq('#propertyName').val();
+	prop.id=$('#propertyId').val();
+	prop.name=$('#propertyName').val();
 	prop.type=_form_property_type.combobox('getValue');
-	prop.expression=jq('#expressionValue').val();
-	prop.variable=jq('#variable').val();
-	prop.defaultValue=jq('#default').val();
-	prop.datePattern=jq('#datePattern').val();
+	prop.expression=$('#expressionValue').val();
+	prop.variable=$('#variable').val();
+	prop.defaultValue=$('#default').val();
+	prop.datePattern=$('#datePattern').val();
 	prop.readable=_form_property_readable.combobox('getValue');
 	prop.writeable=_form_property_writeable.combobox('getValue');
 	prop.required=_form_property_required.combobox('getValue');
@@ -227,13 +227,13 @@ function updateExistingProperty(prop){
 function populateFormProperties(){
 	if(formPropertyId != "" && formPropertyId != null && formPropertyId!="null"&&formPropertyId!="NULL"){
 		var prop = task.getFormProperties(formPropertyId);
-		jq('#propertyId').val(prop.id);
-		jq('#propertyName').val(prop.name);
+		$('#propertyId').val(prop.id);
+		$('#propertyName').val(prop.name);
 		_form_property_type.combobox('setValue',prop.type);
-		jq('#expressionValue').val(prop.expression);
-		jq('#variable').val(prop.variable);
-		jq('#default').val(prop.defaultValue);
-		jq('#datePattern').val(prop.datePattern);
+		$('#expressionValue').val(prop.expression);
+		$('#variable').val(prop.variable);
+		$('#default').val(prop.defaultValue);
+		$('#datePattern').val(prop.datePattern);
 		_form_property_readable.combobox('setValue',prop.readable);
 		_form_property_writeable.combobox('setValue',prop.writeable);
 		_form_property_required.combobox('setValue',prop.required);

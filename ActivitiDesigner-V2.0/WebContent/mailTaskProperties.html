@@ -3,23 +3,23 @@
 <!--
 //var tid = "";
 var listenerId="";
-jq(function(){
-	jq('#task-properties-accordion').accordion({
+$(function(){
+	$('#task-properties-accordion').accordion({
 		onSelect:function(title,index){
 				if(title=='General'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskGeneral.html');
 					}
 				}else if(title=='Multi Instance'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskMultiInstance.html');
 					}
 				}
 			}
 		});
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -30,7 +30,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#task-listeners-list').datagrid({
+	$('#task-listeners-list').datagrid({
 		title:"Execution Listeners",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -58,13 +58,13 @@ jq(function(){
 	});
 	
 	populateTaskProperites();
-	//switchTaskCandidatesList(jq('#performerType').combobox('getValue'));
+	//switchTaskCandidatesList($('#performerType').combobox('getValue'));
 });
 
 function listenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -84,28 +84,28 @@ function saveTaskProperties(){
 	jq.messager.alert('Info','Save Successfully!','info');
 }
 function saveTaskMainConfig(){
-	task.to=jq('#to').val();
-	task.from=jq('#from').val();
-	task.subject=jq('#subject').val();
-	task.cc=jq('#cc').val();
-	task.bcc=jq('#bcc').val();
-	task._charset=jq('#charset').val();
-	task._text=jq('#nonhtmlText').val();
-	task._html=jq('#htmlText').val();
+	task.to=$('#to').val();
+	task.from=$('#from').val();
+	task.subject=$('#subject').val();
+	task.cc=$('#cc').val();
+	task.bcc=$('#bcc').val();
+	task._charset=$('#charset').val();
+	task._text=$('#nonhtmlText').val();
+	task._html=$('#htmlText').val();
 }
 function populateTaskProperites(){
 	loadTaskMainConfig();
 	loadTaskListeners();
 }
 function loadTaskMainConfig(){
-	jq('#to').val(task.to);
-	jq('#from').val(task.from);
-	jq('#subject').val(task.subject);
-	jq('#cc').val(task.cc);
-	jq('#bcc').val(task.bcc);
-	jq('#charset').val(task._charset);
-	jq('#nonhtmlText').val(task._text);
-	jq('#htmlText').val(task._html);
+	$('#to').val(task.to);
+	$('#from').val(task.from);
+	$('#subject').val(task.subject);
+	$('#cc').val(task.cc);
+	$('#bcc').val(task.bcc);
+	$('#charset').val(task._charset);
+	$('#nonhtmlText').val(task._text);
+	$('#htmlText').val(task._html);
 }
 function loadTaskListeners(){
 	var listeners = task.listeners;
@@ -128,7 +128,7 @@ function loadTaskListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#task-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#task-listeners-list').datagrid('loadData',listener_grid_data);
 }
 //-->
 </script>

@@ -1,7 +1,7 @@
 <script type="text/javascript">
 <!--
-jq(function(){
-	_task_candidate_win = jq('#task-candidate-win').window({
+$(function(){
+	_task_candidate_win = $('#task-candidate-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -12,7 +12,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	_task_candidate_groups_list=jq('#task-candidate-groups-list').datagrid({
+	_task_candidate_groups_list=$('#task-candidate-groups-list').datagrid({
 		title:"Candidate Groups",
 		singleSelect:true,
 		height:450,

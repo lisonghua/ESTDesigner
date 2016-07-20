@@ -1,15 +1,15 @@
 
 <script type="text/javascript">
 <!--
-jq(function(){
-	_task_candidate_unselected_group_panel_obj=jq('#_task_candidate_unselected_group_panel').panel({
+$(function(){
+	_task_candidate_unselected_group_panel_obj=$('#_task_candidate_unselected_group_panel').panel({
 		//height:600,
 		border:false,
 		noheader:true,
 		top:0,
 		left:0
 	});
-	_task_candidate_unselected_group_grid=jq('#_task_candidate_unselected_group_table').datagrid({
+	_task_candidate_unselected_group_grid=$('#_task_candidate_unselected_group_table').datagrid({
 		title:"用户组",
 		url:'${ctx}/wf/procdef/procdef!searchCandidateGroup.action',
 		//singleSelect:true,
@@ -27,7 +27,7 @@ jq(function(){
 		   	var rows = data.rows;
 		    for(var i=0;i<rows.length;i++){
 			    if(task.getCandidateGroup(rows[i].name)!=null){
-					jq(this).datagrid('selectRow',i);
+					$(this).datagrid('selectRow',i);
 				}
 			}
 		},

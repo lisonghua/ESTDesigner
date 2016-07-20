@@ -4,23 +4,23 @@
 //var tid = "";
 var listenerId="";
 var fieldsEditCount = 0;
-jq(function(){
-	jq('#task-properties-accordion').accordion({
+$(function(){
+	$('#task-properties-accordion').accordion({
 		onSelect:function(title,index){
 				if(title=='General'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskGeneral.html');
 					}
 				}else if(title=='Multi Instance'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskMultiInstance.html');
 					}
 				}
 			}
 		});
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -31,7 +31,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	_task_fields_dg = jq('#task-Fields-list').datagrid({
+	_task_fields_dg = $('#task-Fields-list').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -56,15 +56,15 @@ jq(function(){
 						jq.messager.alert("error","有可编辑的单元格，不能添加",'error');
 					return;
 				}
-				jq('#task-Fields-list').datagrid('appendRow',{
+				$('#task-Fields-list').datagrid('appendRow',{
 					id:'',
 					fieldName:'',
 					type:'',
 					value:'',
 					action:''
 				});
-				var index = jq('#task-Fields-list').datagrid('getRows').length-1;
-				jq('#task-Fields-list').datagrid('beginEdit', index);
+				var index = $('#task-Fields-list').datagrid('getRows').length-1;
+				$('#task-Fields-list').datagrid('beginEdit', index);
 	        }
 	    }],
 		
@@ -74,22 +74,22 @@ jq(function(){
 		
 		onBeforeEdit:function(index,row){
 			row.editing = true;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			fieldsEditCount++;
 		},
 		onAfterEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			fieldsEditCount--;
 		},
 		onCancelEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			fieldsEditCount--;
 		}
 	});
 	
-	jq('#task-listeners-list').datagrid({
+	$('#task-listeners-list').datagrid({
 		title:"Execution Listeners",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -117,7 +117,7 @@ jq(function(){
 	});
 	
 	populateTaskProperites();
-	//switchTaskCandidatesList(jq('#performerType').combobox('getValue'));
+	//switchTaskCandidatesList($('#performerType').combobox('getValue'));
 });
 	function cancelField(id){
 	_task_fields_dg.datagrid('cancelEdit', id);
@@ -142,10 +142,10 @@ jq(function(){
 	}
 	function fieldsActionFormatter(value,rowData,rowIndex){
 	var id = rowIndex;
-	var s='<img onclick="saveField('+id+')" src="../../image/ok.png" title="'+"确定"+'" style="cursor:hand;"/>';
-	var c='<img onclick="cancelField('+id+')" src="../../image/cancel.png" title="'+"取消"+'" style="cursor:hand;"/>';
-	var e='<img onclick="editField('+id+')" src="../../image/modify.png" title="'+"修改"+'" style="cursor:hand;"/>';
-	var d='<img onclick="deleteField('+id+')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var s='<img onclick="saveField('+id+')" src="image/ok.png" title="'+"确定"+'" style="cursor:hand;"/>';
+	var c='<img onclick="cancelField('+id+')" src="image/cancel.png" title="'+"取消"+'" style="cursor:hand;"/>';
+	var e='<img onclick="editField('+id+')" src="image/modify.png" title="'+"修改"+'" style="cursor:hand;"/>';
+	var d='<img onclick="deleteField('+id+')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	if(rowData.editing)
 		return s;
 	else
@@ -217,8 +217,8 @@ function saveTaskFields(){
 }
 function listenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -240,18 +240,18 @@ function saveTaskProperties(){
 		jq.messager.alert('Info','Save Successfully!','info');
 }
 function saveTaskMainConfig(){
-	if(jq('#javaClassType').attr('checked')){
-		task._type=jq('#javaClassType').val();
-		task._javaClass=jq('#serviceClass').val();
-	}else if(jq('#expressionType').attr('checked')){
-		task._type=jq('#expressionType').val();
-		task._expression=jq('#_expression').val();
-	}else if(jq('#delegateExpressionType').attr('checked')){
-		task._type=jq('#delegateExpressionType').val();
-		task.delegateExpression=jq('#delegateExpression').val();
+	if($('#javaClassType').attr('checked')){
+		task._type=$('#javaClassType').val();
+		task._javaClass=$('#serviceClass').val();
+	}else if($('#expressionType').attr('checked')){
+		task._type=$('#expressionType').val();
+		task._expression=$('#_expression').val();
+	}else if($('#delegateExpressionType').attr('checked')){
+		task._type=$('#delegateExpressionType').val();
+		task.delegateExpression=$('#delegateExpression').val();
 	}
-	task.resultVariable=jq('#resultVariable').val();
-	task.documentation=jq('#documentation').val();
+	task.resultVariable=$('#resultVariable').val();
+	task.documentation=$('#documentation').val();
 	return saveTaskFields();
 }
 function populateTaskProperites(){
@@ -261,15 +261,15 @@ function populateTaskProperites(){
 function loadTaskMainConfig(){
 	controlTaskTypeDisplay(task._type);
 	if(task._type=='javaClass'){
-			jq('#serviceClass').val(task._javaClass);
+			$('#serviceClass').val(task._javaClass);
 	}else if(task._type=='expression'){
-			jq('#_expression').val(task._expression);
+			$('#_expression').val(task._expression);
 	}else if(task._type=='delegateExpression'){
-			jq('#delegateExpression').val(task.delegateExpression);
+			$('#delegateExpression').val(task.delegateExpression);
 	}
-	jq('#resultVariable').val(task.resultVariable);
+	$('#resultVariable').val(task.resultVariable);
 	loadTaskFields();
-	jq('#documentation').val(task.documentation);
+	$('#documentation').val(task.documentation);
 }
 function loadTaskFields(){
 	var fields = task.fields;
@@ -289,7 +289,7 @@ function loadTaskFields(){
 			total:fields.getSize(),
 			rows:fields_grid_rows
 	};
-	jq('#task-Fields-list').datagrid('loadData',field_grid_data);
+	$('#task-Fields-list').datagrid('loadData',field_grid_data);
 }
 function loadTaskListeners(){
 	var listeners = task.listeners;
@@ -312,7 +312,7 @@ function loadTaskListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#task-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#task-listeners-list').datagrid('loadData',listener_grid_data);
 }
 function selectServiceTaskType(obj){
 	if(obj.checked){
@@ -321,17 +321,17 @@ function selectServiceTaskType(obj){
 }
 function controlTaskTypeDisplay(t){
 		if(t=='javaClass'){
-			jq('#serviceClassTr').show();
-			jq('#expressionTr').hide();
-			jq('#delegateExpressionTr').hide();
+			$('#serviceClassTr').show();
+			$('#expressionTr').hide();
+			$('#delegateExpressionTr').hide();
 		}else if(t=='expression'){
-			jq('#serviceClassTr').hide();
-			jq('#expressionTr').show();
-			jq('#delegateExpressionTr').hide();
+			$('#serviceClassTr').hide();
+			$('#expressionTr').show();
+			$('#delegateExpressionTr').hide();
 		}else if(t=='delegateExpression'){
-			jq('#serviceClassTr').hide();
-			jq('#expressionTr').hide();
-			jq('#delegateExpressionTr').show();
+			$('#serviceClassTr').hide();
+			$('#expressionTr').hide();
+			$('#delegateExpressionTr').show();
 		}
 }
 //-->

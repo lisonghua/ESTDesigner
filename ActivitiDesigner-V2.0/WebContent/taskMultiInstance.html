@@ -1,31 +1,31 @@
 <script type="text/javascript">
 <!--
-jq(function(){
+$(function(){
 		loadTaskMultiInstance();
 });
 function saveTaskMultiInstance(){
-	if(jq('#sequentialYes').attr('checked')){
+	if($('#sequentialYes').attr('checked')){
 		task.isSequential=true;
 	}
-	if(jq('#sequentialNo').attr('checked')){
+	if($('#sequentialNo').attr('checked')){
 		task.isSequential=false;
 	}
-	task._loopCardinality=jq("#loopCardinality").val();
-	task._collection=jq("#collection").val();
-	task._elementVariable=jq("#elementVariable").val();
-	task._completionCondition=jq("#completionCondition").val();
+	task._loopCardinality=$("#loopCardinality").val();
+	task._collection=$("#collection").val();
+	task._elementVariable=$("#elementVariable").val();
+	task._completionCondition=$("#completionCondition").val();
 }
 function loadTaskMultiInstance(){
 	if(task.isSequential){
-		jq('#sequentialYes').attr('checked',true);
+		$('#sequentialYes').attr('checked',true);
 	}else{
-		jq('#sequentialNo').attr('checked',true);
+		$('#sequentialNo').attr('checked',true);
 	}
 	
-	jq("#loopCardinality").val(task._loopCardinality);
-	jq("#collection").val(task._collection);
-	jq("#elementVariable").val(task._elementVariable);
-	jq("#completionCondition").val(task._completionCondition);
+	$("#loopCardinality").val(task._loopCardinality);
+	$("#collection").val(task._collection);
+	$("#elementVariable").val(task._elementVariable);
+	$("#completionCondition").val(task._completionCondition);
 }
 //-->
 </script>

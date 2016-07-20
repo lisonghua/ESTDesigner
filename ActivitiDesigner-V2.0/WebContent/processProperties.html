@@ -3,9 +3,9 @@
 var pid = "";
 var process = workflow.process;
 var processVariablesEditCount = 0;
-jq(function(){
+$(function(){
 	
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -16,7 +16,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#process-listeners-list').datagrid({
+	$('#process-listeners-list').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -42,7 +42,7 @@ jq(function(){
 	        }
 	    }]
 	});
-	_process_variables_dg=jq('#process-variables-table').datagrid({
+	_process_variables_dg=$('#process-variables-table').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -61,15 +61,15 @@ jq(function(){
 						jq.messager.alert("error","有可编辑的单元格，不能添加",'error');
 					return;
 				}
-				jq('#process-variables-table').datagrid('appendRow',{
+				$('#process-variables-table').datagrid('appendRow',{
 					id:'',
 					name:'',
 					type:'',
 					scope:'',
 					action:''
 				});
-				var index = jq('#process-variables-table').datagrid('getRows').length-1;
-				jq('#process-variables-table').datagrid('beginEdit', index);
+				var index = $('#process-variables-table').datagrid('getRows').length-1;
+				$('#process-variables-table').datagrid('beginEdit', index);
 	        }
 	    }],
 		
@@ -79,17 +79,17 @@ jq(function(){
 		
 		onBeforeEdit:function(index,row){
 			row.editing = true;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			processVariablesEditCount++;
 		},
 		onAfterEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			processVariablesEditCount--;
 		},
 		onCancelEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			processVariablesEditCount--;
 		}
 	});
@@ -110,17 +110,17 @@ function deleteListener(id){
 	loadTaskListeners();
 }
 function saveProcessProperties(){
-	process.id=jq('#id').val();
-	process.name=jq('#name').val();
-	process.category=jq('#category').val();
-	process.documentation=jq('#documentation').val();
+	process.id=$('#id').val();
+	process.name=$('#name').val();
+	process.category=$('#category').val();
+	process.documentation=$('#documentation').val();
 	jq.messager.alert('Info','Save Successfully!','info');
 }
 function populateProcessProperites(){
-	jq('#id').val(process.id);
-	jq('#name').val(process.name);
-	jq('#category').val(process.category);
-	jq('#documentation').val(process.documentation);
+	$('#id').val(process.id);
+	$('#name').val(process.name);
+	$('#category').val(process.category);
+	$('#documentation').val(process.documentation);
 	loadProcessListeners();
 	loadProcessVariables();
 }
@@ -145,7 +145,7 @@ function loadProcessListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#process-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#process-listeners-list').datagrid('loadData',listener_grid_data);
 }
 function loadProcessVariables(){
 	var variables = process.variables;

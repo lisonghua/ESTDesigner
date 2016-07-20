@@ -87,7 +87,7 @@ ESTDesigner.model.Process=ESTDesigner.model.BaseModel.extend({
 });
 ESTDesigner.model.Variable=ESTDesigner.model.BaseModel.extend({
 	init:function(){
-		this.id=draw2d.UUID.create();
+		this.id=draw2d.util.UUID.create();
 		this.name=null;
 		this.type=null;
 		this.scope=null;
@@ -98,12 +98,12 @@ ESTDesigner.model.Variable=ESTDesigner.model.BaseModel.extend({
 //excution listener object
 ESTDesigner.model.Listener=ESTDesigner.model.BaseModel.extend({
 	init:function(){
-		this.id=draw2d.UUID.create();
+		this.id=draw2d.util.UUID.create();
 		this.event=null;
 		this.serviceType=null;
 		this.serviceClass=null;
 		this.serviceExpression=null;
-		this.fields=new draw2d.ArrayList();
+		this.fields=new draw2d.util.ArrayList();
 	},
 	setId:function(id){
 		this.id=id;
@@ -182,7 +182,7 @@ ESTDesigner.model.Listener=ESTDesigner.model.BaseModel.extend({
  */
 ESTDesigner.model.Field=ESTDesigner.model.BaseModel.extend({
 	init:function(){
-		this.id=draw2d.UUID.create();
+		this.id=draw2d.util.UUID.create();
 		this.name=null;
 		this.type=null;
 		this.value=null;
@@ -220,7 +220,7 @@ ESTDesigner.model.FormProperty=ESTDesigner.model.BaseModel.extend({
 		this.readable=null;
 		this.writeable=null;
 		this.required=null;
-		this.values=new draw2d.ArrayList();
+		this.values=new draw2d.util.ArrayList();
 	},
 	getPropValuesXML:function(){
 		var xml = "";

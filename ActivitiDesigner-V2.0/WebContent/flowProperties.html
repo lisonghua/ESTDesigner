@@ -3,8 +3,8 @@
 <!--
 //var fid = "";
 //var line = workflow.getLine(fid);
-jq(function(){
-	_listener_win = jq('#listener-win').window({
+$(function(){
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -15,7 +15,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#line-listeners-list').datagrid({
+	$('#line-listeners-list').datagrid({
 		title:"Execution Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -45,8 +45,8 @@ jq(function(){
 });
 function listenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -59,16 +59,16 @@ function deleteListener(id){
 }
 function saveLineProperties(){
 	//alert(tid);
-	line.lineId=jq('#id').val();
-	line.lineName=jq('#name').val();
-	line.setLabel(jq('#name').val());
-	line.condition=jq('#condition').val();
+	line.lineId=$('#id').val();
+	line.lineName=$('#name').val();
+	line.setLabel($('#name').val());
+	line.condition=$('#condition').val();
 	jq.messager.alert('Info','Save Successfully!','info');
 }
 function populateLineProperites(){
-	jq('#id').val(line.lineId);
-	jq('#name').val(line.lineName);
-	jq('#condition').val(line.condition);
+	$('#id').val(line.lineId);
+	$('#name').val(line.lineName);
+	$('#condition').val(line.condition);
 	loadLineListeners();
 }
 function loadLineListeners(){
@@ -92,7 +92,7 @@ function loadLineListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#line-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#line-listeners-list').datagrid('loadData',listener_grid_data);
 }
 //-->
 </script>

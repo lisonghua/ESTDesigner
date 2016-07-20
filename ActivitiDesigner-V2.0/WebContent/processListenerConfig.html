@@ -2,13 +2,13 @@
 <!--
 var listenerFieldsEditCount = 0;
 var listenerId="";
-jq(function(){
+$(function(){
 	
-	_listener_event_type=jq('#listenerEventType').combobox({
+	_listener_event_type=$('#listenerEventType').combobox({
 		editable:false
 	});
 	
-	_process_listener_fields_dg=jq('#process-listeners-fields-list').datagrid({
+	_process_listener_fields_dg=$('#process-listeners-fields-list').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -33,15 +33,15 @@ jq(function(){
 					jq.messager.alert("error","有可编辑的单元格，不能添加",'error');
 					return;
 				}
-				jq('#process-listeners-fields-list').datagrid('appendRow',{
+				$('#process-listeners-fields-list').datagrid('appendRow',{
 					id:'',
 					fieldName:'',
 					type:'',
 					value:'',
 					action:''
 				});
-				var index = jq('#process-listeners-fields-list').datagrid('getRows').length-1;
-				jq('#process-listeners-fields-list').datagrid('beginEdit', index);
+				var index = $('#process-listeners-fields-list').datagrid('getRows').length-1;
+				$('#process-listeners-fields-list').datagrid('beginEdit', index);
 	        }
 	    }],
 		
@@ -51,42 +51,42 @@ jq(function(){
 		
 		onBeforeEdit:function(index,row){
 			row.editing = true;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			listenerFieldsEditCount++;
 		},
 		onAfterEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			listenerFieldsEditCount--;
 		},
 		onCancelEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			listenerFieldsEditCount--;
 		}
 	});
-	jq('#fieldSaveBt').linkbutton({
+	$('#fieldSaveBt').linkbutton({
 		iconCls:"icon-save"
 	});
-	jq('#fieldCancelBt').linkbutton({
+	$('#fieldCancelBt').linkbutton({
 		iconCls:"icon-cancel"
 	});
-	jq('#selectListenerServiceClassBt').linkbutton({
+	$('#selectListenerServiceClassBt').linkbutton({
 		iconCls:"icon-search"
 	});
 	populateListenerProperties();
 });
 function changeListenerServiceType(obj){
 	if(obj.value=='javaClass'){
-		jq('#listenerServiceLabel').html('Service Class:');
-		jq('#listenerServiceClass').show();
-		jq('#selectListenerServiceClassBt').show();
-		jq('#listenerServiceExpression').hide();
+		$('#listenerServiceLabel').html('Service Class:');
+		$('#listenerServiceClass').show();
+		$('#selectListenerServiceClassBt').show();
+		$('#listenerServiceExpression').hide();
 	}else if(obj.value=='expression'){
-		jq('#listenerServiceLabel').html('Expression:');
-		jq('#listenerServiceClass').hide();
-		jq('#selectListenerServiceClassBt').hide();
-		jq('#listenerServiceExpression').show();
+		$('#listenerServiceLabel').html('Expression:');
+		$('#listenerServiceClass').hide();
+		$('#selectListenerServiceClassBt').hide();
+		$('#listenerServiceExpression').show();
 	}
 }
 function listenerFieldsActionFormatter(value,rowData,rowIndex){
@@ -178,14 +178,14 @@ function saveListenerConfig(){
 }
 function insertNewListener(listener){
 	listener.event=_listener_event_type.combobox('getValue');
-	jq('input[name="listenerServiceType"]').each(function(i){
+	$('input[name="listenerServiceType"]').each(function(i){
 		if(this.checked){
 			listener.serviceType=this.value;
 			return false;
 		}
 	});
-	listener.serviceClass=jq('#listenerServiceClass').val();
-	listener.serviceExpression=jq('#listenerServiceExpression').val();
+	listener.serviceClass=$('#listenerServiceClass').val();
+	listener.serviceExpression=$('#listenerServiceExpression').val();
     var changesRows = getListenerFieldsGridChangeRows();
     if(changesRows == null)return false;
     var insertRows = changesRows['inserted'];   
@@ -204,14 +204,14 @@ function insertNewListener(listener){
 }
 function updateExistingListener(listener){
 	listener.event=_listener_event_type.combobox('getValue');
-	jq('input[name="listenerServiceType"]').each(function(i){
+	$('input[name="listenerServiceType"]').each(function(i){
 		if(this.checked){
 			listener.serviceType=this.value;
 			return false;
 		}
 	});
-	listener.serviceClass=jq('#listenerServiceClass').val();
-	listener.serviceExpression=jq('#listenerServiceExpression').val();
+	listener.serviceClass=$('#listenerServiceClass').val();
+	listener.serviceExpression=$('#listenerServiceExpression').val();
 	var changesRows = getListenerFieldsGridChangeRows();
     if(changesRows == null)return false;
     var insertRows = changesRows['inserted'];   
@@ -250,14 +250,14 @@ function populateListenerProperties(){
 		var listener = process.getListener(listenerId);
 		_listener_event_type.combobox('setValue',listener.event);
 		var serviceType = listener.serviceType;
-		jq('input[name="listenerServiceType"]').each(function(i){
+		$('input[name="listenerServiceType"]').each(function(i){
 			if(this.value==serviceType){
 				this.checked=true;
 				changeListenerServiceType(this);
 				if(this.value=='javaClass'){
-					jq('#listenerServiceClass').val(listener.serviceClass);
+					$('#listenerServiceClass').val(listener.serviceClass);
 				}else if(this.value=='expression'){
-					jq('#listenerServiceExpression').val(listener.serviceExpression);
+					$('#listenerServiceExpression').val(listener.serviceExpression);
 				}
 				return false;
 			}

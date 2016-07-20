@@ -2,9 +2,9 @@
 <script type="text/javascript">
 //alert("${ctx}/pm/group/group!getUserTreeOfGroup.action");
 <!--
-jq(function(){
+$(function(){
 	/*
-	jq('#candidate-users-tree-list').treegrid({
+	$('#candidate-users-tree-list').treegrid({
 			title:"",
 			//width:980,
 			height:450,
@@ -34,23 +34,23 @@ jq(function(){
 			]	
 		});
 	
-	jq('#candidate-users-tree').tree({
+	$('#candidate-users-tree').tree({
 		checkbox: true,
 		url: '${ctx}/pm/group/group!getUserTreeOfGroup.action',
 		onClick:function(node){
-			jq(this).tree('toggle', node.target);
+			$(this).tree('toggle', node.target);
 			//alert('you dbclick '+node.text);
 		}
 	});
 	*/
-	_task_unselected_candidate_user_panel=jq('#task-unselect-candidate-user-panel').panel({
+	_task_unselected_candidate_user_panel=$('#task-unselect-candidate-user-panel').panel({
 		border:false,
 		noheader:true,
 		top:0,
 		left:0
 		//fit:true
 	});
-	_task_unselect_candidate_user_list=jq('#task-unselect-candidate-user-list').datagrid({
+	_task_unselect_candidate_user_list=$('#task-unselect-candidate-user-list').datagrid({
 		title:"Users",
 		url:'${ctx}/wf/procdef/procdef!searchCandidateUser.action',
 		//singleSelect:true,
@@ -69,7 +69,7 @@ jq(function(){
 		   	var rows = data.rows;
 		    for(var i=0;i<rows.length;i++){
 			    if(task.getCandidateUser(rows[i].sso)!=null){
-					jq(this).datagrid('selectRow',i);
+					$(this).datagrid('selectRow',i);
 				}
 			}
 		},
@@ -81,7 +81,7 @@ jq(function(){
  	        }
 	     }]
 	});
-	_task_unselect_candidate_user_group=jq('#task-unselect-candidate-user-group').combobox({
+	_task_unselect_candidate_user_group=$('#task-unselect-candidate-user-group').combobox({
 	    url:'${ctx}/pm/group/group!getAllGroups.action',
 	    //editable:false,
 	    valueField:'groupId',
@@ -89,11 +89,11 @@ jq(function(){
 	});
 });
 function searchCandidateUser(){
-	var name=jq("#task-unselect-candidate-user-userName").val();
-	var sso=jq("#task-unselect-candidate-user-sso").val();
+	var name=$("#task-unselect-candidate-user-userName").val();
+	var sso=$("#task-unselect-candidate-user-sso").val();
 	var group=_task_unselect_candidate_user_group.combobox('getValue');
 	//alert(group);
-	var email=jq("#task-unselect-candidate-user-email").val();
+	var email=$("#task-unselect-candidate-user-email").val();
 	//alert(sso);
 	_task_unselect_candidate_user_list.datagrid('reload',{
 			filter_LIKES_name:name,

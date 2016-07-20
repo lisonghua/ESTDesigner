@@ -1,35 +1,35 @@
 <script type="text/javascript">
 <!--
-jq(function(){
+$(function(){
 		loadTaskGeneral();
 	});
 function saveTaskGeneral(){
-	task.taskId=jq('#id').val();
-	task.taskName=jq('#name').val();
-	task.setContent(jq('#name').val());
-	if(jq('#asynchronous').attr('checked')){
+	task.taskId=$('#id').val();
+	task.taskName=$('#name').val();
+	task.setContent($('#name').val());
+	if($('#asynchronous').attr('checked')){
 		task.asynchronous=true;
 	}else{
 		task.asynchronous=false;
 	}
-	if(!jq('#exclusive').attr('checked')){
+	if(!$('#exclusive').attr('checked')){
 		task.exclusive=false;
 	}else{
 		task.exclusive=true;
 	}
 }
 function loadTaskGeneral(){
-	jq('#id').val(task.taskId);
-	jq('#name').val(task.taskName);
+	$('#id').val(task.taskId);
+	$('#name').val(task.taskName);
 	if(task.asynchronous){
-		jq('#asynchronous').attr('checked',true);
+		$('#asynchronous').attr('checked',true);
 	}else{
-		jq('#asynchronous').attr('checked',false);
+		$('#asynchronous').attr('checked',false);
 	}
 	if(!task.exclusive){
-		jq('#exclusive').attr('checked',false);
+		$('#exclusive').attr('checked',false);
 	}else{
-		jq('#exclusive').attr('checked',true);
+		$('#exclusive').attr('checked',true);
 	}
 }
 //-->

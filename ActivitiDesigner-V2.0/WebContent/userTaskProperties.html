@@ -5,29 +5,29 @@
 //var task = workflow.getFigure(tid);
 var listenerId="";
 var formPropertyId="";
-jq(function(){
-	jq('#task-properties-accordion').accordion({
+$(function(){
+	$('#task-properties-accordion').accordion({
 		onSelect:function(title,index){
 				if(title=='General'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskGeneral.html');
 					}
 				}else if(title=='Multi Instance'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskMultiInstance.html');
 					}
 				}
 			}
 		});
-	jq('#performerType').combobox({
+	$('#performerType').combobox({
 			editable:false,
 			onChange:function(newValue, oldValue){
 				switchTaskCandidatesList(newValue);
 			}
 		});
-	_form_win = jq('#form-win').window({
+	_form_win = $('#form-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -38,7 +38,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -49,7 +49,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#task-listeners-list').datagrid({
+	$('#task-listeners-list').datagrid({
 		title:"Task Listeners",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -75,7 +75,7 @@ jq(function(){
 	        }
 	    }]
 	});
-	jq('#execution-listeners-list').datagrid({
+	$('#execution-listeners-list').datagrid({
 		title:"Execution Listeners",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -101,7 +101,7 @@ jq(function(){
 	        }
 	    }]
 	});
-	jq('#task-form-properties-list').datagrid({
+	$('#task-form-properties-list').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -125,7 +125,7 @@ jq(function(){
 	        }
 	    }]
 	});
-	task_candidate_panel=jq('#task-candidate-panel').panel({
+	task_candidate_panel=$('#task-candidate-panel').panel({
 		border:false,
 		//minimized:true,
 		height:450
@@ -133,15 +133,15 @@ jq(function(){
 		//fit:true
 	});
 	populateTaskProperites();
-	//switchTaskCandidatesList(jq('#performerType').combobox('getValue'));
+	//switchTaskCandidatesList($('#performerType').combobox('getValue'));
 });
 function switchIsExpression(obj){
 	if(obj.value=='true'){
-		jq('#expressionTr').show();
+		$('#expressionTr').show();
 		task_candidate_panel.panel("close");
 	}else if(obj.value=='false'){
-		jq('#expressionTr').hide();
-		var performerType=jq('#performerType').combobox('getValue');
+		$('#expressionTr').hide();
+		var performerType=$('#performerType').combobox('getValue');
 		task_candidate_panel.panel("open");
 		if(performerType == 'candidateUsers'){
 			task_candidate_panel.panel("refresh","candidateUsersConfig.html");
@@ -151,7 +151,7 @@ function switchIsExpression(obj){
 	}
 }
 function switchTaskCandidatesList(performerType){
-	if(jq('#nonExpression').attr('checked')){
+	if($('#nonExpression').attr('checked')){
 		if(performerType == 'candidateUsers'){
 			task_candidate_panel.panel("refresh","candidateUsersConfig.html");
 		}else if(performerType == 'candidateGroups'){
@@ -161,14 +161,14 @@ function switchTaskCandidatesList(performerType){
 }
 function executionListenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function taskListenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editTaskListener(\''+id+'\')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteTaskListener(\''+id+'\')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editTaskListener(\''+id+'\')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteTaskListener(\''+id+'\')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -191,8 +191,8 @@ function deleteTaskListener(id){
 }
 function formActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editForm('+id+')" src="../../image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteForm('+id+')" src="../../image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
+	var e = '<img onclick="editForm('+id+')" src="image/edit.gif" title="'+"修改"+'" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteForm('+id+')" src="image/delete.gif" title="'+"删除"+'" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editForm(id){
@@ -208,34 +208,34 @@ function saveTaskProperties(){
 	saveTaskGeneral();
 	if(typeof saveTaskMultiInstance == 'function')
 		saveTaskMultiInstance();
-	task.performerType=jq('#performerType').combobox('getValue');
-	task.expression=jq('#expression').val();
-	if(jq('#isExpression').attr('checked')){
-		task.isUseExpression=jq('#isExpression').val();
-	}else if(jq('#nonExpression').attr('checked')){
-		task.isUseExpression=jq('#nonExpression').val();
+	task.performerType=$('#performerType').combobox('getValue');
+	task.expression=$('#expression').val();
+	if($('#isExpression').attr('checked')){
+		task.isUseExpression=$('#isExpression').val();
+	}else if($('#nonExpression').attr('checked')){
+		task.isUseExpression=$('#nonExpression').val();
 	}
-	task.formKey=jq('#formKey').val();
-	task.dueDate=jq('#dueDate').val();
-	task.priority=jq('#priority').val();
-	task.documentation=jq('#documentation').val();
+	task.formKey=$('#formKey').val();
+	task.dueDate=$('#dueDate').val();
+	task.priority=$('#priority').val();
+	task.documentation=$('#documentation').val();
 	jq.messager.alert('Info','Save Successfully!','info');
 }
 function populateTaskProperites(){
-	//jq('#id').val(task.taskId);
-	//jq('#name').val(task.taskName);
-	jq('#performerType').combobox('setValue',task.performerType);
+	//$('#id').val(task.taskId);
+	//$('#name').val(task.taskName);
+	$('#performerType').combobox('setValue',task.performerType);
 	if(task.isUseExpression){
-		jq('#expressionTr').show();
-		jq('#expression').val(task.expression);
+		$('#expressionTr').show();
+		$('#expression').val(task.expression);
 	}else{
-		jq('#expressionTr').hide();
+		$('#expressionTr').hide();
 	}
 	
-	jq('#formKey').val(task.formKey);
-	jq('#dueDate').val(task.dueDate);
-	jq('#priority').val(task.priority);
-	jq('#documentation').val(task.documentation);
+	$('#formKey').val(task.formKey);
+	$('#dueDate').val(task.dueDate);
+	$('#priority').val(task.priority);
+	$('#documentation').val(task.documentation);
 	loadTaskListeners();
 }
 function loadTaskListeners(){
@@ -259,7 +259,7 @@ function loadTaskListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#execution-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#execution-listeners-list').datagrid('loadData',listener_grid_data);
 	
 	var taskListeners = task.taskListeners;
 	var task_listener_grid_rows=[];
@@ -281,7 +281,7 @@ function loadTaskListeners(){
 			total:taskListeners.getSize(),
 			rows:task_listener_grid_rows
 	};
-	jq('#task-listeners-list').datagrid('loadData',task_listener_grid_data);
+	$('#task-listeners-list').datagrid('loadData',task_listener_grid_data);
 }
 function loadTaskFormProperties(){
 	var props = task.formProperties;
@@ -310,7 +310,7 @@ function loadTaskFormProperties(){
 			total:props.getSize(),
 			rows:prop_grid_rows
 	};
-	jq('#task-form-properties-list').datagrid('loadData',prop_grid_data);
+	$('#task-form-properties-list').datagrid('loadData',prop_grid_data);
 }
 //-->
 </script>

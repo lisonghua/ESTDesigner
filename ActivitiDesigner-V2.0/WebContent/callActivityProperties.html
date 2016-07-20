@@ -5,23 +5,23 @@
 var listenerId="";
 var inputParamsEditCount = 0;
 var outputParamsEditCount = 0;
-jq(function(){
-	jq('#task-properties-accordion').accordion({
+$(function(){
+	$('#task-properties-accordion').accordion({
 		onSelect:function(title,index){
 				if(title=='General'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskGeneral.html');
 					}
 				}else if(title=='Multi Instance'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskMultiInstance.html');
 					}
 				}
 			}
 		});
-	_input_params_list=jq('#input-params-list').datagrid({
+	_input_params_list=$('#input-params-list').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -46,15 +46,15 @@ jq(function(){
 						jq.messager.alert("error","有可编辑的单元格，不能添加!",'error');
 						return;
 					}
-				jq('#input-params-list').datagrid('appendRow',{
+				$('#input-params-list').datagrid('appendRow',{
 					id:'',
 					_source:'',
 					sourceExpression:'',
 					_target:'',
 					action:''
 				});
-				var index = jq('#input-params-list').datagrid('getRows').length-1;
-				jq('#input-params-list').datagrid('beginEdit', index);
+				var index = $('#input-params-list').datagrid('getRows').length-1;
+				$('#input-params-list').datagrid('beginEdit', index);
 	        }
 	    }],
 		
@@ -64,21 +64,21 @@ jq(function(){
 		
 		onBeforeEdit:function(index,row){
 			row.editing = true;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			inputParamsEditCount++;
 		},
 		onAfterEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			inputParamsEditCount--;
 		},
 		onCancelEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			inputParamsEditCount--;
 		}
 	});
-	_output_params_list=jq('#output-params-list').datagrid({
+	_output_params_list=$('#output-params-list').datagrid({
 		//title:"Listener",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -103,15 +103,15 @@ jq(function(){
 						jq.messager.alert("error","有可编辑的单元格，不能添加!",'error');
 						return;
 					}
-				jq('#output-params-list').datagrid('appendRow',{
+				$('#output-params-list').datagrid('appendRow',{
 					id:'',
 					_source:'',
 					sourceExpression:'',
 					_target:'',
 					action:''
 				});
-				var index = jq('#output-params-list').datagrid('getRows').length-1;
-				jq('#output-params-list').datagrid('beginEdit', index);
+				var index = $('#output-params-list').datagrid('getRows').length-1;
+				$('#output-params-list').datagrid('beginEdit', index);
 	        }
 	    }],
 		
@@ -121,21 +121,21 @@ jq(function(){
 		
 		onBeforeEdit:function(index,row){
 			row.editing = true;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			outputParamsEditCount++;
 		},
 		onAfterEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			outputParamsEditCount--;
 		},
 		onCancelEdit:function(index,row){
 			row.editing = false;
-			jq(this).datagrid('refreshRow', index);
+			$(this).datagrid('refreshRow', index);
 			outputParamsEditCount--;
 		}
 	});
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -146,7 +146,7 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#task-listeners-list').datagrid({
+	$('#task-listeners-list').datagrid({
 		title:"Execution Listeners",
 		//url:'${ctx}/wf/procdef/procdef!search.action',//加载表格数据的URL
 		singleSelect:true,
@@ -197,10 +197,10 @@ jq(function(){
 	}
 	function inputParamsActionFormatter(value,rowData,rowIndex){
 	var id = rowIndex;
-	var s='<img onclick="saveInputParam('+id+')" src="../../image/ok.png" title="Save" style="cursor:hand;"/>';
-	var c='<img onclick="cancelInputParam('+id+')" src="../../image/cancel.png" title="Cancel" style="cursor:hand;"/>';
-	var e='<img onclick="editInputParam('+id+')" src="../../image/modify.png" title="Update" style="cursor:hand;"/>';
-	var d='<img onclick="deleteInputParam('+id+')" src="../../image/delete.gif" title="Delete" style="cursor:hand;"/>';
+	var s='<img onclick="saveInputParam('+id+')" src="image/ok.png" title="Save" style="cursor:hand;"/>';
+	var c='<img onclick="cancelInputParam('+id+')" src="image/cancel.png" title="Cancel" style="cursor:hand;"/>';
+	var e='<img onclick="editInputParam('+id+')" src="image/modify.png" title="Update" style="cursor:hand;"/>';
+	var d='<img onclick="deleteInputParam('+id+')" src="image/delete.gif" title="Delete" style="cursor:hand;"/>';
 	if(rowData.editing)
 		return s;
 	else
@@ -292,10 +292,10 @@ function cancelOutputParam(id){
 	}
 	function outputParamsActionFormatter(value,rowData,rowIndex){
 	var id = rowIndex;
-	var s='<img onclick="saveOutputParam('+id+')" src="../../image/ok.png" title="Save" style="cursor:hand;"/>';
-	var c='<img onclick="cancelOutputParam('+id+')" src="../../image/cancel.png" title="Cancel" style="cursor:hand;"/>';
-	var e='<img onclick="editOutputParam('+id+')" src="../../image/modify.png" title="Update" style="cursor:hand;"/>';
-	var d='<img onclick="deleteOutputParam('+id+')" src="../../image/delete.gif" title="Delete" style="cursor:hand;"/>';
+	var s='<img onclick="saveOutputParam('+id+')" src="image/ok.png" title="Save" style="cursor:hand;"/>';
+	var c='<img onclick="cancelOutputParam('+id+')" src="image/cancel.png" title="Cancel" style="cursor:hand;"/>';
+	var e='<img onclick="editOutputParam('+id+')" src="image/modify.png" title="Update" style="cursor:hand;"/>';
+	var d='<img onclick="deleteOutputParam('+id+')" src="image/delete.gif" title="Delete" style="cursor:hand;"/>';
 	if(rowData.editing)
 		return s;
 	else
@@ -367,8 +367,8 @@ function saveOutputParams(){
 }
 function listenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="修改" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="删除" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="修改" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="删除" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -388,7 +388,7 @@ function saveTaskProperties(){
 		jq.messager.alert('Info','Save Successfully!','info');
 }
 function saveTaskMainConfig(){
-	task.callElement=jq('#callElement').val();
+	task.callElement=$('#callElement').val();
 	var r = saveInputParams();
 	var p = saveOutputParams();
 	return r&&p;
@@ -398,7 +398,7 @@ function populateTaskProperites(){
 	loadTaskListeners();
 }
 function loadTaskMainConfig(){
-	jq('#callElement').val(task.callElement);
+	$('#callElement').val(task.callElement);
 	loadInputParams();
 	loadOutputParams();
 }
@@ -463,7 +463,7 @@ function loadTaskListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#task-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#task-listeners-list').datagrid('loadData',listener_grid_data);
 }
 //-->
 </script>

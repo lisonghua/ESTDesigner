@@ -3,23 +3,23 @@
 <!--
 //var tid = "";
 var listenerId="";
-jq(function(){
-	jq('#task-properties-accordion').accordion({
+$(function(){
+	$('#task-properties-accordion').accordion({
 		onSelect:function(title,index){
 				if(title=='General'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskGeneral.html');
 					}
 				}else if(title=='Multi Instance'){
-					var pp = jq('#task-properties-accordion').accordion('getSelected');
+					var pp = $('#task-properties-accordion').accordion('getSelected');
 					if (pp){
     				pp.panel('refresh','taskMultiInstance.html');
 					}
 				}
 			}
 		});
-	_listener_win = jq('#listener-win').window({
+	_listener_win = $('#listener-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,
@@ -30,9 +30,9 @@ jq(function(){
 	    modal:true,
 	    shadow:true
 	});
-	jq('#task-listeners-list').datagrid({
+	$('#task-listeners-list').datagrid({
 		title:"Execution Listeners",
-		//url:'${ctx}/wf/procdef/procdef!search.action',//¼ÓÔØ±í¸ñÊı¾İµÄURL
+		//url:'${ctx}/wf/procdef/procdef!search.action',//ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½İµï¿½URL
 		singleSelect:true,
 		//width:500,
 		height:300,
@@ -61,8 +61,8 @@ jq(function(){
 });
 function listenerActionBt(value,rowData,rowIndex){
 	var id = rowData.id;
-	var e = '<img onclick="editListener(\''+id+'\')" src="../../image/edit.gif" title="ĞŞ¸Ä" style="cursor:hand;"/>';   
-    var d = '<img onclick="deleteListener(\''+id+'\')" src="../../image/delete.gif" title="É¾³ı" style="cursor:hand;"/>';
+	var e = '<img onclick="editListener(\''+id+'\')" src="image/edit.gif" title="ï¿½Ş¸ï¿½" style="cursor:hand;"/>';   
+    var d = '<img onclick="deleteListener(\''+id+'\')" src="image/delete.gif" title="É¾ï¿½ï¿½" style="cursor:hand;"/>';
 	return e+'&nbsp;'+d;
 }
 function editListener(id){
@@ -82,12 +82,12 @@ function saveTaskProperties(){
 	jq.messager.alert('Info','Save Successfully!','info');
 }
 function saveTaskMainConfig(){
-	task.ruleName=jq('#ruleName').val();
-	task.inputVariable=jq('#inputVariable').val();
-	task.resultVariable=jq('#resultVariable').val();
-	if(jq('#excludeYes').attr('checked'))
+	task.ruleName=$('#ruleName').val();
+	task.inputVariable=$('#inputVariable').val();
+	task.resultVariable=$('#resultVariable').val();
+	if($('#excludeYes').attr('checked'))
 		task.excluded=true;
-	if(jq('#excludeNo').attr('checked'))
+	if($('#excludeNo').attr('checked'))
 		task.excluded=false;
 }
 function populateTaskProperites(){
@@ -95,13 +95,13 @@ function populateTaskProperites(){
 	loadTaskListeners();
 }
 function loadTaskMainConfig(){
-	jq('#ruleName').val(task.ruleName);
-	jq('#inputVariable').val(task.inputVariable);
-	jq('#resultVariable').val(task.resultVariable);
+	$('#ruleName').val(task.ruleName);
+	$('#inputVariable').val(task.inputVariable);
+	$('#resultVariable').val(task.resultVariable);
 	if(task.excluded)
-		jq('#excludeYes').attr('checked',true);
+		$('#excludeYes').attr('checked',true);
 	else
-		jq('#excludeNo').attr('checked',true);
+		$('#excludeNo').attr('checked',true);
 }
 function loadTaskListeners(){
 	var listeners = task.listeners;
@@ -124,7 +124,7 @@ function loadTaskListeners(){
 			total:listeners.getSize(),
 			rows:listener_grid_rows
 	};
-	jq('#task-listeners-list').datagrid('loadData',listener_grid_data);
+	$('#task-listeners-list').datagrid('loadData',listener_grid_data);
 }
 //-->
 </script>

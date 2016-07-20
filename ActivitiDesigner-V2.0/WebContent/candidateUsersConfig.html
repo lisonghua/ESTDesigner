@@ -1,8 +1,8 @@
 
 <script type="text/javascript">
 <!--
-jq(function(){
-	_task_candidate_users_list=jq('#task-candidate-users-list').datagrid({
+$(function(){
+	_task_candidate_users_list=$('#task-candidate-users-list').datagrid({
 		title:"Candidate Users",
 		singleSelect:true,
 		height:450,
@@ -18,7 +18,7 @@ jq(function(){
 	        }
 	    }]
 	});
-	_task_candidate_win = jq('#task-candidate-win').window({
+	_task_candidate_win = $('#task-candidate-win').window({
 		//href:'${ctx}/wf/procdef/procdef!forTaskListenerConfig.action',   
 	    closed:true,
 	    //cache:false,

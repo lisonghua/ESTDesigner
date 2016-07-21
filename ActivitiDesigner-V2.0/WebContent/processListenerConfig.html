@@ -30,7 +30,7 @@ $(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(listenerFieldsEditCount>0){
-					jq.messager.alert("error","有可编辑的单元格，不能添加",'error');
+					$.messager.alert("error","有可编辑的单元格，不能添加",'error');
 					return;
 				}
 				$('#process-listeners-fields-list').datagrid('appendRow',{
@@ -134,7 +134,7 @@ function getExsitingListener(){
 }
 function getListenerFieldsGridChangeRows(){
 	if(listenerFieldsEditCount>0){
-		jq.messager.alert("error","",'error');
+		$.messager.alert("error","",'error');
 		return null;
 	}
     var insertRows = _process_listener_fields_dg.datagrid('getChanges','inserted');   

@@ -63,7 +63,7 @@ function saveLineProperties(){
 	line.lineName=$('#name').val();
 	line.setLabel($('#name').val());
 	line.condition=$('#condition').val();
-	jq.messager.alert('Info','Save Successfully!','info');
+	$.messager.alert('Info','Save Successfully!','info');
 }
 function populateLineProperites(){
 	$('#id').val(line.lineId);

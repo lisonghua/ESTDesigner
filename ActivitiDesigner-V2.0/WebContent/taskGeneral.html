@@ -4,32 +4,32 @@ $(function(){
 		loadTaskGeneral();
 	});
 function saveTaskGeneral(){
-	task.taskId=$('#id').val();
-	task.taskName=$('#name').val();
-	task.setContent($('#name').val());
-	if($('#asynchronous').attr('checked')){
+	task.id=$('#id').val();
+	task.setTaskName($('#name').val());
+	if($('#asynchronous').prop('checked')){
 		task.asynchronous=true;
 	}else{
 		task.asynchronous=false;
 	}
-	if(!$('#exclusive').attr('checked')){
+	if(!$('#exclusive').prop('checked')){
 		task.exclusive=false;
 	}else{
 		task.exclusive=true;
 	}
+	//console.log(task);
 }
 function loadTaskGeneral(){
 	$('#id').val(task.taskId);
 	$('#name').val(task.taskName);
 	if(task.asynchronous){
-		$('#asynchronous').attr('checked',true);
+		$('#asynchronous').prop('checked',true);
 	}else{
-		$('#asynchronous').attr('checked',false);
+		$('#asynchronous').prop('checked',false);
 	}
 	if(!task.exclusive){
-		$('#exclusive').attr('checked',false);
+		$('#exclusive').prop('checked',false);
 	}else{
-		$('#exclusive').attr('checked',true);
+		$('#exclusive').prop('checked',true);
 	}
 }
 //-->

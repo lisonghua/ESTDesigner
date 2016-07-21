@@ -43,7 +43,7 @@ $(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(inputParamsEditCount>0){
-						jq.messager.alert("error","有可编辑的单元格，不能添加!",'error');
+						$.messager.alert("error","有可编辑的单元格，不能添加!",'error');
 						return;
 					}
 				$('#input-params-list').datagrid('appendRow',{
@@ -100,7 +100,7 @@ $(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(outputParamsEditCount>0){
-						jq.messager.alert("error","有可编辑的单元格，不能添加!",'error');
+						$.messager.alert("error","有可编辑的单元格，不能添加!",'error');
 						return;
 					}
 				$('#output-params-list').datagrid('appendRow',{
@@ -208,7 +208,7 @@ $(function(){
 	}
 	function getInputParamsGridChangeRows(){
 	if(inputParamsEditCount>0){
-		jq.messager.alert("error","请先保存可编辑表格！",'error');
+		$.messager.alert("error","请先保存可编辑表格！",'error');
 		return null;
 	}
     var insertRows = _input_params_list.datagrid('getChanges','inserted');   
@@ -303,7 +303,7 @@ function cancelOutputParam(id){
 	}
 	function getOutputParamsGridChangeRows(){
 	if(outputParamsEditCount>0){
-		jq.messager.alert("error","请先保存可编辑表格！",'error');
+		$.messager.alert("error","请先保存可编辑表格！",'error');
 		return null;
 	}
     var insertRows = _output_params_list.datagrid('getChanges','inserted');   
@@ -385,7 +385,7 @@ function saveTaskProperties(){
 		saveTaskMultiInstance();
 	var r = saveTaskMainConfig();
 	if(r)
-		jq.messager.alert('Info','Save Successfully!','info');
+		$.messager.alert('Info','Save Successfully!','info');
 }
 function saveTaskMainConfig(){
 	task.callElement=$('#callElement').val();

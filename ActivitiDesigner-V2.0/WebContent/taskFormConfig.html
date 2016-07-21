@@ -27,7 +27,7 @@ $(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(formValuesEditCount>0){
-						//jq.messager.alert("error","�пɱ༭�ĵ�Ԫ�񣬲������",'error');
+						//$.messager.alert("error","�пɱ༭�ĵ�Ԫ�񣬲������",'error');
 						return;
 					}
 					$('#task-form-values-list').datagrid('appendRow',{
@@ -105,7 +105,7 @@ function refreshAllFormValues(){
 	}
 }
 function createNewProperty(){
-	var property = new draw2d.UserTask.FormProperty();
+	var property = new ESTDesigner.model.FormProperty();
     return property;   
 }
 function getExsitingProperty(propId){
@@ -114,7 +114,7 @@ function getExsitingProperty(propId){
 }
 function getFormValuesGridChangeRows(){
 	if(formValuesEditCount>0){
-		jq.messager.alert("error","",'error');
+		$.messager.alert("error","",'error');
 		return null;
 	}
     var insertRows = _task_form_values_dg.datagrid('getChanges','inserted');   
@@ -172,7 +172,7 @@ function insertNewProperty(prop){
     var insertRows = changesRows['inserted'];   
     if (insertRows.length>0) {   
         for (var i=0;i<insertRows.length;i++) {
-            var fvs = new draw2d.UserTask.FormProperty.FormValue();
+            var fvs = new ESTDesigner.model.FormValue();
 		    		fvs.id=insertRows[i].id;
 		    		fvs.name=insertRows[i].name;
 		    		prop.values.add(fvs);  
@@ -200,7 +200,7 @@ function updateExistingProperty(prop){
     var deleteRows = changesRows['deleted'];   
     if (insertRows.length>0) {   
         for (var i=0;i<insertRows.length;i++) {
-            var fvs = new draw2d.UserTask.FormProperty.FormValue();
+            var fvs = new ESTDesigner.model.FormValue();
 		    		fvs.id=insertRows[i].id;
 		    		fvs.name=insertRows[i].name;
 		    		prop.values.add(fvs);  

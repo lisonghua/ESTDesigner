@@ -58,7 +58,7 @@ $(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(processVariablesEditCount>0){
-						jq.messager.alert("error","有可编辑的单元格，不能添加",'error');
+						$.messager.alert("error","有可编辑的单元格，不能添加",'error');
 					return;
 				}
 				$('#process-variables-table').datagrid('appendRow',{
@@ -114,7 +114,7 @@ function saveProcessProperties(){
 	process.name=$('#name').val();
 	process.category=$('#category').val();
 	process.documentation=$('#documentation').val();
-	jq.messager.alert('Info','Save Successfully!','info');
+	$.messager.alert('Info','Save Successfully!','info');
 }
 function populateProcessProperites(){
 	$('#id').val(process.id);

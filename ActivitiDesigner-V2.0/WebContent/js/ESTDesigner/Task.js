@@ -41,20 +41,20 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		this.createPort("hybrid", new draw2d.layout.locator.TopLocator());
 
 		// task's icon
-		var ico = new draw2d.shape.basic.Image();
-		ico.setDimension(20, 20);
-		ico.path = this.iconPath == null ? "" : this.getIconPath();
+		this.ico = new draw2d.shape.basic.Image();
+		this.ico.setDimension(20, 20);
+		this.ico.path = this.iconPath == null ? "" : this.getIconPath();
 
 		// task type label
-		var taskTypeLabel = new draw2d.shape.basic.Label({
+		this.taskTypeLabel = new draw2d.shape.basic.Label({
 			bold : true,
 			fontSize : 13
 		});
-		ico.add(taskTypeLabel, new draw2d.layout.locator.RightLocator());
-		taskTypeLabel.setResizeable(true);
-		taskTypeLabel.setText(this.title);
-		taskTypeLabel.stroke = 0;
-		taskTypeLabel.on("contextmenu", function(emitter, event) {
+		this.ico.add(this.taskTypeLabel, new draw2d.layout.locator.RightLocator());
+		this.taskTypeLabel.setResizeable(true);
+		this.taskTypeLabel.setText(this.title);
+		this.taskTypeLabel.stroke = 0;
+		this.taskTypeLabel.on("contextmenu", function(emitter, event) {
 			$.contextMenu({
 				selector : 'body',
 				events : {
@@ -100,19 +100,19 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 		});
 		
 		// task name label
-		var taskNameLabel = new draw2d.shape.basic.Label();
-		taskNameLabel.setText("Task Name");
-		taskNameLabel.setStroke(0);
+		this.taskNameLabel = new draw2d.shape.basic.Label();
+		this.taskNameLabel.setText('Task Name');
+		this.taskNameLabel.setStroke(0);
 		var editor = new draw2d.ui.LabelInplaceEditor({
 			// called after the value has been set to the LabelFigure
 			onCommit : $.proxy(function(value) {
 				taskNameLabel.getParent().name=value;
 			}, this)
 		});
-		taskNameLabel.installEditor(editor);
+		this.taskNameLabel.installEditor(editor);
 
-		this.add(ico, new draw2d.layout.locator.XYRelPortLocator(5, 33));
-		this.add(taskNameLabel, new draw2d.layout.locator.BottomLocator());
+		this.add(this.ico, new draw2d.layout.locator.XYRelPortLocator(5, 33));
+		this.add(this.taskNameLabel, new draw2d.layout.locator.BottomLocator());
 	},
 	getType : function() {
 		return this.iconPath;
@@ -143,6 +143,10 @@ ESTDesigner.task.BaseTask = draw2d.shape.basic.Rectangle.extend({
 			value : this.iconPath
 		});
 		return this;
+	},
+	setTaskName:function(name){
+		this.taskNameLabel.setText(name);
+		this.name=name;
 	},
 	toXML : function() {
 		return "";
@@ -358,7 +362,7 @@ ESTDesigner.task.UserTask = ESTDesigner.task.BaseTask.extend({
 		return xml;
 	},
 	getListenersXML:function(){
-		var xml = draw2d.Task.prototype.getListenersXML.call(this);
+		var xml = this._super();
 		for(var i=0;i<this.taskListeners.getSize();i++){
 			var listener = this.taskListeners.get(i);
 			xml=xml+listener.toXML();

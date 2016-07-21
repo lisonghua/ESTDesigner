@@ -30,7 +30,7 @@ $(function(){
 	        iconCls:'icon-add',
 	        handler:function(){
 		    	if(listenerFieldsEditCount>0){
-						jq.messager.alert("error","有可编辑的单元格，不能添加!",'error');
+						$.messager.alert("error","有可编辑的单元格，不能添加!",'error');
 					return;
 				}
 				$('#task-listeners-fields-list').datagrid('appendRow',{
@@ -71,18 +71,18 @@ $(function(){
 	$('#fieldCancelBt').linkbutton({
 		iconCls:"icon-cancel"
 	});
-	$("#listenerServiceClass").autocomplete(_process_def_provided_listeners, {
-		width: 450,
-		minChars: 0,
-		max: 10,
-		autoFill: true,
-		mustMatch: false,
-		matchContains: false,
-		scrollHeight: 220,
-		//multiple: true,
-		//multipleSeparator: " ",
-		scroll: true
-	});
+// 	$("#listenerServiceClass").autocomplete(_process_def_provided_listeners, {
+// 		width: 450,
+// 		minChars: 0,
+// 		max: 10,
+// 		autoFill: true,
+// 		mustMatch: false,
+// 		matchContains: false,
+// 		scrollHeight: 220,
+// 		//multiple: true,
+// 		//multipleSeparator: " ",
+// 		scroll: true
+// 	});
 	populateListenerProperties();
 });
 function changeListenerServiceType(obj){
@@ -130,7 +130,7 @@ function refreshAllListenerFields(){
 	}
 }
 function createNewListener(){
-	var newListener = new draw2d.Task.Listener();
+	var newListener = new ESTDesigner.model.TaskListener();
     return newListener;   
 }
 function getExsitingListener(){
@@ -141,7 +141,7 @@ function getExsitingListener(){
 }
 function getListenerFieldsGridChangeRows(){
 	if(listenerFieldsEditCount>0){
-		jq.messager.alert("error","请先保存可编辑表格！",'error');
+		$.messager.alert("error","请先保存可编辑表格！",'error');
 		return null;
 	}
     var insertRows = _task_listener_fields_dg.datagrid('getChanges','inserted');   
@@ -173,7 +173,7 @@ function getListenerFieldsGridChangeRows(){
 }
 function saveListenerConfig(){
 	if(listenerFieldsEditCount>0){
-		jq.messager.alert("error","请先保存可编辑的表格!",'error');
+		$.messager.alert("error","请先保存可编辑的表格!",'error');
 		return;
 	}
 	if(listenerId != "" && listenerId != null && listenerId!="null"&&listenerId!="NULL"){
@@ -202,7 +202,7 @@ function insertNewListener(listener){
     var insertRows = changesRows['inserted'];   
     if (insertRows.length>0) {   
         for (var i=0;i<insertRows.length;i++) {
-            var field = new draw2d.Task.Listener.Field();
+            var field = new ESTDesigner.model.Field();
     		field.name=insertRows[i].fieldName;
     		field.value=insertRows[i].value;
     		field.type=insertRows[i].type;

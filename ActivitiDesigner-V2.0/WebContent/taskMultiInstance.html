@@ -4,10 +4,10 @@ $(function(){
 		loadTaskMultiInstance();
 });
 function saveTaskMultiInstance(){
-	if($('#sequentialYes').attr('checked')){
+	if($('#sequentialYes').prop('checked')){
 		task.isSequential=true;
 	}
-	if($('#sequentialNo').attr('checked')){
+	if($('#sequentialNo').prop('checked')){
 		task.isSequential=false;
 	}
 	task._loopCardinality=$("#loopCardinality").val();
@@ -17,9 +17,9 @@ function saveTaskMultiInstance(){
 }
 function loadTaskMultiInstance(){
 	if(task.isSequential){
-		$('#sequentialYes').attr('checked',true);
+		$('#sequentialYes').prop('checked',true);
 	}else{
-		$('#sequentialNo').attr('checked',true);
+		$('#sequentialNo').prop('checked',true);
 	}
 	
 	$("#loopCardinality").val(task._loopCardinality);

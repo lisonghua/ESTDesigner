@@ -246,7 +246,7 @@ function saveInputParams(){
     var deleteRows = changesRows['deleted'];
     if (insertRows.length>0) {   
         for (var i=0;i<insertRows.length;i++) {   
-        var param = new draw2d.CallActivity.Parameter.InputParameter();
+        var param = new ESTDesigner.task.CallActivityTask.Parameter.InputParameter();
     		param.source=insertRows[i]._source;
     		param.sourceExpression=insertRows[i].sourceExpression;
     		param.target=insertRows[i]._target;
@@ -341,7 +341,7 @@ function saveOutputParams(){
     var deleteRows = changesRows['deleted'];
     if (insertRows.length>0) {   
         for (var i=0;i<insertRows.length;i++) {   
-        var param = new draw2d.CallActivity.Parameter.OutputParameter();
+        var param = new ESTDesigner.task.CallActivityTask.Parameter.OutputParameter();
     		param.source=insertRows[i]._source;
     		param.sourceExpression=insertRows[i].sourceExpression;
     		param.target=insertRows[i]._target;

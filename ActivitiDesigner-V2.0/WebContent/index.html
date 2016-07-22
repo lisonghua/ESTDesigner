@@ -150,12 +150,27 @@ var line;
 							model.contextMenuHandler=contextMenuHandler;
 							canvas.add(model, x, y);
 						}
+						//右键菜单处理函数
 						function contextMenuHandler(t,key){
 							if(!is_open_properties_panel)
 								_designer.layout('expand','east');
 							task=t;
 							if(task.type=="ESTDesigner.task.UserTask")
 								_properties_panel_obj.panel('refresh','userTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.ManualTask")
+								_properties_panel_obj.panel('refresh','manualTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.ServiceTask")
+								_properties_panel_obj.panel('refresh','serviceTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.ScriptTask")
+								_properties_panel_obj.panel('refresh','scriptTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.ReceiveTask")
+								_properties_panel_obj.panel('refresh','receiveTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.MailTask")
+								_properties_panel_obj.panel('refresh','mailTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.BusinessRuleTask")
+								_properties_panel_obj.panel('refresh','businessRuleTaskProperties.html');
+							else if(task.type=="ESTDesigner.task.CallActivityTask")
+								_properties_panel_obj.panel('refresh','callActivityProperties.html');
 						}
 						//产生xml
 						$('#process-definition-tab').tabs({

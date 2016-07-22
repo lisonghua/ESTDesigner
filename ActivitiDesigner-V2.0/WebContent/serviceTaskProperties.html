@@ -191,7 +191,7 @@ function saveTaskFields(){
     var deleteRows = changesRows['deleted'];
     if (insertRows.length>0) {   
         for (var i=0;i<insertRows.length;i++) {   
-        	var field = new draw2d.Task.Listener.Field();
+        	var field = new ESTDesigner.model.Field();
     		field.name=insertRows[i].fieldName;
     		field.value=insertRows[i].value;
     		field.type=insertRows[i].type;

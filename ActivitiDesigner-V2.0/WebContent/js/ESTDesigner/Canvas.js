@@ -29,7 +29,33 @@ ESTDesigner.Canvas=draw2d.Canvas.extend({
 		var xml='</definitions>\n';
 		return xml;
 	},
+	onContextMenu : function(x, y) {
+		$.contextMenu({
+			selector : 'body',
+			events : {
+				hide : function() {
+					$.contextMenu('destroy');
+				}
+			},
+			callback : $.proxy(function(key, options) {
+				switch (key) {
+				case "Properties":
+					
+					break;
+				default:
+					break;
+				}
 
+			}, this),
+			x : x,
+			y : y,
+			items : {
+				"Properties" : {
+					name : "Properties"
+				}
+			}
+		});
+	},
 	toXML:function(){
 		var xml = this.getXMLHeader();
 		xml = xml+this.getDefinitionsStartXML();

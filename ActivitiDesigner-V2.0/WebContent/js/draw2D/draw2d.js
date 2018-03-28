@@ -79,10 +79,12 @@ var draw2d =
 };
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************/// Production steps of ECMA-262, Edition 5, 15.4.4.21
+ ****************************************/
+// Production steps of ECMA-262, Edition 5, 15.4.4.21
 // Reference: http://es5.github.io/#x15.4.4.21
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Browser_compatibility
 if (!Array.prototype.reduce) {
@@ -309,10 +311,12 @@ if (!Object.prototype.unwatch) {
     }
   });
 }
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************/draw2d.util.Base64 = {
+ ****************************************/
+draw2d.util.Base64 = {
 
     /**
      * Maps bytes to characters.
@@ -506,10 +510,12 @@ if (!Object.prototype.unwatch) {
         }
     }
 };
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//*!
+ ****************************************/
+/*!
  * JavaScript Debug - v0.4 - 6/22/2010
  * http://benalman.com/projects/javascript-debug-console-log/
  * 
@@ -777,10 +783,12 @@ window.debug = (function(){
 })();
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class
  * Util class to handle colors in the draw2d enviroment.
  * 
@@ -941,7 +949,7 @@ draw2d.util.Color = Class.extend({
     },
     
     /**
-     * @private
+     *
      **/
     hex: function()
     { 
@@ -1057,10 +1065,12 @@ draw2d.util.Color = Class.extend({
 	
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.util.ArrayList
  * 
@@ -1533,10 +1543,12 @@ draw2d.util.ArrayList.EMPTY_LIST = new draw2d.util.ArrayList();
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 // extending raphael with a polygon function
 Raphael.fn.polygon = function(pointString) {
   var poly  = ['M'];
@@ -1556,10 +1568,12 @@ Raphael.fn.polygon = function(pointString) {
   
   return this.path(poly);
 };
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************/draw2d.util.JSON = {
+ ****************************************/
+draw2d.util.JSON = {
 
         /**
          * @method
@@ -1676,14 +1690,24 @@ Raphael.fn.polygon = function(pointString) {
                 }
             }
             return result;
+        },
+
+        ensureDefault:function( json, attribute, value)
+        {
+            if (!json.hasOwnProperty(attribute)) {
+                json[attribute] = value;
+            }
         }
+
         
         
 };
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.util.UUID
  * Generates a (pseudo) UUID's
@@ -1719,10 +1743,12 @@ draw2d.util.UUID.create=function()
   return (segment()+segment()+"-"+segment()+"-"+segment()+"-"+segment()+"-"+segment()+segment()+segment());
 };
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.util.spline.Spline
  * 
@@ -1752,10 +1778,12 @@ draw2d.util.spline.Spline = Class.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.util.spline.CubicSpline
  * 
  * A cubic spline object.
@@ -1845,10 +1873,12 @@ draw2d.util.spline.CubicSpline = draw2d.util.spline.Spline.extend(
   
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.util.spline.CatmullRomSpline
  * 
  * A catmull-rom spline object.
@@ -1884,10 +1914,12 @@ draw2d.util.spline.CatmullRomSpline = draw2d.util.spline.CubicSpline.extend(
   
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.util.spline.BezierSpline
  * 
  * A bezier spline object.
@@ -1968,10 +2000,12 @@ draw2d.util.spline.BezierSpline = draw2d.util.spline.Spline.extend(
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.geo.PositionConstants
  * Static values for point orientation.
@@ -1986,10 +2020,12 @@ draw2d.geo.PositionConstants.SOUTH =  4;
 draw2d.geo.PositionConstants.WEST  =  8;
 draw2d.geo.PositionConstants.EAST  = 16;
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.geo.Point Util class for geometrie handling.
  */
@@ -2318,12 +2354,12 @@ draw2d.geo.Point = Class.extend({
     	return this.x*that.y-this.y*that.x;
     },
 
-    
+
     lerp: function(that,t)
     {
     	return new draw2d.geo.Point(this.x+(that.x-this.x)*t,this.y+(that.y-this.y)*t);
     },
-    
+
 
     /**
      * @method 
@@ -2337,10 +2373,12 @@ draw2d.geo.Point = Class.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.geo.Rectangle
  * 
  * Util class for geometrie handling.
@@ -3186,10 +3224,12 @@ draw2d.geo.Rectangle.DIRECTION_DOWN  =2;
 draw2d.geo.Rectangle.DIRECTION_LEFT  =3;
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.geo.Ray
@@ -3217,10 +3257,12 @@ draw2d.geo.Util=
     }
 
 };
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.geo.Ray
@@ -3264,10 +3306,12 @@ draw2d.geo.Ray = draw2d.geo.Point.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * Static util function to determine the minimal distance of point(px,py) on the line(x1,y1,x2,y2)
  *
@@ -3283,6 +3327,68 @@ draw2d.geo.Ray = draw2d.geo.Point.extend({
  * @param {Number} py y coordinate of the point to test
  **/
 draw2d.geo.Line = {
+
+    /**
+     * Returns the relative position of the point on the line between [0..1]
+     * The point "p" must be part of the line!!
+     *
+     * 0 => given point is on the start location
+     * ..=> given point is in between
+     * 1 => given point is at the end
+     *
+     * @return {Number}
+     */
+    inverseLerp: function( X1, Y1,  X2,  Y2, px, py)
+    {
+        var nenner = Math.abs(X2-X1);
+        var zaehler= Math.abs(X2-px);
+        if(nenner===0){
+            nenner = Math.abs(Y2-Y1);
+            zaehler= Math.abs(Y2-py);
+            if(nenner==0){
+                return 1;
+            }
+        }
+
+        return zaehler/nenner;
+    },
+
+
+    /**
+     * @method
+     * Returns the projection of the point onto the line.
+     *
+     * @param {Number} px the x coordinate of the test point
+     * @param {Number} py the y coordinate of the test point
+     * @return {draw2d.geo.Point}
+     **/
+    pointProjection: function( X1, Y1,  X2,  Y2, px, py)
+    {
+        var r = new draw2d.geo.Point(0,0);
+        if (X1 == X2 && Y1 == Y2) X1 -= 0.00001;
+
+        var U = ((px - X1) * (X2 - X1)) + ((py - Y1) * (Y2 - Y1));
+
+        var Udenom = Math.pow(X2 - X1, 2) + Math.pow(Y2 - Y1, 2);
+
+        U /= Udenom;
+
+        r.x = X1 + (U * (X2 - X1));
+        r.y = Y1 + (U * (Y2 - Y1));
+
+        var minx, maxx, miny, maxy;
+
+        minx = Math.min(X1, X2);
+        maxx = Math.max(X1, X2);
+
+        miny = Math.min(Y1, Y2);
+        maxy = Math.max(Y1, Y2);
+
+        var isValid = (r.x >= minx && r.x <= maxx) && (r.y >= miny && r.y <= maxy);
+
+        return isValid ? r : null;
+    },
+
     distance : function( X1, Y1,  X2,  Y2, px, py)
     {
         // Adjust vectors relative to X1,Y1
@@ -3334,10 +3440,12 @@ draw2d.geo.Line = {
 };
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.command.CommandType
@@ -3392,10 +3500,12 @@ draw2d.command.CommandType.ROTATE               = "ROTATE";
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.Command
  * 
@@ -3493,10 +3603,12 @@ draw2d.command.Command = Class.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandCollection
  * 
@@ -3630,10 +3742,12 @@ draw2d.command.CommandCollection = draw2d.command.Command.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandStack
  * Stack for undo/redo operations
@@ -3970,10 +4084,12 @@ draw2d.command.CommandStack.PRE_MASK  = draw2d.command.CommandStack.PRE_EXECUTE 
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandStackEvent
  * Event class which will be fired for every CommandStack operation. Required for CommandStackListener.
@@ -4054,10 +4170,12 @@ draw2d.command.CommandStackEvent = Class.extend({
        return 0 != (this.getDetails() & draw2d.command.CommandStack.PRE_MASK);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandStackEventListener
  * 
@@ -4091,10 +4209,12 @@ draw2d.command.CommandStackEventListener = Class.extend({
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandMove
  * 
@@ -4205,10 +4325,12 @@ draw2d.command.CommandMove = draw2d.command.Command.extend({
        this.figure.setPosition(this.newX, this.newY);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandAattr
  * 
@@ -4293,10 +4415,12 @@ draw2d.command.CommandAttr = draw2d.command.Command.extend({
         this.figure.attr(this.newAttributes);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandMoveLine
  * 
@@ -4391,10 +4515,12 @@ draw2d.command.CommandMoveLine = draw2d.command.Command.extend({
        this.line.setPosition(this.line.getStartPoint());
    }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandMoveConnection
  * 
@@ -4489,10 +4615,12 @@ draw2d.command.CommandMoveConnection = draw2d.command.Command.extend({
        this.line.setPosition(this.line.getStartPoint());
    }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandMoveVertex
  * 
@@ -4586,10 +4714,12 @@ draw2d.command.CommandMoveVertex = draw2d.command.Command.extend({
         this.line.setVertex(this.index, this.newPoint.x, this.newPoint.y);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandMoveVertices
  * 
@@ -4672,10 +4802,12 @@ draw2d.command.CommandMoveVertices = draw2d.command.Command.extend({
         this.line.setVertices(this.newVertices);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandResize
  * Resize command for figures. Can be execute/undo/redo via a CommandStack.
@@ -4770,10 +4902,12 @@ draw2d.command.CommandResize = draw2d.command.Command.extend({
        this.figure.setDimension(this.newWidth, this.newHeight);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandRotate
  * 
@@ -4861,10 +4995,12 @@ draw2d.command.CommandRotate = draw2d.command.Command.extend({
         this.figure.portRelayoutRequired=true;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandConnect
  * 
@@ -4975,10 +5111,12 @@ draw2d.command.CommandConnect = draw2d.command.Command.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandReconnect
  * 
@@ -5115,10 +5253,12 @@ draw2d.command.CommandReconnect = draw2d.command.Command.extend({
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandDelete
  * Command to remove a figure with CommandStack support.
@@ -5222,11 +5362,18 @@ draw2d.command.CommandDelete = draw2d.command.Command.extend({
           }
        }
        
-        
-       if(this.figure instanceof draw2d.Connection){
-           this.figure.disconnect();
-       }   
-    
+   // already done in the canvas.remove(..) method
+   //    if(this.figure instanceof draw2d.Connection){
+   //        this.figure.disconnect();
+   //    }
+
+
+       // remove all connections
+       //
+       for (var i = 0; i < this.connections.getSize(); ++i){
+           this.canvas.remove(this.connections.get(i));
+       }
+
        // remove this figure from the parent 
        //
        if(this.parent!==null){
@@ -5238,16 +5385,14 @@ draw2d.command.CommandDelete = draw2d.command.Command.extend({
        else{
            this.canvas.remove(this.figure);
        }
-    
-       for (var i = 0; i < this.connections.getSize(); ++i){
-          this.canvas.remove(this.connections.get(i));
-       }
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandDeleteGroup
  *
@@ -5356,10 +5501,12 @@ draw2d.command.CommandDeleteGroup = draw2d.command.Command.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandAdd
  * 
@@ -5434,10 +5581,12 @@ draw2d.command.CommandAdd = draw2d.command.Command.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandGroup
  * Command to group a given set of figures
@@ -5531,10 +5680,12 @@ draw2d.command.CommandGroup = draw2d.command.Command.extend({
         this.canvas.setCurrentSelection(this.group);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandUngroup
  * Command to ungroup a given group figures
@@ -5621,10 +5772,12 @@ draw2d.command.CommandUngroup = draw2d.command.Command.extend({
         this.canvas.remove(this.group);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandAddVertex
  * 
@@ -5704,10 +5857,12 @@ draw2d.command.CommandAddVertex = draw2d.command.Command.extend({
         this.line.insertVertexAt(this.index, this.newPoint.x, this.newPoint.y);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandAssignFigure
  * 
@@ -5827,10 +5982,12 @@ draw2d.command.CommandAssignFigure = draw2d.command.Command.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandBoundingBox
  * Set the bounding box of a figure with undo/redo support
@@ -5903,10 +6060,12 @@ draw2d.command.CommandBoundingBox = draw2d.command.Command.extend({
         this.figure.setBoundingBox(this.newBoundingBox);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandRemoveVertex
  * 
@@ -5984,10 +6143,12 @@ draw2d.command.CommandRemoveVertex = draw2d.command.Command.extend({
     	this.line.removeVertexAt(this.index);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.command.CommandReplaceVertices
  * 
@@ -6066,10 +6227,12 @@ draw2d.command.CommandReplaceVertices = draw2d.command.Command.extend({
         this.line.setVertices(this.newVertices);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.ConnectionRouter
  * Routes a {@link draw2d.Connection}, possibly using a constraint.
@@ -6094,10 +6257,10 @@ draw2d.layout.connection.ConnectionRouter = Class.extend({
      *
      * @param {draw2d.Connection} connection The Connection to route
      * @param {draw2d.util.ArrayList} oldVertices old/existing vertices of the Connection
-     * @param {Object} routingHints some helper attributes for the router
-     * @param {Boolean} routingHints.startMoved is true if just the start location has moved
-     * @param {Boolean} routingHints.endMoved is true if the destination location has changed
-     * @param {draw2d.util.ArrayList} routingHints.oldVertices the vertices before the reroute has been triggered
+     * @param {Object} [routingHints] some helper attributes for the router
+     * @param {Boolean} [routingHints.startMoved] is true if just the start location has moved
+     * @param {Boolean} [routingHints.endMoved] is true if the destination location has changed
+     * @param {draw2d.util.ArrayList} [routingHints.oldVertices] the vertices before the reroute has been triggered
      *
      * @template
      */
@@ -6114,19 +6277,20 @@ draw2d.layout.connection.ConnectionRouter = Class.extend({
         //            of subpixel rendering.
         var ps = conn.getVertices();
         var p = ps.get(0);
-        var distance = conn.getRadius();
+        var radius = conn.getRadius();
         var path = ["M",(p.x|0)+0.5," ",(p.y|0)+0.5];
         var i=1;
-        if(distance>0){
+        var length,inset, p2;
+        if(radius>0){
             var lastP = p;
-            var length = (ps.getSize()-1);
+            length = (ps.getSize()-1);
             for(  ;i<length;i++){
                   p = ps.get(i);
-                  inset = draw2d.geo.Util.insetPoint(p,lastP, distance);
+                  inset = draw2d.geo.Util.insetPoint(p,lastP, radius);
                   path.push("L", (inset.x|0)+0.5, ",", (inset.y|0)+0.5);
     
                   p2 = ps.get(i+1);
-                  inset = draw2d.geo.Util.insetPoint(p,p2,distance);
+                  inset = draw2d.geo.Util.insetPoint(p,p2,radius);
                   
                   path.push("Q",p.x,",",p.y," ", (inset.x|0)+0.5, ", ", (inset.y|0)+0.5);
                   lastP = p;
@@ -6135,7 +6299,7 @@ draw2d.layout.connection.ConnectionRouter = Class.extend({
             path.push("L", (p.x|0)+0.5, ",", (p.y|0)+0.5);
        }
         else{
-            var length = ps.getSize();
+            length = ps.getSize();
             for( ;i<length;i++){
                 p = ps.get(i);
                 path.push("L", (p.x|0)+0.5, ",", (p.y|0)+0.5);
@@ -6150,20 +6314,19 @@ draw2d.layout.connection.ConnectionRouter = Class.extend({
      * @method
      * Callback method if the router has been assigned to a connection.
      * 
-     * @param {draw2d.Connection} connection The assigned connection
+     * @param {draw2d.shape.basic.PolyLine} connection The assigned connection
      * @template
      * @since 2.7.2
      */
     onInstall: function(connection)
     {
-        
     },
     
     /**
      * @method
      * Callback method if the router has been removed from the connection.
      * 
-     * @param {draw2d.Connection} connection The related connection
+     * @param {draw2d.shape.basic.PolyLine} connection The related connection
      * @template
      * @since 2.7.2
      */
@@ -6236,13 +6399,27 @@ draw2d.layout.connection.ConnectionRouter = Class.extend({
      */
     onDrag: function(line, dx, dy, dx2, dy2)
     {
+    },
+
+    /**
+     * @methid
+     * Called by the connection if the vertices set outside.
+     * This enforce the router to avoid full autoroute. E.g. InteractiveManhattanRouter
+     *
+     * @protected
+     * @param {draw2d.shape.basic.Line}
+     */
+    verticesSet: function(line)
+    {
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.DirectRouter
  *
@@ -6313,7 +6490,8 @@ draw2d.layout.connection.DirectRouter = draw2d.layout.connection.ConnectionRoute
     {
         connection.installEditPolicy(new draw2d.policy.line.LineSelectionFeedbackPolicy());
     },
- 
+
+
     /**
      * @method
      * Invalidates the given Connection
@@ -6321,7 +6499,8 @@ draw2d.layout.connection.DirectRouter = draw2d.layout.connection.ConnectionRoute
     invalidate: function()
     {
     },
-    
+
+
     /**
      * @inheritdoc
      */
@@ -6340,15 +6519,15 @@ draw2d.layout.connection.DirectRouter = draw2d.layout.connection.ConnectionRoute
        path.push("L", end.x, " ", end.y);
 
        connection.svgPathString = path.join("");
-
     }
-
 });
+
 
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.RubberbandRouter
  * Router for direct connections between two ports with a rubber band effect
@@ -6536,10 +6715,12 @@ draw2d.layout.connection.RubberbandRouter = draw2d.layout.connection.ConnectionR
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.VertexRouter
  *
@@ -6758,10 +6939,12 @@ draw2d.layout.connection.VertexRouter = draw2d.layout.connection.ConnectionRoute
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.ManhattanConnectionRouter
  * Provides a {@link draw2d.Connection} with an orthogonal route between the Connection's source 
@@ -6837,7 +7020,6 @@ draw2d.layout.connection.ManhattanConnectionRouter = draw2d.layout.connection.Co
     onInstall: function(connection)
     {
         connection.installEditPolicy(new draw2d.policy.line.LineSelectionFeedbackPolicy());
-       
     },
 
 	/**
@@ -6882,52 +7064,42 @@ draw2d.layout.connection.ManhattanConnectionRouter = draw2d.layout.connection.Co
 	   var yDiff = fromPt.y - toPt.y;
 	   var point;
 	   var dir;
+       var pos;
 	
-	   if (((xDiff * xDiff) < (this.TOLxTOL)) && ((yDiff * yDiff) < (this.TOLxTOL))) 
-	   {
+	   if (((xDiff * xDiff) < (this.TOLxTOL)) && ((yDiff * yDiff) < (this.TOLxTOL))){
           conn.addPoint(new draw2d.geo.Point(toPt.x, toPt.y));
 	      return;
 	   }
 	
-	   if (fromDir === LEFT) 
-	   {
-	      if ((xDiff > 0) && ((yDiff * yDiff) < this.TOL) && (toDir === RIGHT))
-	      {
+	   if (fromDir === LEFT) {
+	      if ((xDiff > 0) && ((yDiff * yDiff) < this.TOL) && (toDir === RIGHT)) {
 	         point = toPt;
 	         dir = toDir;
 	      } 
-	      else 
-	      {
-	         if (xDiff < 0) 
-	         {
+	      else {
+	         if (xDiff < 0) {
 	            point = new draw2d.geo.Point(fromPt.x - this.MINDIST, fromPt.y);
 	         }
-	         else if (((yDiff > 0) && (toDir === DOWN)) || ((yDiff < 0) && (toDir === UP))) 
-	         {
+	         else if (((yDiff > 0) && (toDir === DOWN)) || ((yDiff < 0) && (toDir === UP))) {
 	            point = new draw2d.geo.Point(toPt.x, fromPt.y);
 	         }
-	         else if (fromDir == toDir)
-	         {
-	            var pos = Math.min(fromPt.x, toPt.x) - this.MINDIST;
+	         else if (fromDir == toDir) {
+	            pos = Math.min(fromPt.x, toPt.x) - this.MINDIST;
 	            point = new draw2d.geo.Point(pos, fromPt.y);
 	         }
-	         else
-	         {
+	         else{
 	            point = new draw2d.geo.Point(fromPt.x - (xDiff / 2), fromPt.y);
 	         }
 	
-	         if (yDiff > 0) 
-	         {
+	         if (yDiff > 0) {
 	            dir = UP;
 	         }
-	         else
-	         {
+	         else{
 	            dir = DOWN;
 	         }
 	      }
 	   }
-	   else if (fromDir === RIGHT) 
-	   {
+	   else if (fromDir === RIGHT)  {
 	      if ((xDiff < 0) && ((yDiff * yDiff) < this.TOL)&& (toDir === LEFT)) 
 	      {
 	         point = toPt;
@@ -6945,7 +7117,7 @@ draw2d.layout.connection.ManhattanConnectionRouter = draw2d.layout.connection.Co
 	         } 
 	         else if (fromDir === toDir) 
 	         {
-	            var pos = Math.max(fromPt.x, toPt.x) + this.MINDIST;
+                pos = Math.max(fromPt.x, toPt.x) + this.MINDIST;
 	            point = new draw2d.geo.Point(pos, fromPt.y);
 	         } 
 	         else 
@@ -6982,7 +7154,7 @@ draw2d.layout.connection.ManhattanConnectionRouter = draw2d.layout.connection.Co
 	         } 
 	         else if (fromDir === toDir) 
 	         {
-	            var pos = Math.max(fromPt.y, toPt.y) + this.MINDIST;
+	            pos = Math.max(fromPt.y, toPt.y) + this.MINDIST;
 	            point = new draw2d.geo.Point(fromPt.x, pos);
 	         } 
 	         else 
@@ -7019,7 +7191,7 @@ draw2d.layout.connection.ManhattanConnectionRouter = draw2d.layout.connection.Co
 	         } 
 	         else if (fromDir === toDir) 
 	         {
-	            var pos = Math.min(fromPt.y, toPt.y) - this.MINDIST;
+                pos = Math.min(fromPt.y, toPt.y) - this.MINDIST;
 	            point = new draw2d.geo.Point(fromPt.x, pos);
 	         } 
 	         else 
@@ -7042,10 +7214,12 @@ draw2d.layout.connection.ManhattanConnectionRouter = draw2d.layout.connection.Co
 	}
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.ManhattanBridgedConnectionRouter
  * Provides a {@link draw2d.Connection} with an orthogonal route between the Connection's source 
@@ -7152,10 +7326,12 @@ draw2d.layout.connection.ManhattanBridgedConnectionRouter = draw2d.layout.connec
 	}
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.InteractiveManhattanConnectionRouter
  * Route the connection in an Manhattan style and add resize handles to all vertex for interactive alignment of the
@@ -7242,7 +7418,7 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
     route: function(conn, routingHints)
     {
         if (!routingHints.oldVertices) {
-            debugger;
+            debugger
         }
         if(routingHints.oldVertices.getSize()===0 || conn._routingMetaData.routedByUserInteraction===false){
             this._super(conn, routingHints);
@@ -7293,9 +7469,16 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
             this.route(conn, oldVertices);
         }
 
+        // TODO: detection for switch back to autoroute isn'T good enough.
+        //       Add more logic. e.g. if the fromDir!==1. This happens if
+        //       The ports are at bottom and top.
+        //       The code below covers only the classic workflow configuration left->right
+        //
         //  go back to the default if no routing is possible anymore
         //
-        if((fromDir===1 ) && (toDir === 3) && (fromPt.x > toPt.x) && (vertexCount<=4)){
+        if(    (fromDir===draw2d.geo.Rectangle.DIRECTION_RIGHT ) && (toDir === draw2d.geo.Rectangle.DIRECTION_LEFT)
+            && (fromPt.x > toPt.x) && (vertexCount<=4)){
+
             conn._routingMetaData.routedByUserInteraction = false;
             this.route(conn, {oldVertices:oldVertices});
         }
@@ -7510,8 +7693,9 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
                 return false;
             }
 
-            // unable to make the decision on the easy way. calculate the route again and
-            // check if the segment count of the new routed connection allows a removal
+            // unable to make the decision on the easy way. calculate the route again with an
+            // temporary connection and check if the segment count of the new routed connection
+            // allows a removal
             //
             var tmpConn = new draw2d.Connection();
             tmpConn.lineSegments = new draw2d.util.ArrayList();
@@ -7547,12 +7731,13 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
      */
     onDrag: function(line, dx, dy, dx2, dy2)
     {
+        var i=0;
         // Connection is dragged by source and origin port movement
-        // or MultiSelection in this case we dragg the complete
+        // or MultiSelection in this case we drag the complete
         // connection
         if(line.draggedSegment===null){
             var count = line.getVertices().getSize()-1;
-            for(var i=1; i<count;i++){
+            for( i=1; i<count;i++){
                 line.getVertex(i).translate(dx2, dy2);
             }
             return;
@@ -7566,9 +7751,9 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
 
         line._routingMetaData.routedByUserInteraction = true;
 
-        var p0 = line.draggedSegment.start;
-        var p1 = line.draggedSegment.end;
-        var i  = line.draggedSegment.index;
+        var p0  = line.draggedSegment.start;
+        var p1  = line.draggedSegment.end;
+            i   = line.draggedSegment.index;
         var lp0 = line.getVertices().first();
         var lp1 = line.getVertices().last();
 
@@ -7581,8 +7766,8 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
         //  .
         //  x Px
         //
+        var distance=0;
         if(p0.y === p1.y) {
-            var distance=0;
             // ensure that the segment is the min distance away from the source/target port
             // (Px is endpoints of the connection and bounded to a port)
             if(i === 1) distance =p0.y - lp0.y;
@@ -7603,22 +7788,50 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
         // vertical segment movement
         //
         else if(p0.x === p1.x){
-            var distance=0;
             // ensure that the segment is the min distance away from the source/target port
             //
-            if (i === 1) distance =p0.x - lp0.x;
-            if(i === line.getSegments().getSize()-2)  distance =p1.x - lp1.x;
-
-
-            if(distance<0 && dx2>0) {
-                dx2 = Math.min(dx2, (-distance)-this.MINDIST);
+            if (i === 1) {
+                distance =p0.x - lp0.x;
+                if(distance<0 && dx2>0) {
+                    dx2 = Math.min(dx2, (-distance)-this.MINDIST);
+                }
+                else if(distance>0 && dx2<0) {
+                    dx2 = -Math.min(-dx2, (distance)-this.MINDIST);
+                }
             }
-            else if(distance>0 && dx2<0) {
-                dx2 = -Math.min(-dx2, (distance)-this.MINDIST);
+
+            // we need this additional test too. No "else if" because the special
+            // case of "index===1". In this case the segment can be the last AND first
+            // segment if the connection has only three segments at all.
+            //
+            if(i === line.getSegments().getSize()-2)  {
+                distance =p1.x - lp1.x;
+                if(distance<0 && dx2>0) {
+                    dx2 = Math.min(dx2, (-distance)-this.MINDIST);
+                }
+                else if(distance>0 && dx2<0) {
+                    dx2 = -Math.min(-dx2, (distance)-this.MINDIST);
+                }
             }
 
             line.getVertex(i).translate(dx2, 0);
             line.getVertex(i+1).translate(dx2, 0);
+        }
+    },
+
+    /**
+     * @methid
+     * Called by the connection if the vertices set outside.
+     * This enforce the router to avoid full autoroute. E.g. InteractiveManhattanRouter
+     *
+     * @protected
+     */
+    verticesSet: function(conn)
+    {
+        conn._routingMetaData.routedByUserInteraction = true;
+        if(conn.getSource()!==null && conn.getTarget()!==null) {
+            conn._routingMetaData.fromDir = conn.getSource().getConnectionDirection(conn.getTarget());
+            conn._routingMetaData.toDir = conn.getTarget().getConnectionDirection(conn.getSource());
         }
     },
 
@@ -7676,10 +7889,12 @@ draw2d.layout.connection.InteractiveManhattanConnectionRouter = draw2d.layout.co
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.CircuitConnectionRouter
  *
@@ -7904,12 +8119,12 @@ draw2d.layout.connection.CircuitConnectionRouter = draw2d.layout.connection.Manh
         			        if(this.abortRoutingOnFirstVertexNode===true){
             				    if(conn.getSource()==other.getSource()|| conn.getSource()==other.getTarget()){
             				        path = [ "M", (interP.x|0)+0.5, " ", (interP.y|0)+0.5 ];
-            				        if(lastVerteNode!==null){
-                                        lastVerteNode.remove();
+            				        if(lastVertexNode!==null){
+                                        lastVertexNode.remove();
             				            conn.vertexNodes.exclude(lastVerteNode);
             				        }
             				    }
-                                lastVerteNode = vertexNode;
+                                lastVertexNode = vertexNode;
         			        }
                         }
     			    }
@@ -7928,10 +8143,12 @@ draw2d.layout.connection.CircuitConnectionRouter = draw2d.layout.connection.Manh
 		conn.svgPathString = path.join("");
 	}
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.connection.SplineConnectionRouter 
  * 
  * A ManhattanConnectionRouter with an spline interpolation between the bend points.
@@ -8044,10 +8261,12 @@ draw2d.layout.connection.SplineConnectionRouter = draw2d.layout.connection.Manha
         conn.svgPathString = path.join("");
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.connection.FanConnectionRouter
  * 
  * Automatic router that spreads its  {@link draw2d.Connection Connections} in a fan-like fashion upon collision. 
@@ -8209,10 +8428,12 @@ draw2d.layout.connection.FanConnectionRouter = draw2d.layout.connection.DirectRo
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.connection.MazeConnectionRouter
  * <b>BETA VERSION. Not for production!!!<br></b>
  * 
@@ -8732,10 +8953,12 @@ draw2d.layout.connection.MazeConnectionRouter = draw2d.layout.connection.Connect
     		return points;
     	}
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.MuteableManhattanConnectionRouter
  * 
@@ -9288,10 +9511,12 @@ draw2d.layout.connection.MuteableManhattanConnectionRouter = draw2d.layout.conne
 
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.connection.SketchConnectionRouter
  * 
@@ -9366,10 +9591,12 @@ draw2d.layout.connection.SketchConnectionRouter = draw2d.layout.connection.MazeC
     }
  
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.mesh.MeshLayouter
  * Layouter for a mesh or grid. 
@@ -9401,10 +9628,12 @@ draw2d.layout.mesh.MeshLayouter = Class.extend({
     	return new draw2d.util.ArrayList();
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.mesh.ExplodeLayouter
  * Routes a {@link draw2d.Connection}, possibly using a constraint.
@@ -9601,10 +9830,12 @@ draw2d.layout.mesh.ExplodeLayouter = draw2d.layout.mesh.MeshLayouter.extend({
 		return oct;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.mesh.ProposedMeshChange
  * Change proposal for grid/mesh layout changes.
@@ -9658,10 +9889,12 @@ draw2d.layout.mesh.ProposedMeshChange = Class.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.Locator
  * 
  * Controls the location of an IFigure. 
@@ -9738,10 +9971,12 @@ draw2d.layout.locator.Locator= Class.extend({
         return eval("new "+this.NAME+"()");
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.PortLocator
  * 
  * The port locator calculates the position of an port. All ports MUST have a locator
@@ -9783,10 +10018,12 @@ draw2d.layout.locator.PortLocator = draw2d.layout.locator.Locator.extend({
         port.setPosition( m.x(x,y), m.y(x,y));
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.DraggableLocator
  * 
@@ -9838,10 +10075,12 @@ draw2d.layout.locator.DraggableLocator= draw2d.layout.locator.Locator.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.DraggableLocator
  * 
@@ -9984,10 +10223,12 @@ draw2d.layout.locator.SmartDraggableLocator= draw2d.layout.locator.Locator.exten
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.XYAbsPortLocator
  * 
  * Create a locator for fixed x/y coordinate position. The port in the example below is
@@ -10044,10 +10285,12 @@ draw2d.layout.locator.XYAbsPortLocator = draw2d.layout.locator.PortLocator.exten
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.XYRelPortLocator
  * 
  * Create a locator for a relative x/y coordinate position. The coordinates are named in percentage [0..100%]
@@ -10111,10 +10354,12 @@ draw2d.layout.locator.XYRelPortLocator = draw2d.layout.locator.PortLocator.exten
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.InputPortLocator
  * 
  * Repositions a Figure attached to a Connection when the 
@@ -10166,10 +10411,12 @@ draw2d.layout.locator.InputPortLocator = draw2d.layout.locator.PortLocator.exten
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.OutputPortLocator
  * 
  * Repositions a Figure attached to a Connection when the 
@@ -10220,10 +10467,12 @@ draw2d.layout.locator.OutputPortLocator = draw2d.layout.locator.PortLocator.exte
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.locator.ConnectionLocator
  * 
  * Repositions a Figure attached to a Connection when the 
@@ -10247,10 +10496,12 @@ draw2d.layout.locator.ConnectionLocator= draw2d.layout.locator.Locator.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.ManhattanMidpointLocator
  * 
@@ -10329,10 +10580,12 @@ draw2d.layout.locator.ManhattanMidpointLocator= draw2d.layout.locator.Connection
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.PolylineMidpointLocator
  * 
@@ -10384,16 +10637,18 @@ draw2d.layout.locator.PolylineMidpointLocator= draw2d.layout.locator.ManhattanMi
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.ParallelMidpointLocator
  * 
  * A ParallelMidpointLocator that is used to place label at the midpoint of a  routed
  * connection. The midpoint is always in the center of an edge.
- * The label is aligned to the connection angle.
+ * The label is aligned to the connection angle at the calculated conection segment.
  * 
  *
  * @author Andreas Herz
@@ -10405,7 +10660,7 @@ draw2d.layout.locator.ParallelMidpointLocator= draw2d.layout.locator.ConnectionL
     
     /**
      * @constructor
-     * Constructs a ManhattanMidpointLocator with associated Connection c.
+     * Constructs a ParallelMidpointLocator with optional padding to the connection.
      * 
      * if the parameter <b>distanceFromConnection</b> is less than zero the label is
      * placed above of the connection. Else the label is below the connection.
@@ -10438,8 +10693,9 @@ draw2d.layout.locator.ParallelMidpointLocator= draw2d.layout.locator.ConnectionL
        var points = conn.getVertices();
        
        var segmentIndex = Math.floor((points.getSize() -2) / 2);
-       if (points.getSize() <= segmentIndex+1)
-          return; 
+       if (points.getSize() <= segmentIndex+1) {
+           return;
+       }
     
        var p1 = points.get(segmentIndex);
        var p2 = points.get(segmentIndex + 1);
@@ -10497,10 +10753,12 @@ draw2d.layout.locator.ParallelMidpointLocator= draw2d.layout.locator.ConnectionL
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.TopLocator
  * 
@@ -10571,10 +10829,12 @@ draw2d.layout.locator.TopLocator= draw2d.layout.locator.Locator.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.BottomLocator
  * 
@@ -10645,10 +10905,12 @@ draw2d.layout.locator.BottomLocator= draw2d.layout.locator.Locator.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.LeftLocator
  * 
@@ -10717,10 +10979,12 @@ draw2d.layout.locator.LeftLocator= draw2d.layout.locator.Locator.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.RightLocator
  * 
@@ -10787,10 +11051,12 @@ draw2d.layout.locator.RightLocator = draw2d.layout.locator.Locator.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.locator.CenterLocator
  * 
@@ -10854,10 +11120,12 @@ draw2d.layout.locator.CenterLocator= draw2d.layout.locator.Locator.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.EditPolicy
  * 
@@ -10982,10 +11250,12 @@ draw2d.policy.EditPolicy = Class.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.CanvasPolicy
  * 
@@ -11101,9 +11371,11 @@ draw2d.policy.canvas.CanvasPolicy = draw2d.policy.EditPolicy.extend({
      * @param {Number} dy The y diff between start of dragging and this event
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      * @template
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
     },
     
@@ -11246,10 +11518,12 @@ draw2d.policy.canvas.CanvasPolicy = draw2d.policy.EditPolicy.extend({
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.ZoomPolicy
  * Generic zoom policy installable into a canvas object.
@@ -11268,7 +11542,8 @@ draw2d.policy.canvas.ZoomPolicy = draw2d.policy.canvas.CanvasPolicy.extend({
     /**
      * @constructor 
      */
-    init: function(){
+    init: function()
+    {
         this._super();
     },
 
@@ -11295,7 +11570,8 @@ draw2d.policy.canvas.ZoomPolicy = draw2d.policy.canvas.CanvasPolicy.extend({
     * @param {Number} zoomFactor new zoom factor.
     * @param {Boolean} [animated] set it to true for smooth zoom in/out
     **/
-    setZoom: function( zoomFactor, animated){
+    setZoom: function( zoomFactor, animated)
+    {
         var canvas = this.canvas;
 
         var _zoom = function(z){
@@ -11331,10 +11607,12 @@ draw2d.policy.canvas.ZoomPolicy = draw2d.policy.canvas.CanvasPolicy.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.WheelZoomPolicy
  * Zoom support for a canvas. Use the mouse wheel and the shift key to zoom in/out.
@@ -11486,19 +11764,21 @@ draw2d.policy.canvas.WheelZoomPolicy = draw2d.policy.canvas.ZoomPolicy.extend({
      _zoom: function(zoom, center){
          var canvas = this.canvas;
 
-         //
-         // Beachten!!:
-         //   Der Zoomfaktor in raphael ist das Verh�ltnis von Canvas Gr��e zur ViewBox Gr��e.
-         //   Vergr��ert man das Canvas mit "zoomFactor" und die viewBox gleichzeitig mit
-         //   mit "zoomFactor", so hat man ein tats�chlichen Zoomfaktor von "zoomFactor*zoomFactor"
-         //   eingestellt, da sich canvas UND viewBox entgegengesetzt ver�ndert haben.
-         //
-         //
-         canvas.__wheelZoom= Math.sqrt(zoom);
+         if(zoom === canvas.zoomFactor){
+            return;
+         }
+
          canvas.zoomFactor=zoom;
 
-         canvas.paper.setViewBox(0, 0, canvas.initialWidth*canvas.__wheelZoom, canvas.initialHeight*canvas.__wheelZoom);
-         canvas.paper.setSize(canvas.initialWidth/canvas.__wheelZoom, canvas.initialHeight/canvas.__wheelZoom);
+         canvas.paper.setViewBox(0, 0, canvas.initialWidth, canvas.initialHeight);
+         // Change the width and the height attributes manually through DOM
+         // unfortunately the raphaelJS 'setSize' method changes the viewBox as well and this is unwanted in this case
+         //
+         $(canvas.html)
+             .find("svg")
+             .attr({'width': canvas.initialWidth/zoom,
+                   'height': canvas.initialHeight/zoom});
+
 
          // try to keep the document position to the given client position
          //
@@ -11531,10 +11811,12 @@ draw2d.policy.canvas.WheelZoomPolicy = draw2d.policy.canvas.ZoomPolicy.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.KeyboardPolicy
  * Default interface for keyboard interaction with the canvas.
@@ -11588,10 +11870,12 @@ draw2d.policy.canvas.KeyboardPolicy = draw2d.policy.canvas.CanvasPolicy.extend({
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.DefaultKeyboardPolicy
  * Standard keyboard policy. This is the standard installed keyboard policy.
@@ -11637,7 +11921,20 @@ draw2d.policy.canvas.DefaultKeyboardPolicy = draw2d.policy.canvas.KeyboardPolicy
             // This happens with command stack transactions.
             //
             canvas.getCommandStack().startTransaction(draw2d.Configuration.i18n.command.deleteShape);
-            canvas.getSelection().each(function(index, figure){
+            var selection = canvas.getSelection();
+            selection.each(function(index, figure){
+               // don't delete a connection if the source or target figure is part of the selection.
+               // In this case the connection is deleted by the DeleteCommand itself and it is not allowed to
+               // delete a figure twice.
+               //
+               if(figure instanceof draw2d.Connection){
+                    if(selection.contains(figure.getSource(),true)) {
+                        return;
+                    }
+                    if(selection.contains(figure.getTarget(),true)) {
+                       return;
+                    }
+               }
                var cmd = figure.createCommand(new draw2d.command.CommandType(draw2d.command.CommandType.DELETE));
                if(cmd!==null){
                    canvas.getCommandStack().execute(cmd);
@@ -11651,14 +11948,14 @@ draw2d.policy.canvas.DefaultKeyboardPolicy = draw2d.policy.canvas.KeyboardPolicy
          }
         
     }
-
-
 });
+
 
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.ExtendedKeyboardPolicy
  * Extended keyboard policy to <b>delete</b> and <b>group</b> figures in the canvas. 
@@ -11724,10 +12021,12 @@ draw2d.policy.canvas.ExtendedKeyboardPolicy = draw2d.policy.canvas.KeyboardPolic
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.SelectionPolicy
  * 
@@ -11774,9 +12073,14 @@ draw2d.policy.canvas.SelectionPolicy = draw2d.policy.canvas.CanvasPolicy.extend(
 
         figure.unselect();
 
+        // @since 6.1.42
+        canvas.fireEvent("unselect",{figure:figure});
+
+        // deprecated
         canvas.fireEvent("select",{figure:null});
     }
 });
+
 
 
 
@@ -11787,6 +12091,7 @@ draw2d.policy.canvas.SelectionPolicy = draw2d.policy.canvas.CanvasPolicy.extend(
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.SingleSelectionPolicy
  * 
@@ -11852,9 +12157,9 @@ draw2d.policy.canvas.SingleSelectionPolicy =  draw2d.policy.canvas.SelectionPoli
         this.mouseMovedDuringMouseDown  = false;
         var canDragStart = true;
 
-        // ignore ports since version 6.1.0. This is handled by the COnnectionCreatePolicy
+        // ignore ports since version 6.1.0. This is handled by the ConnectionCreatePolicy
         //
-        var figure = canvas.getBestFigure(x, y, draw2d.Port);
+        var figure = canvas.getBestFigure(x, y);
 
         // may the figure is assigned to a composite. In this case the composite can
         // override the event receiver
@@ -11864,6 +12169,12 @@ draw2d.policy.canvas.SingleSelectionPolicy =  draw2d.policy.canvas.SelectionPoli
                 break;
             }
             figure = delegate;
+        }
+
+        // ignore ports since version 6.1.0. This is handled by the ConnectionCreatePolicy
+        //
+        if (figure instanceof draw2d.Port) {
+            return;// silently
         }
 
         if (figure !== null && figure.isDraggable()) {
@@ -11906,21 +12217,23 @@ draw2d.policy.canvas.SingleSelectionPolicy =  draw2d.policy.canvas.SelectionPoli
      * @param {Number} dy The y diff between start of dragging and this event
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      * @template
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         this.mouseMovedDuringMouseDown = true;
         if (this.mouseDraggingElement !== null) {
             // Can be a ResizeHandle or a normal Figure
             //
-            var sel =canvas.getSelection().getAll();
+            var sel =canvas.getSelection();
             if(!sel.contains(this.mouseDraggingElement)){
-                this.mouseDraggingElement.onDrag(dx, dy, dx2, dy2);
+                this.mouseDraggingElement.onDrag(dx, dy, dx2, dy2, shiftKey, ctrlKey);
             }
             else{
                 sel.each(function(i,figure){
-                    figure.onDrag(dx, dy, dx2, dy2);
+                    figure.onDrag(dx, dy, dx2, dy2, shiftKey, ctrlKey);
                 });
             }
             
@@ -11935,7 +12248,7 @@ draw2d.policy.canvas.SingleSelectionPolicy =  draw2d.policy.canvas.SelectionPoli
                 }
                 if (target !== null) {
                     canvas.currentDropTarget = target.delegateTarget(this.mouseDraggingElement);
-                    // inform all listener that the element has accept the dragEtner event
+                    // inform all listener that the element has accept the dragEnter event
                     //
                     if( canvas.currentDropTarget !==null) {
                         canvas.currentDropTarget.onDragEnter(this.mouseDraggingElement); // legacy
@@ -11949,12 +12262,12 @@ draw2d.policy.canvas.SingleSelectionPolicy =  draw2d.policy.canvas.SelectionPoli
        //
        else if(this.mouseDownElement!==null && !(this.mouseDownElement instanceof draw2d.Connection)){
            if(this.mouseDownElement.panningDelegate!==null){
-               this.mouseDownElement.panningDelegate.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2});
-               this.mouseDownElement.panningDelegate.onPanning(dx, dy, dx2, dy2);
+               this.mouseDownElement.panningDelegate.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2, shiftKey:shiftKey, ctrlKey:ctrlKey});
+               this.mouseDownElement.panningDelegate.onPanning(dx, dy, dx2, dy2, shiftKey, ctrlKey);
            }
            else{
-               this.mouseDownElement.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2});
-               this.mouseDownElement.onPanning(dx, dy, dx2, dy2);
+               this.mouseDownElement.fireEvent("panning", {dx:dx, dy:dy, dx2:dx2, dy2:dy2, shiftKey:shiftKey, ctrlKey:ctrlKey });
+               this.mouseDownElement.onPanning(dx, dy, dx2, dy2, shiftKey, ctrlKey);
            }
        }
     },
@@ -12098,10 +12411,12 @@ draw2d.policy.canvas.SingleSelectionPolicy =  draw2d.policy.canvas.SelectionPoli
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.GhostMoveSelectionPolicy
  * 
@@ -12149,7 +12464,7 @@ draw2d.policy.canvas.GhostMoveSelectionPolicy =  draw2d.policy.canvas.SingleSele
     /**
      * @inheritdoc
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         this.mouseMovedDuringMouseDown = true;
         if (this.mouseDraggingElement !== null) {
@@ -12157,7 +12472,7 @@ draw2d.policy.canvas.GhostMoveSelectionPolicy =  draw2d.policy.canvas.SingleSele
             // if the figure not part of the selection it must be a ResizeHandle...
             var sel =canvas.getSelection().getAll();
             if(!sel.contains(this.mouseDraggingElement)){
-                this.mouseDraggingElement.onDrag(dx, dy, dx2, dy2);
+                this.mouseDraggingElement.onDrag(dx, dy, dx2, dy2, shiftKey, ctrlKey);
             }
             // it is a normal draw2d.Figure
             else{
@@ -12232,12 +12547,12 @@ draw2d.policy.canvas.GhostMoveSelectionPolicy =  draw2d.policy.canvas.SingleSele
        //
        else if(this.mouseDownElement!==null && !(this.mouseDownElement instanceof draw2d.Connection)){
             if(this.mouseDownElement.panningDelegate!==null){
-                this.mouseDownElement.panningDelegate.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2});
-                this.mouseDownElement.panningDelegate.onPanning(dx, dy, dx2, dy2);
+                this.mouseDownElement.panningDelegate.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2, shiftKey:shiftKey, ctrlKey:ctrlKey});
+                this.mouseDownElement.panningDelegate.onPanning(dx, dy, dx2, dy2, shiftKey, ctrlKey);
             }
             else{
-                this.mouseDownElement.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2});
-                this.mouseDownElement.onPanning(dx, dy, dx2, dy2);
+                this.mouseDownElement.fireEvent("panning", {dx:dx,dy:dy,dx2:dx2,dy2:dy2, shiftKey:shiftKey, ctrlKey:ctrlKey});
+                this.mouseDownElement.onPanning(dx, dy, dx2, dy2, shiftKey, ctrlKey);
             }
        }
     },
@@ -12333,10 +12648,12 @@ draw2d.policy.canvas.GhostMoveSelectionPolicy =  draw2d.policy.canvas.SingleSele
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.PanningSelectionPolicy
  * 
@@ -12355,7 +12672,7 @@ draw2d.policy.canvas.PanningSelectionPolicy =  draw2d.policy.canvas.SingleSelect
     init: function()
     {
         this._super();
-     },
+    },
    
     
     /**
@@ -12366,12 +12683,14 @@ draw2d.policy.canvas.PanningSelectionPolicy =  draw2d.policy.canvas.SingleSelect
      * @param {Number} dy The y diff between start of dragging and this event
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      * @template
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         
-        this._super(canvas, dx,dy,dx2,dy2);
+        this._super(canvas, dx,dy,dx2,dy2, shiftKey, ctrlKey);
         
         if (this.mouseDraggingElement === null && this.mouseDownElement===null) {
            var area = canvas.getScrollArea();
@@ -12381,10 +12700,12 @@ draw2d.policy.canvas.PanningSelectionPolicy =  draw2d.policy.canvas.SingleSelect
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.BoundingboxSelectionPolicy
  * 
@@ -12616,9 +12937,11 @@ draw2d.policy.canvas.BoundingboxSelectionPolicy =  draw2d.policy.canvas.SingleSe
      * @param {Number} dy The y diff between start of dragging and this event
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      * @template
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         // don't drag a selection box if we drag&drop a port
         //
@@ -12627,7 +12950,7 @@ draw2d.policy.canvas.BoundingboxSelectionPolicy =  draw2d.policy.canvas.SingleSe
         }
 
         try{
-            this._super(canvas, dx,dy,dx2,dy2);
+            this._super(canvas, dx,dy,dx2,dy2, shiftKey, ctrlKey);
             
             if (this.mouseDraggingElement === null && this.mouseDownElement===null && this.boundingBoxFigure1===null) {
                 this.boundingBoxFigure1 = new draw2d.shape.basic.Rectangle({
@@ -12739,10 +13062,12 @@ draw2d.policy.canvas.BoundingboxSelectionPolicy =  draw2d.policy.canvas.SingleSe
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.ReadOnlySelectionPolicy
  * 
@@ -12800,9 +13125,11 @@ draw2d.policy.canvas.ReadOnlySelectionPolicy = draw2d.policy.canvas.SelectionPol
      * @param {Number} dy The y diff between start of dragging and this event
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      * @template
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         var area = canvas.getScrollArea();
         area.scrollTop(area.scrollTop()-dy2);
@@ -12810,10 +13137,12 @@ draw2d.policy.canvas.ReadOnlySelectionPolicy = draw2d.policy.canvas.SelectionPol
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.DecorationPolicy 
  * The base class for any canvas decoration like grid, chessboard, graph paper or
@@ -12838,10 +13167,12 @@ draw2d.policy.canvas.DecorationPolicy = draw2d.policy.canvas.CanvasPolicy.extend
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.FadeoutDecorationPolicy
  * 
@@ -12977,8 +13308,10 @@ draw2d.policy.canvas.FadeoutDecorationPolicy = draw2d.policy.canvas.DecorationPo
      * @param {Number} dy The y diff between start of dragging and this event
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         if(this.portDragging === false){
             this.hidePortsCounter=0;
@@ -13004,10 +13337,12 @@ draw2d.policy.canvas.FadeoutDecorationPolicy = draw2d.policy.canvas.DecorationPo
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.CoronaDecorationPolicy
  * This decorations hides draw2d.Ports which are to far from the current cursor position.
@@ -13139,7 +13474,7 @@ draw2d.policy.canvas.CoronaDecorationPolicy = draw2d.policy.canvas.DecorationPol
     /**
      * @inheritdoc
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         this.updatePorts(canvas, this.startDragX+dx, this.startDragY+dy);
     },
@@ -13190,10 +13525,12 @@ draw2d.policy.canvas.CoronaDecorationPolicy = draw2d.policy.canvas.DecorationPol
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************/draw2d.SnapToHelper = {};
+ ****************************************/
+draw2d.SnapToHelper = {};
 
 draw2d.SnapToHelper.NORTH   =  1;
 draw2d.SnapToHelper.SOUTH   =  4;
@@ -13290,10 +13627,12 @@ draw2d.policy.canvas.SnapToEditPolicy = draw2d.policy.canvas.CanvasPolicy.extend
         return modifiedPos;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.ShowGridEditPolicy
  * 
@@ -13407,10 +13746,12 @@ draw2d.policy.canvas.ShowGridEditPolicy = draw2d.policy.canvas.DecorationPolicy.
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.SnapToGridEditPolicy
  * 
@@ -13471,10 +13812,12 @@ draw2d.policy.canvas.SnapToGridEditPolicy = draw2d.policy.canvas.ShowGridEditPol
         return modifiedPos;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.ShowDotEditPolicy
  * 
@@ -13543,10 +13886,12 @@ draw2d.policy.canvas.ShowDotEditPolicy = draw2d.policy.canvas.DecorationPolicy.e
     
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.canvas.ShowChessboardEditPolicy
  * 
@@ -13635,10 +13980,12 @@ draw2d.policy.canvas.ShowChessboardEditPolicy = draw2d.policy.canvas.DecorationP
     }
   
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.policy.canvas.SnapToGeometryEditPolicy
@@ -14097,10 +14444,12 @@ draw2d.policy.canvas.SnapToGeometryEditPolicy = draw2d.policy.canvas.SnapToEditP
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.policy.canvas.SnapToVerticesEditPolicy
@@ -14327,10 +14676,12 @@ draw2d.policy.canvas.SnapToVerticesEditPolicy = draw2d.policy.canvas.SnapToEditP
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.policy.canvas.SnapToInBetweenEditPolicy
@@ -14885,10 +15236,12 @@ draw2d.policy.canvas.SnapToInBetweenEditPolicy = draw2d.policy.canvas.SnapToEdit
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.policy.canvas.SnapToCenterEditPolicy
@@ -15213,10 +15566,12 @@ draw2d.policy.canvas.SnapToCenterEditPolicy = draw2d.policy.canvas.SnapToEditPol
         }
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.policy.canvas.DropInterceptorPolicy
  *
  * Drop interceptors are basically event handlers from which you can return a value
@@ -15313,10 +15668,12 @@ draw2d.policy.canvas.DropInterceptorPolicy = draw2d.policy.canvas.CanvasPolicy.e
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.connection.ConnectionCreatePolicy
  * Base class for connection creation by user interaction.
@@ -15368,6 +15725,9 @@ draw2d.policy.connection.ConnectionCreatePolicy = draw2d.policy.canvas.KeyboardP
                     function(){circle.remove()}
                 );
                 circle.animate(anim);
+                // return an emmpty raphael.set. The circle removes itself after animation is done
+                //
+                return this.canvas.paper.set();
                 break;
             case 1:
                 var circle1 = this.canvas.paper.circle(x, y, 3, 3).attr({fill: null, stroke:"#3f72bf"});
@@ -15381,9 +15741,15 @@ draw2d.policy.connection.ConnectionCreatePolicy = draw2d.policy.canvas.KeyboardP
                 var anim2 = Raphael.animation(
                     {transform: "s12", opacity:0.0, "stroke-width":4 },
                     500,
-                    "linear"
+                    "linear",
+                    function(){circle2.remove()}
                 );
                 circle2.animate(anim2);
+
+                // return the "circle1". This shape must be remove by the caller
+                // "circle2" is removed automaticly
+                //
+                return circle1;
                 break;
         }
     }
@@ -15392,10 +15758,12 @@ draw2d.policy.connection.ConnectionCreatePolicy = draw2d.policy.canvas.KeyboardP
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.connection.ComposedConnectionCreatePolicy
  * A composed connection create policy. Use this to install more than one
@@ -15424,14 +15792,14 @@ draw2d.policy.connection.ComposedConnectionCreatePolicy = draw2d.policy.connecti
         this._super();
     },
 
-    onMouseDown: function(canvas, x, y, shiftKey, ctrlKey)
+    onMouseDown: function()
     {
         var _arg = arguments;
         $.each(this.policies, function(i,p){
             p.onMouseDown.apply(p,_arg);
         });
     },
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function()
     {
         var _arg = arguments;
         $.each(this.policies, function(i,p){
@@ -15439,7 +15807,7 @@ draw2d.policy.connection.ComposedConnectionCreatePolicy = draw2d.policy.connecti
         });
     },
 
-    onMouseUp: function(canvas, x, y, shiftKey, ctrlKey)
+    onMouseUp: function()
     {
         var _arg = arguments;
         $.each(this.policies, function(i,p){
@@ -15447,14 +15815,14 @@ draw2d.policy.connection.ComposedConnectionCreatePolicy = draw2d.policy.connecti
         });
     },
 
-    onClick: function(figure, x, y, shiftKey, ctrlKey)
+    onClick: function()
     {
         var _arg = arguments;
         $.each(this.policies, function(i,p){
             p.onClick.apply(p,_arg);
         });
     },
-    onMouseMove: function(canvas, x, y, shiftKey, ctrlKey)
+    onMouseMove: function()
     {
         var _arg = arguments;
         $.each(this.policies, function(i,p){
@@ -15515,10 +15883,12 @@ draw2d.policy.connection.ComposedConnectionCreatePolicy = draw2d.policy.connecti
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.connection.ClickConnectionCreatePolicy
  *
@@ -15601,11 +15971,8 @@ draw2d.policy.connection.ClickConnectionCreatePolicy = draw2d.policy.connection.
     onClick: function(figure, x, y, shiftKey, ctrlKey)
     {
         var _this = this;
-        //just consider ports
-        //
-        var port = figure;// .getCanvas().getBestFigure(x, y);
+        var port = figure;
 
-        // nothing to do
         if(port === null && this.port1 === null){
             return;
         }
@@ -15624,6 +15991,8 @@ draw2d.policy.connection.ClickConnectionCreatePolicy = draw2d.policy.connection.
             return;
         }
 
+        //just consider ports
+        //
         if(!(port instanceof draw2d.Port)){
             return;
         }
@@ -15671,22 +16040,14 @@ draw2d.policy.connection.ClickConnectionCreatePolicy = draw2d.policy.connection.
 
             var a= function() {
                 _this.tempConnection.shape.animate({"stroke-width" : 2}, 800, b);
-            }
+            };
             var b=function() {
                 _this.tempConnection.shape.animate({"stroke-width":1}, 800, a);
-            }
+            };
             a();
 
             var pos = port.getAbsolutePosition();
-            this.ripple(pos.x, pos.y, 1);
-            this.pulse = canvas.paper.circle(pos.x, pos.y, 3, 3).attr({fill: null, stroke:"#3f72bf"});
-            anim = Raphael.animation(
-                {transform: "s6", opacity:0.0, "stroke-width":1 },
-                1200,
-                "linear"
-            ).repeat(Infinity);
-
-            this.pulse.animate(anim);
+            this.pulse =this.ripple(pos.x, pos.y, 1);
             return;
         }
 
@@ -15789,10 +16150,12 @@ draw2d.policy.connection.ClickConnectionCreatePolicy = draw2d.policy.connection.
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.connection.OrthogonalConnectionCreatePolicy
  *
@@ -16713,10 +17076,12 @@ draw2d.policy.connection.OrthogonalConnectionCreatePolicy = draw2d.policy.connec
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.connection.DragConnectionCreatePolicy
  *
@@ -16834,7 +17199,7 @@ draw2d.policy.connection.DragConnectionCreatePolicy = draw2d.policy.connection.C
      * @param {Number} dy2 The y diff since the last call of this dragging operation
      * @template
      */
-    onMouseDrag: function(canvas, dx, dy, dx2, dy2)
+    onMouseDrag: function(canvas, dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
         try{
             if (this.mouseDraggingElement !== null) {
@@ -16842,7 +17207,7 @@ draw2d.policy.connection.DragConnectionCreatePolicy = draw2d.policy.connection.C
                 var ct = this.currentTarget;
 
                 de.isInDragDrop = true;
-                de.onDrag(dx, dy, dx2, dy2);
+                de.onDrag(dx, dy, dx2, dy2, shiftKey, ctrlKey);
 
                 var target=canvas.getBestFigure(de.getAbsoluteX(),de.getAbsoluteY(), de);
 
@@ -16996,10 +17361,12 @@ draw2d.policy.connection.DragConnectionCreatePolicy = draw2d.policy.connection.C
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.FigureEditPolicy
  * 
@@ -17042,10 +17409,12 @@ draw2d.policy.figure.FigureEditPolicy = draw2d.policy.EditPolicy.extend({
     {
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.DragDropEditPolicy
  * 
@@ -17187,14 +17556,16 @@ draw2d.policy.figure.DragDropEditPolicy = draw2d.policy.figure.FigureEditPolicy.
     {
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.RegionConstraintPolicy
  * 
- * An EditPolicy for use with Figures. The constraint for RegionContraintPolicy is a Rectangle. It is
+ * An EditPolicy for use with Figures. The constraint for RegionEditPolicy is a Rectangle. It is
  * not possible to move the related figure outside this constrained area.
  * 
  * 
@@ -17224,7 +17595,7 @@ draw2d.policy.figure.RegionEditPolicy = draw2d.policy.figure.DragDropEditPolicy.
             this.constRect = new draw2d.geo.Rectangle(x,y,w,h);
         }
         else{
-            throw "Invalid parameter. RegionConstraintPolicy need a rectangle as parameter in the constructor";
+            throw "Invalid parameter. RegionEditPolicy need a rectangle as parameter in the constructor";
         }
     },
 
@@ -17290,10 +17661,12 @@ draw2d.policy.figure.RegionEditPolicy = draw2d.policy.figure.DragDropEditPolicy.
         return {w:w, h:h};
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.HorizontalEditPolicy
  * 
@@ -17349,10 +17722,12 @@ draw2d.policy.figure.HorizontalEditPolicy = draw2d.policy.figure.DragDropEditPol
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.VerticalEditPolicy
  * 
@@ -17405,10 +17780,12 @@ draw2d.policy.figure.VerticalEditPolicy = draw2d.policy.figure.DragDropEditPolic
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.SelectionFeedbackPolicy
  * 
@@ -17420,9 +17797,9 @@ draw2d.policy.figure.VerticalEditPolicy = draw2d.policy.figure.DragDropEditPolic
  * @author Andreas Herz
  * @extends draw2d.policy.figure.DragDropEditPolicy
  */
-draw2d.policy.figure.SelectionFeedbackPolicy = draw2d.policy.figure.DragDropEditPolicy.extend({
+draw2d.policy.figure.SelectionPolicy = draw2d.policy.figure.DragDropEditPolicy.extend({
 
-    NAME : "draw2d.policy.figure.SelectionFeedbackPolicy",
+    NAME : "draw2d.policy.figure.SelectionPolicy",
     
     /**
      * @constructor 
@@ -17454,6 +17831,64 @@ draw2d.policy.figure.SelectionFeedbackPolicy = draw2d.policy.figure.DragDropEdit
      */
     onUnselect: function(canvas, figure )
     {
+    }
+
+});
+
+
+/*****************************************
+ *   Library is under GPL License (GPL)
+ *   Copyright (c) 2012 Andreas Herz
+ ****************************************/
+
+/**
+ * @class draw2d.policy.figure.SelectionFeedbackPolicy
+ * 
+ * A {@link  draw2d.policy.SelectionFeedbackPolicy} that is sensitive to the canvas selection. Subclasses will typically
+ * decorate the {@link draw2d.Figure figure} with things like selection handles and/or focus feedback.
+ * <br>
+ * If you want to change the handle visibility for a figure, then you should use SelectionFeedbackPolicy to do that.
+ * 
+ * @author Andreas Herz
+ * @extends draw2d.policy.figure.DragDropEditPolicy
+ */
+draw2d.policy.figure.SelectionFeedbackPolicy = draw2d.policy.figure.SelectionPolicy.extend({
+
+    NAME : "draw2d.policy.figure.SelectionFeedbackPolicy",
+    
+    /**
+     * @constructor 
+     * 
+     */
+    init: function( attr, setter, getter)
+    {
+        this._super( attr, setter, getter);
+    },
+    
+
+
+    /**
+     * @method
+     * 
+     * @template
+     * @param figure
+     * @param isPrimarySelection
+     */
+    onSelect: function(canvas, figure, isPrimarySelection)
+    {
+        this._super(canvas, figure,isPrimarySelection);
+    },
+    
+    
+    /**
+     * @method
+     * 
+     * @param {draw2d.Figure} figure the unselected figure
+     */
+    onUnselect: function(canvas, figure )
+    {
+        this._super(canvas, figure);
+
         figure.selectionHandles.each(function(i,e){
             e.hide();
         });
@@ -17501,10 +17936,12 @@ draw2d.policy.figure.SelectionFeedbackPolicy = draw2d.policy.figure.DragDropEdit
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.ResizeSelectionFeedbackPolicy
  * 
@@ -17648,10 +18085,12 @@ draw2d.policy.figure.ResizeSelectionFeedbackPolicy = draw2d.policy.figure.Select
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.RectangleSelectionFeedbackPolicy 
  * 
@@ -17824,10 +18263,12 @@ draw2d.policy.figure.RectangleSelectionFeedbackPolicy = draw2d.policy.figure.Sel
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.BigRectangleSelectionFeedbackPolicy 
  * 
@@ -17877,10 +18318,12 @@ draw2d.policy.figure.BigRectangleSelectionFeedbackPolicy = draw2d.policy.figure.
    }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.RoundRectangleSelectionFeedbackPolicy 
  * 
@@ -17934,10 +18377,12 @@ draw2d.policy.figure.RoundRectangleSelectionFeedbackPolicy = draw2d.policy.figur
    }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.BusSelectionFeedbackPolicy 
  * 
@@ -18022,10 +18467,12 @@ draw2d.policy.figure.BusSelectionFeedbackPolicy = draw2d.policy.figure.Selection
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.WidthSelectionFeedbackPolicy
  * This selection shows only selection handles for the width. It is only possible to change the width
@@ -18115,10 +18562,12 @@ draw2d.policy.figure.WidthSelectionFeedbackPolicy = draw2d.policy.figure.Selecti
      }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.VBusSelectionFeedbackPolicy
  *  
@@ -18168,10 +18617,12 @@ draw2d.policy.figure.VBusSelectionFeedbackPolicy = draw2d.policy.figure.BusSelec
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.HBusSelectionFeedbackPolicy
  * 
@@ -18215,10 +18666,12 @@ draw2d.policy.figure.HBusSelectionFeedbackPolicy = draw2d.policy.figure.BusSelec
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.AntSelectionFeedbackPolicy 
  * 
@@ -18287,8 +18740,8 @@ draw2d.policy.figure.AntSelectionFeedbackPolicy = draw2d.policy.figure.Selection
             // of the parent and the figure didn't have intersections
             if(figure.getParent()!==null){
                 var line = new draw2d.shape.basic.Line({opacity:0.5, bgColor:null, dasharray:"- ", color:"#2C70FF"});
-                line.setStartPoint(figure.getBoundingBox().getCenter());
-                line.setEndPoint(figure.getParent().getBoundingBox().getCenter());
+                //line.setStartPosition(figure.getBoundingBox().getCenter());
+                //line.setEndPosition(figure.getParent().getBoundingBox().getCenter());
                 line.show= function(canvas) {
                     line.setCanvas(canvas);
                 };
@@ -18297,7 +18750,7 @@ draw2d.policy.figure.AntSelectionFeedbackPolicy = draw2d.policy.figure.Selection
                 };
                 line.show(canvas);
                 figure.selectionHandles.add(line);
-
+                this._updateBeeLine(line, figure);
             }
         }
         this.moved(canvas, figure);
@@ -18324,48 +18777,76 @@ draw2d.policy.figure.AntSelectionFeedbackPolicy = draw2d.policy.figure.Selection
 
         if(figure.selectionHandles.getSize()>1){
             var line = figure.selectionHandles.get(1);
-            this._updateBeeLine(
-                line,
-                figure.getBoundingBox(),
-                figure.getParent().getBoundingBox());
+            this._updateBeeLine( line, figure);
         }
     },
 
     /**
      *
      * @param {draw2d.shape.basic.Line} line
-     * @param {draw2d.geo.Rectangle} rect1
-     * @param {draw2d.geo.Rectangle} rect2
+     * @param {draw2d.Figure} figure
      * @private
      */
-    _updateBeeLine: function(line, rect1, rect2){
+    _updateBeeLine: function(line, figure){
+        var parent = figure.getParent();
 
-        var center1 = rect1.getCenter();
-        var center2 = rect2.getCenter();
-        // the rectangle overlaps -> return the center of booth
-        if(rect1.intersects(rect2)){
-            line.setStartPoint(center1)
-                .setEndPoint(center2);
+        if(parent===null){
+            return;
         }
-        // one rect is inside the other rect
-        //
-        else if(rect1.hitTest(center2) || rect2.hitTest(center1)){
-            line.setStartPoint(center1)
-                .setEndPoint(center2);
+
+        if(parent instanceof draw2d.shape.basic.Line){
+            var center =figure.getBoundingBox().getCenter();
+            var projection= parent.pointProjection(center);
+            if(projection===null){
+                var p1= line.getStartPosition();
+                var p2= line.getEndPosition();
+                var d1= center.distance(p1);
+                var d2= center.distance(p1);
+                projection=d1<d2?p1:p2;
+            }
+            var intersection =figure.getBoundingBox().intersectionWithLine(center, projection);
+            if(intersection.getSize()>0) {
+                line.setStartPosition(figure.getBoundingBox().intersectionWithLine(center, projection).get(0))
+                    .setEndPosition(projection);
+            }
+            else{
+                line.setStartPosition(figure.getBoundingBox().getCenter())
+                    .setEndPosition(projection);
+            }
         }
         else {
-            rect1.scale(3,3);
-            rect2.scale(3,3);
+            var rect1 = figure.getBoundingBox(),
+                rect2 = parent.getBoundingBox();
 
-            line.setStartPoint( rect1.intersectionWithLine(center1, center2).get(0))
-                .setEndPoint( rect2.intersectionWithLine(center1, center2).get(0));
+            var center1 = rect1.getCenter();
+            var center2 = rect2.getCenter();
+            // the rectangle overlaps -> return the center of booth
+            if (rect1.intersects(rect2)) {
+                line.setStartPosition(center1)
+                    .setEndPosition(center2);
+            }
+            // one rect is inside the other rect
+            //
+            else if (rect1.hitTest(center2) || rect2.hitTest(center1)) {
+                line.setStartPosition(center1)
+                    .setEndPosition(center2);
+            }
+            else {
+                rect1.scale(3, 3);
+                rect2.scale(3, 3);
+
+                line.setStartPosition(rect1.intersectionWithLine(center1, center2).get(0))
+                    .setEndPosition(rect2.intersectionWithLine(center1, center2).get(0));
+            }
         }
     }
 }); 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.GlowSelectionFeedbackPolicy
  * 
@@ -18418,10 +18899,12 @@ draw2d.policy.figure.GlowSelectionFeedbackPolicy = draw2d.policy.figure.Selectio
    }
      
 }); 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.SlimSelectionFeedbackPolicy
  * Add only very small resize handles to the figure.
@@ -18479,10 +18962,12 @@ draw2d.policy.figure.SlimSelectionFeedbackPolicy = draw2d.policy.figure.Rectangl
    }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.figure.VertexSelectionFeedbackPolicy
  * 
@@ -18551,10 +19036,12 @@ draw2d.policy.figure.VertexSelectionFeedbackPolicy = draw2d.policy.figure.Select
     
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.line.LineSelectionFeedbackPolicy
  * 
@@ -18613,10 +19100,12 @@ draw2d.policy.line.LineSelectionFeedbackPolicy = draw2d.policy.figure.SelectionF
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.line.VertexSelectionFeedbackPolicy
  * 
@@ -18672,10 +19161,12 @@ draw2d.policy.line.VertexSelectionFeedbackPolicy = draw2d.policy.line.LineSelect
     }   
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.line.OrthogonalSelectionFeedbackPolicy
  * 
@@ -18700,7 +19191,7 @@ draw2d.policy.line.OrthogonalSelectionFeedbackPolicy = draw2d.policy.line.LineSe
         // the right installed policy.
         //
         this.ResizeHandle = draw2d.ResizeHandle.extend({
-            NAME : "#ResizeHandle",
+            NAME : "draw2d.policy.line.OrthogonalSelectionFeedbackPolicy.ResizeHandle",
 
              init: function( figure, index)
              {
@@ -19402,10 +19893,12 @@ draw2d.policy.line.OrthogonalSelectionFeedbackPolicy = draw2d.policy.line.LineSe
         });
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.port.PortFeedbackPolicy
  *
@@ -19453,10 +19946,12 @@ draw2d.policy.port.PortFeedbackPolicy = draw2d.policy.figure.DragDropEditPolicy.
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.port.ElasticStrapFeedbackPolicy
  * 
@@ -19554,10 +20049,12 @@ draw2d.policy.port.ElasticStrapFeedbackPolicy = draw2d.policy.port.PortFeedbackP
         
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.policy.port.IntrusivePortsFeedbackPolicy
  * 
@@ -19665,9 +20162,11 @@ draw2d.policy.port.IntrusivePortsFeedbackPolicy = draw2d.policy.port.PortFeedbac
      */
     onDragEnd: function(canvas, figure, x, y, shiftKey, ctrlKey)
     {
-        this.tweenable.stop(true);
-        this.tweenable.dispose();
-        this.tweenable= null;
+        if(this.tweenable) {
+            this.tweenable.stop(true);
+            this.tweenable.dispose();
+            this.tweenable = null;
+        }
         canvas.getAllPorts().each(function(i, element){
             // IMPORTANT shortcut to avoid rendering errors!!
             // performance shortcut to avoid a lot of events and recalculate/routing of all related connections
@@ -19699,11 +20198,13 @@ draw2d.policy.port.IntrusivePortsFeedbackPolicy = draw2d.policy.port.PortFeedbac
         
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************/draw2d.Configuration = {
-    version : "6.1.27",
+ ****************************************/
+draw2d.Configuration = {
+    version : "6.1.66",
     i18n : {
         command : {
             move : "Move Shape",
@@ -19762,10 +20263,350 @@ draw2d.policy.port.IntrusivePortsFeedbackPolicy = draw2d.policy.port.PortFeedbac
         }
     }
 };
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
+ * @class draw2d.HeadlessCanvas
+ *
+ * Required for Node.js draw2d model read/write operations.
+ *
+ * @inheritable
+ * @author Andreas Herz
+ */
+draw2d.HeadlessCanvas = Class.extend(
+{
+    NAME : "draw2d.HeadlessCanvas",
+
+    /**
+     * @constructor
+     * Create a new canvas with the given HTML DOM references.
+     * 
+     * @param {String} canvasId the id of the DOM element to use a parent container
+     */
+    init: function()
+    {
+        // internal document with all figures, ports, ....
+        //
+        this.figures     = new draw2d.util.ArrayList();
+        this.lines       = new draw2d.util.ArrayList(); // crap - why are connections not just figures. Design by accident
+        this.commonPorts = new draw2d.util.ArrayList();
+        this.dropTargets = new draw2d.util.ArrayList();
+
+        this.eventSubscriptions = {};
+
+        // The CommandStack for undo/redo operations
+        // 
+        this.commandStack = new draw2d.command.CommandStack();
+    },
+
+    /**
+     * @method
+     * Reset the canvas and delete all model elements.<br>
+     * You can now reload another model to the canvas with a {@link draw2d.io.Reader}
+     * 
+     * @since 1.1.0
+     */
+    clear: function()
+    {
+        // internal document with all figures, ports, ....
+        //
+        this.figures     = new draw2d.util.ArrayList();
+        this.lines       = new draw2d.util.ArrayList();
+        this.commonPorts = new draw2d.util.ArrayList();
+        this.dropTargets = new draw2d.util.ArrayList();
+       
+        this.commandStack.markSaveLocation();
+
+        return this;
+    },
+
+    calculateConnectionIntersection:function()
+    {
+
+    },
+
+    /**
+     * @method
+     * Callback for any kind of image export tools to trigger the canvas to hide all unwanted
+     * decorations. The method is called e.g. from the draw2d.io.png.Writer
+     * 
+     * @since 4.0.0
+     * @template
+     */
+    hideDecoration: function()
+    {
+    },
+
+    /**
+     * @method
+     * callback method for any image export writer to reactivate the decoration
+     * of the canvas. e.g. grids, rulers,...
+     * 
+     * 
+     * @since 4.0.0
+     * @template
+     */
+    showDecoration: function()
+    {
+    },
+
+
+    /**
+     * @method
+     * Add a figure at the given x/y coordinate. This method fires an event.
+     *
+     * Example:
+     * 
+     *      canvas.on("figure:add", function(emitter, event){
+     *         alert("figure added:");
+     *      });
+     *      
+     *      // or more general if you want catch all figure related events
+     *      //
+     *      canvas.on("figure", function(emitter, event){
+     *         // use event.figure.getCanvas()===null to determine if the 
+     *         // figure part of the canvas
+     *         
+     *         alert("figure added or removed:");
+     *      });
+     *      
+     * @param {draw2d.Figure} figure The figure to add.
+     * @param {Number/draw2d.geo.Point} [x] The new x coordinate of the figure or the x/y coordinate if it is an draw2d.geo.Point
+     * @param {Number} [y] The y position.
+     **/
+    add: function( figure , x,  y)
+    {
+        if(figure.getCanvas()===this){
+            return;
+        }
+        
+        if(figure instanceof draw2d.shape.basic.Line){
+         this.lines.add(figure);
+        }
+        else{
+         this.figures.add(figure);
+        }
+        figure.canvas=this;
+
+
+        return this;
+    },
+
+    /**
+     * @method
+     * Returns all lines/connections in this workflow/canvas.<br>
+     *
+     * @protected
+     * @return {draw2d.util.ArrayList}
+     **/
+    getLines: function()
+    {
+      return this.lines;
+    },
+
+    /**
+     * @method
+     * Returns the internal figures.<br>
+     *
+     * @protected
+     * @return {draw2d.util.ArrayList}
+     **/
+    getFigures: function()
+    {
+      return this.figures;
+    },
+
+    /**
+     * @method
+     * Returns the line or connection with the given id.
+     *
+     * @param {String} id The id of the line.
+     * 
+     * @return {draw2d.shape.basic.Line}
+     **/
+    getLine: function( id)
+    {
+      var count = this.lines.getSize();
+      for(var i=0; i<count;i++)
+      {
+         var line = this.lines.get(i);
+         if(line.getId()===id){
+            return line;
+         }
+      }
+      return null;
+    },
+
+    /**
+     * @method
+     * Returns the figure with the given id. 
+     *
+     * @param {String} id The id of the figure.
+     * @return {draw2d.Figure}
+     **/
+    getFigure: function( id)
+    {
+      var figure = null;
+      this.figures.each(function(i,e){
+          if(e.id===id){
+              figure=e;
+              return false;
+           }
+      });
+      return figure;
+    },
+
+    /**
+     * @method
+     * Register a port to the canvas. This is required for other ports to find a valid drop target.
+     * 
+     * @param {draw2d.Port} port The new port which has been added to the Canvas.
+     **/
+    registerPort: function(port )
+    {
+      // All elements have the same drop targets.
+      //
+      if(!this.commonPorts.contains(port)){
+          this.commonPorts.add(port);
+      }
+      
+      return this;
+    },
+
+    /**
+     * @method
+     * Return all ports in the canvas
+     * 
+     */
+    getAllPorts: function()
+    {
+        return this.commonPorts;
+    },
+    
+    /**
+     * @method
+     * Returns the command stack for the Canvas. Required for undo/redo support.
+     *
+     * @return {draw2d.command.CommandStack}
+     **/
+    getCommandStack: function()
+    {
+      return this.commandStack;
+    },
+
+
+    // NEW EVENT HANDLING SINCE VERSION 5.0.0
+    /**
+     * @method
+     * Execute all handlers and behaviors attached to the canvas for the given event type.
+     * 
+     * 
+     * @param {String} event the event to trigger
+     * @param {Object} [args] optional parameters for the triggered event callback
+     * 
+     * @since 5.0.0
+     */
+    fireEvent: function(event, args)
+    {
+        if (typeof this.eventSubscriptions[event] === 'undefined') {
+            return;
+        }
+        
+        var subscribers = this.eventSubscriptions[event];
+        for (var i=0; i<subscribers.length; i++) {
+            try{
+                subscribers[i](this, args);
+            }
+            catch(exc){
+                console.log(exc);
+                console.log(subscribers[i]);
+                debugger;
+            }
+        }
+    },
+    
+    /**
+     * @method
+     * Attach an event handler function for one or more events to the canvas.
+     * To remove events bound with .on(), see {@link #off}.
+     * 
+     * possible events are:<br>
+     * <ul>
+     *   <li>reset</li>
+     *   <li>select</li>
+     * </ul>
+     * 
+     * Example:
+     * 
+     *      canvas.on("clear", function(emitter, event){
+     *         alert("canvas.clear() called.");
+     *      });
+     *      
+     *      canvas.on("select", function(emitter,event){
+     *          if(event.figure!==null){
+     *              alert("figure selected");
+     *          }
+     *          else{
+     *              alert("selection cleared");
+     *          }
+     *      });
+     *      
+     * @param {String}   event One or more space-separated event types
+     * @param {Function} callback A function to execute when the event is triggered. 
+     * @param {draw2d.Canvas} callback.emitter the emitter of the event
+     * @param {Object} [callback.obj] optional event related data
+     * 
+     * @since 5.0.0
+     */
+    on: function(event, callback)
+    {
+        var events = event.split(" ");
+        for(var i=0; i<events.length; i++){
+            if (typeof this.eventSubscriptions[events[i]] === 'undefined') {
+                this.eventSubscriptions[events[i]] = [];
+            }
+            this.eventSubscriptions[events[i]].push(callback);
+        }
+        return this;
+    },
+    
+    /**
+     * @method
+     * The .off() method removes event handlers that were attached with {@link #on}.<br>
+     * Calling .off() with no arguments removes all handlers attached to the canvas.<br>
+     * <br>
+     * If a simple event name such as "reset" is provided, all events of that type are removed from the canvas. 
+     * 
+     * 
+     * @param {String|Function} eventOrFunction the event name of the registerd function
+     * @since 5.0.0
+     */
+    off: function( eventOrFunction)
+    {
+        if(typeof eventOrFunction ==="undefined"){
+            this.eventSubscriptions = {};
+        }
+        else if( typeof eventOrFunction === 'string'){
+            this.eventSubscriptions[eventOrFunction] = [];
+        }
+        else{
+            for(var event in this.eventSubscriptions ){
+                this.eventSubscriptions[event] =$.grep(this.eventSubscriptions[event], function( callback ) { return callback !== eventOrFunction; });
+            }
+        }
+
+        return this;
+    }
+});
+
+/*****************************************
+ *   Library is under GPL License (GPL)
+ *   Copyright (c) 2012 Andreas Herz
+ ****************************************/
+/**
  * @class draw2d.Canvas
  * Interactive paint area of the draw2d library.
  * <br>
@@ -19799,19 +20640,7 @@ draw2d.Canvas = Class.extend(
     init: function(canvasId, width, height)
     {
         var _this = this;
-        // Hook the canvas calculation for IE8
-        //
-        if (navigator.appName == 'Microsoft Internet Explorer')
-        {
-          var ua = navigator.userAgent;
-          var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-          if (re.exec(ua) != null){
-            var rv = parseInt( RegExp.$1 );
-            if(rv===8){
-                this.fromDocumentToCanvasCoordinate = this._fromDocumentToCanvasCoordinate_IE8_HACK;
-            }
-          }
-        }
+
 
         this.setScrollArea(document.body);
         this.canvasId = canvasId;
@@ -19827,10 +20656,10 @@ draw2d.Canvas = Class.extend(
         }
         
         // avoid the "highlighting" in iPad, iPhone if the user tab/touch on the canvas.
-        // .... I don't like this.
+        // .... I didn't like this.
         this.html.css({"-webkit-tap-highlight-color": "rgba(0,0,0,0)"});
         
-        // Drag&Drop Handling from foreign DIV into the Canvas
+        // Drag&Drop handling from foreign DIV into the Canvas
         // Only available in combination with jQuery-UI
         //
         // Create the droppable area for the css class "draw2d_droppable"
@@ -19890,8 +20719,12 @@ draw2d.Canvas = Class.extend(
         this.selection  = new draw2d.Selection();
         this.currentDropTarget = null;
         this.currentHoverFigure = null;
-        
-        // eventhandling since version 5.0.0
+
+        // installed to all added figures to avoid that a figure can be placed outside the canvas area
+        // during a drag&drop operation
+        this.regionDragDropConstraint =  new draw2d.policy.figure.RegionEditPolicy(0,0,this.getWidth(), this.getHeight());
+
+        // event handling since version 5.0.0
         this.eventSubscriptions = {};
         
         this.editPolicy = new draw2d.util.ArrayList();
@@ -20008,7 +20841,7 @@ draw2d.Canvas = Class.extend(
                var diffXAbs = (event.clientX - _this.mouseDownX)*_this.zoomFactor;
                var diffYAbs = (event.clientY - _this.mouseDownY)*_this.zoomFactor;
                _this.editPolicy.each(function(i,policy){
-                   policy.onMouseDrag(_this,diffXAbs, diffYAbs, diffXAbs-_this.mouseDragDiffX, diffYAbs-_this.mouseDragDiffY);
+                   policy.onMouseDrag(_this,diffXAbs, diffYAbs, diffXAbs-_this.mouseDragDiffX, diffYAbs-_this.mouseDragDiffY,  event.shiftKey, event.ctrlKey);
                });
                _this.mouseDragDiffX = diffXAbs;
                _this.mouseDragDiffY = diffYAbs;
@@ -20470,18 +21303,13 @@ draw2d.Canvas = Class.extend(
      * 
      * @returns {draw2d.geo.Point} The coordinate in relation to the canvas [0,0] position
      */
-    fromDocumentToCanvasCoordinate: function(x, y) {
+    fromDocumentToCanvasCoordinate: function(x, y)
+    {
         return new draw2d.geo.Point(
                 (x - this.getAbsoluteX() + this.getScrollLeft())*this.zoomFactor,
                 (y - this.getAbsoluteY() + this.getScrollTop())*this.zoomFactor);
     },
   
-    _fromDocumentToCanvasCoordinate_IE8_HACK: function(x, y) {
-        return new draw2d.geo.Point(
-                (x - this.getAbsoluteX())*this.zoomFactor,
-                (y - this.getAbsoluteY())*this.zoomFactor);
-    },
-
     /**
      * @method
      * Transforms a canvas coordinate to document coordinate.
@@ -20714,6 +21542,9 @@ draw2d.Canvas = Class.extend(
         }
         figure.setCanvas(this);
 
+        // to avoid drag&drop outside of this canvas
+        figure.installEditPolicy(this.regionDragDropConstraint);
+
         // important inital call
         figure.getShapeElement();
 
@@ -20780,11 +21611,13 @@ draw2d.Canvas = Class.extend(
         // remove the figure from a selection handler as well and cleanup the 
         // selection feedback 
         var _this = this;
-        this.editPolicy.each(function(i,policy){
-            if(typeof policy.unselect==="function"){
-                policy.unselect(_this,figure);
-            }
-        });
+        if(this.getSelection().contains(figure)) {
+            this.editPolicy.each(function (i, policy) {
+                if (typeof policy.unselect === "function") {
+                    policy.unselect(_this, figure);
+                }
+            });
+        }
         
         if(figure instanceof draw2d.shape.basic.Line){
            this.lines.remove(figure);
@@ -20810,7 +21643,6 @@ draw2d.Canvas = Class.extend(
      * @method
      * Returns all lines/connections in this workflow/canvas.<br>
      *
-     * @protected
      * @return {draw2d.util.ArrayList}
      **/
     getLines: function()
@@ -20822,7 +21654,6 @@ draw2d.Canvas = Class.extend(
      * @method
      * Returns the internal figures.<br>
      *
-     * @protected
      * @return {draw2d.util.ArrayList}
      **/
     getFigures: function()
@@ -20906,6 +21737,13 @@ draw2d.Canvas = Class.extend(
      **/
     snapToHelper:function(figure,  pos)
     {
+        // disable snapToPos if we have sleect more than one element
+        // which are currently in Drag&Drop operation
+        //
+        if(this.getSelection().getSize()>1){
+            return pos;
+        }
+
         var _this = this;
         var orig = pos.clone();
         this.editPolicy.each(function(i,policy){
@@ -21545,10 +22383,12 @@ draw2d.Canvas = Class.extend(
         return this;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.Selection
  * 
@@ -21724,10 +22564,12 @@ draw2d.Selection = Class.extend({
         return this;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.Figure
  * A lightweight graphical object. Figures are rendered to a {@link draw2d.Canvas} object.
  * 
@@ -21880,18 +22722,6 @@ draw2d.Figure = Class.extend({
         // 
         this.isInDragDrop =false;
 
-
-        var _this = this;
-        /*
-        this.watch("isInDragDrop", function (id,oldval,newval) {
-            console.log("figure." + id + " changed from " + oldval + " to " + newval+ "    "+_this.NAME);
-            if (newval === true) {
-                console.log("new");
-            }
-            console.log(_this);
-            return newval;
-        });
-        */
         this.ox = 0;
         this.oy = 0;
         this.repaintBlocked=false;
@@ -21920,7 +22750,6 @@ draw2d.Figure = Class.extend({
 
         // the new style attr call with object attributes
         this.attr(attr);
-
     },
     
     /**
@@ -21968,16 +22797,16 @@ draw2d.Figure = Class.extend({
      * 
      *     // setting multiple attributes:
      *     figure.attr({
-     *       userData.my.property.x: 30,
-     *       userData.my.property.y: 40
+     *       "userData.my.property.x": 30,
+     *       "userData.my.property.y": 40
      *     });
      * 
      * Also set using array notation is possible for the userData:
      * 
      *     // dot notation and array brackets:
      *     figure.attr({
-     *       userData.my.names[0]: "John",
-     *       userData.my.names[1]: "Doe"
+     *       "userData.my.names[0]": "John",
+     *       "userData.my.names[1]": "Doe"
      *     });
      *     
      *     
@@ -22008,25 +22837,27 @@ draw2d.Figure = Class.extend({
     attr: function(name, value){
         var _this = this;
         var orig = this.repaintBlocked;
-  //      this.repaintBlocked=true;
+
         try{
             // call of attr as setter method with {name1:val1, name2:val2 }  argument list
             //
             if($.isPlainObject(name)){
-                for(key in name){
+                for(var key in name){
                     // user can set the "userData" with path notation. In this case we
                     // expand the path to a real JSON object and set the data.
                     // index/brackets are allowed too.
                     //
                     if(key.substring(0,9)==="userData."){
+                        if(this.userData===null){this.userData={};}
                         draw2d.util.JSON.set({userData:this.userData}, key, name[key]);
+                        this.fireEvent("change:"+key,{value:name[key]});
                     }
                     else{
                         var func=this.setterWhitelist[key];
                         if(func){
                             func.call(this,name[key]); 
                         }
-                        // maby the ussser adds a function as property to the attr call
+                        // maybe the user adds a function as property to the attr call
                         // e.g.:
                         // {
                         //     doIt: function(){}
@@ -22064,7 +22895,9 @@ draw2d.Figure = Class.extend({
                     value = value();
                 }
                 if(name.substring(0,9)==="userData."){
+                    if(this.userData===null){this.userData={};}
                     draw2d.util.JSON.set({userData:this.userData}, name, value);
+                    this.fireEvent("change:"+name,{value:value});
                 }
                 else{
                     var setter = this.setterWhitelist[name];
@@ -22116,19 +22949,19 @@ draw2d.Figure = Class.extend({
     * @method
     * Add the figure to the current selection and propagate this to all edit policies.
     * 
-    * @param {Boolean} [isPrimarySelection] true if the element should be the primary selection
+    * @param {Boolean} [asPrimarySelection] true if the element should be the primary selection
     * @private
     */
     select: function(asPrimarySelection){
         if(typeof asPrimarySelection==="undefined"){
             asPrimarySelection=true;
         }
-     
+
         // apply all EditPolicy for select Operations
         //
         var _this=this;
         this.editPolicy.each(function(i,e){
-              if(e instanceof draw2d.policy.figure.SelectionFeedbackPolicy){
+              if(e instanceof draw2d.policy.figure.SelectionPolicy){
                   e.onSelect(_this.canvas, _this,asPrimarySelection);
               }
         });
@@ -22152,7 +22985,7 @@ draw2d.Figure = Class.extend({
         // apply all EditPolicy for select Operations
         //
         this.editPolicy.each(function(i,e){
-              if(e instanceof draw2d.policy.figure.SelectionFeedbackPolicy){
+              if(e instanceof draw2d.policy.figure.SelectionPolicy){
                   e.onUnselect(_this.canvas, _this);
               }
         });
@@ -22194,8 +23027,8 @@ draw2d.Figure = Class.extend({
      *
      * @return {Boolean}
      */
-    isSelected: function(){
-
+    isSelected: function()
+    {
         if(this.canvas !==null){
             return this.canvas.getSelection().contains(this);
         }
@@ -22316,7 +23149,8 @@ draw2d.Figure = Class.extend({
      * @param {String} className the class name to check
      * @since 2.9.0
      */
-    hasCssClass: function(className) {
+    hasCssClass: function(className)
+    {
         if(this.cssClass===null){
             return false;
         }
@@ -22408,9 +23242,11 @@ draw2d.Figure = Class.extend({
       // was already drawn
       if(canvas===null && this.shape!==null)
       {
-         this.unselect();
-         this.shape.remove();
-         this.shape=null;
+          if(this.isSelected()) {
+              this.unselect();
+          }
+          this.shape.remove();
+          this.shape=null;
       }
     
       this.canvas = canvas;
@@ -22594,14 +23430,12 @@ draw2d.Figure = Class.extend({
              }else if(lines.remove(this)!==null){
                  lines.insertElementAt(this,0);
              }
-         }
-         
-
-         if(typeof figure !=="undefined"){
-             this.getShapeElement().insertBefore(figure.getShapeElement());
-         }
-         else{
-             this.getShapeElement().toBack();
+             if(typeof figure !=="undefined"){
+                 this.getShapeElement().insertBefore(figure.getShapeElement());
+             }
+             else{
+                 this.getShapeElement().toBack();
+             }
          }
 
          // Bring all children in front of "this" figure
@@ -22671,8 +23505,9 @@ draw2d.Figure = Class.extend({
          // deinstall all instances of the policy
          //
          var _this = this;
+         var name = (typeof policy === "string")?policy:policy.NAME;
          this.editPolicy.grep(function(p){
-             if(p.NAME === policy.NAME){
+             if(p.NAME === name){
                  p.onUninstall(_this);
                  return false;
              }
@@ -22692,7 +23527,7 @@ draw2d.Figure = Class.extend({
       *      
       *     canvas.add( start);
       *      
-      * @param {draw2d.Figure} figure the figure to add as decoration to the connection.
+      * @param {draw2d.Figure} child the figure to add as decoration to the connection.
       * @param {draw2d.layout.locator.Locator} locator the locator for the child. 
       * @param {Number} [index] optional index where to insert the figure
      **/
@@ -22814,7 +23649,10 @@ draw2d.Figure = Class.extend({
        }
 
       this.shape=this.createShapeElement();
-      
+      if(!this.isVisible()){
+          this.shape.hide();
+      }
+
       // add CSS class to enable styling of the element with CSS rules/files
       //
       if(this.cssClass!==null){
@@ -22864,14 +23702,13 @@ draw2d.Figure = Class.extend({
          if (this.repaintBlocked===true || this.shape === null){
              return this;
          }
-
+         var _this = this;
          attributes = attributes || {};
 
 
          if(this.visible===true){
              if(this.shape.isVisible()===false){
                  if($.isNumeric(attributes.visibleDuration)){
-                     var _this = this;
                      $(this.shape.node).fadeIn(attributes.visibleDuration, function(){
                          _this.shape.show();
                      });
@@ -22884,7 +23721,6 @@ draw2d.Figure = Class.extend({
          else{
              if(this.shape.isVisible()===true){
                  if($.isNumeric(attributes.visibleDuration)){
-                     var _this = this;
                      $(this.shape.node).fadeOut(attributes.visibleDuration, function(){
                          _this.shape.hide();
                      });
@@ -23052,8 +23888,10 @@ draw2d.Figure = Class.extend({
      * @param {Number} dy the y difference between the start of the drag drop operation and now
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      **/
-    onDrag: function( dx,  dy, dx2, dy2)
+    onDrag: function( dx,  dy, dx2, dy2, shiftKey, ctrlKey)
     {
       var _this = this;
 
@@ -23093,7 +23931,7 @@ draw2d.Figure = Class.extend({
 
       // fire an event
       // @since 5.3.3
-      this.fireEvent("drag",{dx:dx, dy:dy, dx2:dx2, dy2:dy2});
+      this.fireEvent("drag",{dx:dx, dy:dy, dx2:dx2, dy2:dy2, shiftKey:shiftKey, ctrlKey:ctrlKey});
     },
 
     /**
@@ -23111,9 +23949,11 @@ draw2d.Figure = Class.extend({
      * @param {Number} dy the y difference between the mouse down operation and now
      * @param {Number} dx2 The x diff since the last call of this dragging operation
      * @param {Number} dy2 The y diff since the last call of this dragging operation
+     * @param {Boolean} shiftKey true if the shift key has been pressed during this event
+     * @param {Boolean} ctrlKey true if the ctrl key has been pressed during the event
      * @template
      */
-    onPanning: function(dx, dy, dx2, dy2)
+    onPanning: function(dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
     },
 
@@ -23159,7 +23999,6 @@ draw2d.Figure = Class.extend({
       }
       this.isInDragDrop = false;
       this.panningDelegate=null;
-
 
       // notify all installed policies
       //
@@ -24332,8 +25171,6 @@ draw2d.Figure = Class.extend({
      *   <li>hide</li>
      *   <li>added</li>
      *   <li>removed</li>
-     *   <li>zooming</li>
-     *   <li>zoomed</li>
      *   <li>change:[attr]</li>
      * </ul>
      * 
@@ -24610,10 +25447,12 @@ draw2d.Figure = Class.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.Node
  * 
@@ -25083,7 +25922,7 @@ draw2d.shape.node.Node = draw2d.Figure.extend({
     	// relayout the ports
     	this.setDimension(this.width,this.height);
     	
-        this.layoutPorts();
+//        this.layoutPorts();
 
     	return newPort;
     },
@@ -25196,7 +26035,6 @@ draw2d.shape.node.Node = draw2d.Figure.extend({
      */
      layoutPorts: function()
     {
-
          if(this.portRelayoutRequired===false){
              return;//silently
          }
@@ -25302,10 +26140,12 @@ draw2d.shape.node.Node = draw2d.Figure.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.VectorFigure
  * The base class for all vector based figures like {@link draw2d.shape.basic.Rectangle}  or {@link draw2d.shape.basic.Oval} 
@@ -25472,18 +26312,10 @@ draw2d.VectorFigure = draw2d.shape.node.Node.extend({
                 attributes.stroke = this.color.hash();
             }
         }
-        
-        if(typeof attributes["stroke-width"]==="undefined"){
-            attributes["stroke-width"] = this.stroke;
-        }
-        
-        if(typeof attributes.fill === "undefined"){
-       	   attributes.fill = this.bgColor.hash();
-        }
 
-        if(this.dasharray!==null){
-            attributes["stroke-dasharray"]=this.dasharray;
-        }
+        draw2d.util.JSON.ensureDefault(attributes,"stroke-width" , this.stroke);
+        draw2d.util.JSON.ensureDefault(attributes,"fill" ,this.bgColor.hash());
+        draw2d.util.JSON.ensureDefault(attributes,"dasharray" , this.dasharray);
 
         this._super(attributes);
         
@@ -25643,10 +26475,12 @@ draw2d.VectorFigure = draw2d.shape.node.Node.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Rectangle
  * A Rectangle Figure.
@@ -25694,10 +26528,13 @@ draw2d.shape.basic.Rectangle = draw2d.VectorFigure.extend({
            $.extend({bgColor:"#a0a0a0", color:"#1B1B1B"},attr),
            $.extend({},{
                /** @attr {String} dash The dot/dash pattern for the line style. Valid values: ["", "-", ".", "-.", "-..", ". ", "- ", "--", "- .", "--.", "--.."]*/
-               dash  : this.setDashArray
+               dash  : this.setDashArray,
+               /** @attr {String} dasharray The dot/dash pattern for the line style. Valid values: ["", "-", ".", "-.", "-..", ". ", "- ", "--", "- .", "--.", "--.."]*/
+               dasharray  : this.setDashArray
            }, setter),
            $.extend({},{
-               dash  : this.getDashArray
+               dash  : this.getDashArray,
+               dasharray  : this.getDashArray
            }, getter)
 
        );
@@ -25824,10 +26661,12 @@ draw2d.shape.basic.Rectangle = draw2d.VectorFigure.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.SetFigure
  * 
@@ -26151,12 +26990,14 @@ draw2d.SetFigure = draw2d.shape.basic.Rectangle.extend({
             }
         }
 
-        
-        if(typeof figure !=="undefined"){
-            this.getShapeElement().insertBefore(figure.getShapeElement());
-        }
-        else{
-            this.getShapeElement().toBack();
+
+        if(this.canvas!==null) {
+            if (typeof figure !== "undefined") {
+                this.getShapeElement().insertBefore(figure.getShapeElement());
+            }
+            else {
+                this.getShapeElement().toBack();
+            }
         }
         
         // and last but not least - the ports are always on top
@@ -26232,10 +27073,12 @@ draw2d.SetFigure = draw2d.shape.basic.Rectangle.extend({
     }
    
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.SVGFigure
  * Abstract class which can handle plain SVG content. Inherit class must override the method
@@ -26582,10 +27425,12 @@ draw2d.SVGFigure = draw2d.SetFigure.extend({
 
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.Hub
  * 
@@ -26806,10 +27651,12 @@ draw2d.shape.node.Hub = draw2d.shape.basic.Rectangle.extend({
      
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.HorizontalBus
  * 
@@ -26845,10 +27692,12 @@ draw2d.shape.node.HorizontalBus = draw2d.shape.node.Hub.extend({
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.VerticalBus
  * 
@@ -26934,10 +27783,12 @@ draw2d.shape.node.VerticalBus = draw2d.shape.node.Hub.extend({
     
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.Fulcrum
  * 
@@ -26985,25 +27836,25 @@ draw2d.shape.node.Fulcrum = draw2d.shape.node.Hub.extend({
     repaint: function(attributes)
     {
         if(this.repaintBlocked===true || this.shape===null){
-            return;
+            return this;
         }
     
         attributes= attributes || {};
         
         // set some good defaults if the parent didn't
-        if(typeof attributes.fill ==="undefined"){
-            attributes.fill=this.bgColor.hash();
-        }
+        draw2d.util.JSON.ensureDefault(attributes,"fill" ,this.bgColor.hash());
         
-       this._super(attributes);
+        return this._super(attributes);
     }
     
 });
+
 
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Arc
  * Oval figure.
@@ -27070,10 +27921,12 @@ draw2d.shape.basic.Arc = draw2d.SetFigure.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Oval
  * Oval figure.
@@ -27250,10 +28103,12 @@ draw2d.shape.basic.Oval = draw2d.VectorFigure.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.shape.basic.Circle
@@ -27358,10 +28213,12 @@ draw2d.shape.basic.Circle = draw2d.shape.basic.Oval.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Label
  * Implements a simple text label.
@@ -27466,9 +28323,9 @@ draw2d.shape.basic.Label= draw2d.SetFigure.extend({
             
 
         this.installEditPolicy(new draw2d.policy.figure.AntSelectionFeedbackPolicy());
- 
+
     
-        // some performance approvements
+        // some performance improvements
         this.lastAppliedLabelRotation = "";
         this.lastAppliedTextAttributes= {};
     },
@@ -28133,10 +28990,12 @@ draw2d.shape.basic.Label= draw2d.SetFigure.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Text
  * Implements a simple text with word wrapping.<br>The height of the element is automatic calculated. The widht of
@@ -28326,10 +29185,12 @@ draw2d.shape.basic.Text= draw2d.shape.basic.Label.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Line
  * The base class for all visible elements inside a canvas.
@@ -28429,11 +29290,12 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
                 }, setter),
                 
              $.extend({},{
-                start:  this.getStartPosition,
-                end:  this.getEndPosition,
+                start:         this.getStartPosition,
+                end:           this.getEndPosition,
                 outlineColor:  this.getOutlineColor,
                 outlineStroke: this.getOutlineStroke,
                 stroke:        this.getStroke,
+                color:         this.getColor,
                 dasharray:     this.getDashArray,
                 vertices:      this.getVertices
             }, getter));
@@ -28630,10 +29492,10 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
     * 
     *      // Alternatively you can use the attr method:
     *      figure.attr({
-    *        dash: dashPattern
+    *        dasharray: dashPattern
     *      });
     *      
-    * @param dash can be one of this ["", "-", ".", "-.", "-..", ". ", "- ", "--", "- .", "--.", "--.."]
+    * @param {String} dashPattern Can be one of this ["", "-", ".", "-.", "-..", ". ", "- ", "--", "- .", "--.", "--.."]
     */
    setDashArray: function(dashPattern)
    {
@@ -28650,7 +29512,7 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
     * Get the line style for this object.
     * 
     *      // Alternatively you can use the attr method:
-    *      figure.attr("dash");
+    *      figure.attr("dasharray");
     *  
     * @since 5.1.0
     */
@@ -28717,17 +29579,14 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
        }
        else{
     	   // may a router has calculate another path. don't override them.
-    	   if(typeof attributes.path ==="undefined"){
+           if(typeof attributes.path ==="undefined"){
     		   attributes.path =["M",this.start.x,this.start.y,"L",this.end.x,this.end.y].join(" ");
     	   }
-    	   attributes.stroke = this.lineColor.hash();
-    	   attributes["stroke-width"]=this.stroke;
+           draw2d.util.JSON.ensureDefault(attributes,"stroke" ,this.lineColor.hash());
+           draw2d.util.JSON.ensureDefault(attributes,"stroke-width" ,this.stroke);
        }
-       
-       if(this.dasharray!==null){
-           attributes["stroke-dasharray"]=this.dasharray;
-       }
-       
+
+       draw2d.util.JSON.ensureDefault(attributes,"stroke-dasharray" ,this.dasharray);
        this._super(attributes);
 
        if(this.outlineStroke>0){
@@ -28940,8 +29799,8 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
     *        startY: y
     *      });
     *      
-    * @param {Number} x the x coordinate of the start point
-    * @param {Number} y the y coordinate of the start point
+    * @param {Number|draw2d.geo.Point} x the x coordinate of the start point
+    * @param {Number} [y] the y coordinate of the start point
     **/
    setStartPosition: function( x, y)
    {
@@ -29204,15 +30063,14 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
     */
    setVertices: function(vertices)
    {
+       var _this = this;
        // convert json document/array to draw2d ArrayList
        //
        if($.isArray(vertices)){
-           var _this = this;
            this.vertices= new draw2d.util.ArrayList();
            $.each(vertices,function(index, element){
                 _this.vertices.add(new draw2d.geo.Point(element));
            });
-
        }
        // use the given ArrayList
        //
@@ -29222,7 +30080,6 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
        else{
            throw "invalid argument for Line.setVertices";
        }
-
 
        // can happen if the given vertices array is empty
        //
@@ -29235,7 +30092,6 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
        this.svgPathString = null;
        this.repaint();
 
-       var _this = this;
        // align the SelectionHandles to the new situation
        // This is a Hack....normally this should be done below and the Line shouldn't know 
        // something about this issue....this is complete a "EditPolicy" domain to handle this. 
@@ -29269,7 +30125,7 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
    getSegments: function()
    {
        var result = new draw2d.util.ArrayList();
-       result.add({start: this.getStartPoint(), end: this.getEndPoint()});
+       result.add({start: this.getStartPosition(), end: this.getEndPosition()});
        
        return result;
    },
@@ -29384,8 +30240,41 @@ draw2d.shape.basic.Line = draw2d.Figure.extend({
    {
      return draw2d.shape.basic.Line.hit(this.corona+ this.stroke, this.start.x,this.start.y, this.end.x, this.end.y, px,py);
    },
-   
-   /**
+
+    /**
+     * @method
+     * Returns the projection of the point on the line.
+     *
+     * @param {Number} px the x coordinate of the test point
+     * @param {Number} py the y coordinate of the test point
+     * @return {draw2d.geo.Point}
+     **/
+    pointProjection: function( px, py)
+    {
+        var pt =  new draw2d.geo.Point(px,py);
+        var p1=this.getStartPosition();
+        var p2=this.getEndPosition();
+        return draw2d.geo.Line.pointProjection(p1.x,p1.y,p2.x,p2.y,pt.x,pt.y);
+    },
+
+
+    /**
+     * @method
+     * Returns the point onto the line which has the 'percentage' position onto the line.
+     *
+     * @param {Number} percentage value between [0..1]
+     * @returns {*}
+     */
+    lerp: function(percentage)
+    {
+        var p1=this.getStartPosition();
+        var p2=this.getEndPosition();
+        percentage = Math.min(1,Math.max(0,percentage));
+        return new draw2d.geo.Point(p1.x+(p2.x-p1.x)*percentage,p1.y+(p2.y-p1.y)*percentage);
+    },
+
+
+    /**
     * @method
     * Return all intersection points between the given Line.
     * 
@@ -29559,10 +30448,12 @@ draw2d.shape.basic.Line.hit= function( coronaWidth, X1, Y1,  X2,  Y2, px, py)
 };
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.PolyLine
  * 
@@ -29909,7 +30800,7 @@ draw2d.shape.basic.PolyLine = draw2d.shape.basic.Line.extend({
     repaint: function(attributes)
     {
         if(this.repaintBlocked===true || this.shape===null){
-          return;
+          return this;
         }
 
         if(this.svgPathString===null || this.routingRequired===true){
@@ -29920,12 +30811,10 @@ draw2d.shape.basic.PolyLine = draw2d.shape.basic.Line.extend({
             attributes = {};
         }
         attributes.path=this.svgPathString;
-        attributes["stroke-linecap"]="round";
-        attributes["stroke-linejoin"]="round";
+        draw2d.util.JSON.ensureDefault(attributes,"stroke-linecap" , "round");
+        draw2d.util.JSON.ensureDefault(attributes,"stroke-linejoin", "round");
 
-        this._super( attributes);
-
-        return this;
+        return this._super( attributes);
     },
     
 
@@ -29957,7 +30846,10 @@ draw2d.shape.basic.PolyLine = draw2d.shape.basic.Line.extend({
       if(this.oldPoint!==null){
         // store the painted line segment for the "mouse selection test"
         // (required for user interaction)
-        this.lineSegments.add({start: this.oldPoint, end:p});
+        this.lineSegments.add({
+            start: this.oldPoint,
+            end:p
+        });
       }
       this.svgPathString=null;
       this.oldPoint = p;
@@ -29983,6 +30875,109 @@ draw2d.shape.basic.PolyLine = draw2d.shape.basic.Line.extend({
             this.draggedSegment =  this.hitSegment(x,y);
         }
         return result;
+    },
+
+    /**
+     * @method
+     * Returns the length of the polyline.
+     *
+     * @return {Number}
+     * @since 6.1.43
+     **/
+    getLength: function()
+    {
+        var result = 0;
+        for(var i = 0; i< this.lineSegments.getSize();i++) {
+            var segment = this.lineSegments.get(i);
+            var p1 = segment.start;
+            var p2 = segment.end;
+            result += Math.sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y));
+        }
+        return result;
+    },
+
+    setVertices: function(vertices)
+    {
+        // inform the router tha the vertices has set outside. This switch some
+        // router from full autoroute to half autoroute
+        this.router.verticesSet(this);
+
+        this._super(vertices);
+    },
+
+
+    /**
+     * @method
+     * Returns the projection of the point on the line.
+     *
+     * @param {Number} px the x coordinate of the test point
+     * @param {Number} py the y coordinate of the test point
+     * @return {draw2d.geo.Point}
+     **/
+    pointProjection: function( px, py)
+    {
+        var result=null,
+            projection=null,
+            p1=null,
+            p2 = null,
+            segment=null;
+        var lastDist = Number.MAX_SAFE_INTEGER;
+        var pt = new draw2d.geo.Point(px,py);
+        for(var i = 0; i< this.lineSegments.getSize();i++) {
+            segment = this.lineSegments.get(i);
+            p1 = segment.start;
+            p2 = segment.end;
+            projection= draw2d.geo.Line.pointProjection(p1.x,p1.y,p2.x,p2.y,pt.x,pt.y);
+            if(projection!==null) {
+                var dist = projection.distance(pt);
+                if (result == null || dist < lastDist) {
+                    result = projection;
+                    result.index=i;
+                    lastDist = dist;
+                }
+            }
+        }
+
+        if (result !== null) {
+            var length = 0;
+            var segment;
+            for(var i = 0; i< result.index;i++) {
+                segment = this.lineSegments.get(i);
+                length += segment.start.distance(segment.end);
+            }
+            segment = this.lineSegments.get(result.index);
+            p1 = segment.start;
+            p2 = segment.end;
+            length +=  p1.distance(p2)*draw2d.geo.Line.inverseLerp(p2.x,p2.y,p1.x,p1.y,result.x,result.y);
+            result.percentage=(1.0/this.getLength())*length;
+        }
+        return result;
+    },
+
+    /**
+     * @method
+     * Returns the point onto the line which has the relative 'percentage' position onto the line.
+     *
+     * @param {Number} percentage the relative position between [0..1]
+     * @returns {draw2d.geo.Point}
+     */
+    lerp: function(percentage)
+    {
+        var length = this.getLength()*percentage;
+        var lastValidLength=length;
+        var segment=null,p1=null,p2=null;
+        for(var i = 0; i< this.lineSegments.getSize();i++) {
+            segment = this.lineSegments.get(i);
+            p1 = segment.start;
+            p2 = segment.end;
+            length = length-p1.distance(p2);
+            if(length<=0){
+                percentage = 1.0/p1.distance(p2)*lastValidLength;
+                return new draw2d.geo.Point(p1.x+(p2.x-p1.x)*percentage,p1.y+(p2.y-p1.y)*percentage)
+            }
+            lastValidLength=length;
+        }
+        return p2;
     },
 
     /**
@@ -30092,10 +31087,12 @@ draw2d.shape.basic.PolyLine = draw2d.shape.basic.Line.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Image
  * Simple Image shape.
@@ -30216,10 +31213,12 @@ draw2d.shape.basic.Image = draw2d.shape.node.Node.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.basic.Polygon
  * A Polygon figure.
  * 
@@ -30360,10 +31359,8 @@ draw2d.shape.basic.Polygon = draw2d.VectorFigure.extend({
         }
         
         attributes= attributes || {};
-        
-        if(typeof attributes.path ==="undefined"){
-            attributes.path = this.svgPathString;
-        }
+
+        draw2d.util.JSON.ensureDefault(attributes,"path" ,this.svgPathString);
 
         this._super(attributes);
     },
@@ -30501,7 +31498,8 @@ draw2d.shape.basic.Polygon = draw2d.VectorFigure.extend({
     {
         return this.vertices.get(index);
     },
-  
+
+
     resetVertices: function()
     {
         this.vertices = new draw2d.util.ArrayList();
@@ -30778,10 +31776,12 @@ draw2d.shape.basic.Polygon = draw2d.VectorFigure.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.Diamond
  * A Diamond Figure.
@@ -30833,10 +31833,12 @@ draw2d.shape.basic.Diamond = draw2d.shape.basic.Polygon.extend({
 
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.composite.Composite
  * Base interface for the compiste shapes
  *     
@@ -30920,10 +31922,12 @@ draw2d.shape.composite.Composite = draw2d.SetFigure.extend({
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.composite.StrongComposite
  * A StrongComposite is a composite figure with strong assignment of the children and the composite.
  * The child knows everything about the assigned composite and receives events about assignment to a 
@@ -31105,10 +32109,12 @@ draw2d.shape.composite.StrongComposite = draw2d.shape.composite.Composite.extend
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.composite.Group
  * 
  * A group is a figure that acts as a transparent container for other figures. A group 
@@ -31290,10 +32296,12 @@ draw2d.shape.composite.Group = draw2d.shape.composite.StrongComposite.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.composite.Jailhouse
  * 
  * A Jailhouse is a figure that acts as a container for other figures. A Jailhouse 
@@ -31465,10 +32473,12 @@ draw2d.shape.composite.Jailhouse = draw2d.shape.composite.StrongComposite.extend
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.composite.WeakComposite
  * A WeakComposite is a composite figure with loose coupling of the children and the composite.
  * The child didn't know anything about the assigned composite nor did they receive any events
@@ -31502,10 +32512,12 @@ draw2d.shape.composite.WeakComposite = draw2d.shape.composite.Composite.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.composite.Raft
  * Raft figures are shapes, which aggregate multiple figures. It works like a real raft. Aboard figures are 
  * moved if the raft figures moves.
@@ -31574,16 +32586,17 @@ draw2d.shape.composite.Raft = draw2d.shape.composite.WeakComposite.extend({
      * Set the position of the object.
      *
      * @param {Number/draw2d.geo.Point} x The new x coordinate of the figure
-     * @param {Number} [y] The new y coordinate of the figure 
+     * @param {Number} [y] The new y coordinate of the figure
+     * @param {boolean} [dontApplyToChildren] don't move the children if this flag is set.
      **/
-    setPosition: function(x, y)
+    setPosition: function(x, y, dontApplyToChildren)
     {
         var oldX = this.x;
         var oldY = this.y;
         
         // we need the figures before the composite has moved. Otherwise some figures are fall out of the raft
         // 
-        var aboardedFigures =this.getAboardFigures(this.isInDragDrop===false);
+        var aboardedFigures = (dontApplyToChildren)?draw2d.util.ArrayList.EMPTY_LIST:this.getAboardFigures(this.isInDragDrop===false);
         
         this._super(x,y);
         
@@ -31594,13 +32607,73 @@ draw2d.shape.composite.Raft = draw2d.shape.composite.WeakComposite.extend({
             return this;
         }
 
+        // we must move circuits with "user routed" elements as well if the start/target is withing
+        // the raft. Some segments stay still because some coordinates has a fixed position
+        //
+        if(this.canvas!==null) {
+            aboardedFigures = aboardedFigures.clone();
+            this.canvas.getLines().each(function (i, line) {
+                if (line instanceof draw2d.Connection) {
+                    if (aboardedFigures.contains(line.getSource().getRoot()) && aboardedFigures.contains(line.getTarget().getRoot())) {
+                        aboardedFigures.add(line);
+                    }
+                }
+            });
+        }
+
         aboardedFigures.each(function(i,figure){
             figure.translate(dx,dy);
         });
         
         return this;
     },
-    
+
+
+
+    onDrag: function( dx,  dy, dx2, dy2, shiftKey, ctrlKey)
+    {
+        var _this = this;
+
+        // apply all EditPolicy for DragDrop Operations
+        //
+        this.editPolicy.each(function(i,e){
+            if(e instanceof draw2d.policy.figure.DragDropEditPolicy){
+                var newPos = e.adjustPosition(_this,_this.ox+dx,_this.oy+dy);
+                if(newPos) {
+                    dx = newPos.x - _this.ox;
+                    dy = newPos.y - _this.oy;
+                }
+            }
+        });
+
+        var newPos = new draw2d.geo.Point(this.ox+dx, this.oy+dy);
+
+        // Adjust the new location if the object can snap to a helper
+        // like grid, geometry, ruler,...
+        //
+        if(this.getCanSnapToHelper()){
+            newPos = this.getCanvas().snapToHelper(this, newPos);
+        }
+
+
+        // push the shiftKey to the setPosition method and avoid to move the children objects
+        // if the user press the shift key
+        this.setPosition(newPos.x, newPos.y, shiftKey);
+
+        // notify all installed policies
+        //
+        this.editPolicy.each(function(i,e){
+            if(e instanceof draw2d.policy.figure.DragDropEditPolicy){
+                e.onDrag(_this.canvas, _this);
+            }
+        });
+
+
+        // fire an event
+        // @since 5.3.3
+        this.fireEvent("drag",{dx:dx, dy:dy, dx2:dx2, dy2:dy2, shiftKey:shiftKey, ctrlKey:ctrlKey});
+    },
+
     /**
      * @method
      * Return all figures which are aboard of this shape. These shapes are moved as well if the raft
@@ -31668,10 +32741,12 @@ draw2d.shape.composite.Raft = draw2d.shape.composite.WeakComposite.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.Connection
  * See the example:
@@ -31915,10 +32990,11 @@ draw2d.Connection = draw2d.shape.basic.PolyLine.extend({
      * operations. It's only a decorator for the connection.<br>
      * Mainly for labels or other fancy decorations :-)
      *
-     * @param {draw2d.Figure} figure the figure to add as decoration to the connection.
-     * @param {draw2d.layout.locator.ConnectionLocator} locator the locator for the child. 
+     * @param {draw2d.Figure} child the figure to add as decoration to the connection.
+     * @param {draw2d.layout.locator.ConnectionLocator} locator the locator for the child.
+     * @param {Number} [index] optional index where to insert the figure
     **/
-    add: function(child, locator)
+    add: function(child, locator, index)
     {
         // just to ensure the right interface for the locator.
         // The base class needs only 'draw2d.layout.locator.Locator'.
@@ -31926,7 +33002,7 @@ draw2d.Connection = draw2d.shape.basic.PolyLine.extend({
            throw "Locator must implement the class draw2d.layout.locator.ConnectionLocator"; 
         }
         
-        this._super(child, locator);
+        this._super(child, locator, index);
     },
     
 
@@ -31934,7 +33010,7 @@ draw2d.Connection = draw2d.shape.basic.PolyLine.extend({
      * @method
      * Set the ConnectionDecorator for this object.
      *
-     * @param {draw2d.decoration.connection.Decorator} the new source decorator for the connection
+     * @param {draw2d.decoration.connection.Decorator} decorator the new source decorator for the connection
      **/
     setSourceDecorator: function( decorator)
     {
@@ -31962,7 +33038,7 @@ draw2d.Connection = draw2d.shape.basic.PolyLine.extend({
      * @method
      * Set the ConnectionDecorator for this object.
      *
-     * @param {draw2d.decoration.connection.Decorator} the new target decorator for the connection
+     * @param {draw2d.decoration.connection.Decorator} decorator the new target decorator for the connection
      **/
     setTargetDecorator: function( decorator)
     {
@@ -32571,7 +33647,7 @@ draw2d.Connection = draw2d.shape.basic.PolyLine.extend({
                   port: this.getSource().getName()
                 };
         
-        var parentNode = this.getTarget().getParent();
+        parentNode = this.getTarget().getParent();
         while(parentNode.getParent()!==null){
         	parentNode = parentNode.getParent();
         }
@@ -32621,10 +33697,12 @@ draw2d.Connection = draw2d.shape.basic.PolyLine.extend({
 
 
 draw2d.Connection.DROP_FILTER = null;
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.VectorFigure
  * The base class for all vector based figures like {@link draw2d.shape.basic.Rectangle}  or {@link draw2d.shape.basic.Oval} 
@@ -32791,18 +33869,10 @@ draw2d.VectorFigure = draw2d.shape.node.Node.extend({
                 attributes.stroke = this.color.hash();
             }
         }
-        
-        if(typeof attributes["stroke-width"]==="undefined"){
-            attributes["stroke-width"] = this.stroke;
-        }
-        
-        if(typeof attributes.fill === "undefined"){
-       	   attributes.fill = this.bgColor.hash();
-        }
 
-        if(this.dasharray!==null){
-            attributes["stroke-dasharray"]=this.dasharray;
-        }
+        draw2d.util.JSON.ensureDefault(attributes,"stroke-width" , this.stroke);
+        draw2d.util.JSON.ensureDefault(attributes,"fill" ,this.bgColor.hash());
+        draw2d.util.JSON.ensureDefault(attributes,"dasharray" , this.dasharray);
 
         this._super(attributes);
         
@@ -32962,10 +34032,12 @@ draw2d.VectorFigure = draw2d.shape.node.Node.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.ResizeHandle
  * The Resizehandles for Figures.
@@ -33285,7 +34357,7 @@ draw2d.ResizeHandle = draw2d.shape.basic.Rectangle.extend({
      * class updates the resize handles during the update of the Dimension/Position. This
      * is not neccessary for the ResizeHandles. Performance issue.
      * 
-     * @param {Number} x The new x coordinate of the figure
+     * @param {Number|draw2d.geo.Point} x The new x coordinate of the figure
      * @param {Number} y The new y coordinate of the figure
      **/
     setPosition: function(x, y) {
@@ -33304,7 +34376,7 @@ draw2d.ResizeHandle = draw2d.shape.basic.Rectangle.extend({
             return this;
         }
 
-        // performace improment by setting the coordinates direct.
+        // performance improvement by setting the coordinates direct.
         this.shape.attr({x:this.x, y:this.y});
 //        this.repaint();
     },
@@ -33375,8 +34447,6 @@ draw2d.ResizeHandle = draw2d.shape.basic.Rectangle.extend({
      * Additional bring it in to the front of other figures.
      *
      * @param {draw2d.Canvas} canvas the canvas to use
-     * @param {Number} x the x-positin
-     * @param {Number} y the y-position
      **/
     show: function(canvas)
     {
@@ -33499,10 +34569,12 @@ draw2d.ResizeHandle = draw2d.shape.basic.Rectangle.extend({
 
 
 draw2d.ResizeHandle.DROP_FILTER = null;
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.basic.LineResizeHandle
  * Base class for selection handle for connections and normal lines.
  * 
@@ -33828,10 +34900,12 @@ draw2d.shape.basic.LineResizeHandle = draw2d.shape.basic.Circle.extend({
       this.canvas.onKeyDown(keyCode,ctrl);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.basic.LineStartResizeHandle
  * Selection handle for connections and normal lines.
  * 
@@ -33944,10 +35018,12 @@ draw2d.shape.basic.LineStartResizeHandle = draw2d.shape.basic.LineResizeHandle.e
         return this;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.LineEndResizeHandle
  * 
@@ -34066,10 +35142,12 @@ draw2d.shape.basic.LineEndResizeHandle = draw2d.shape.basic.LineResizeHandle.ext
         return this;
     }    
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.VertexResizeHandle
  * 
@@ -34259,10 +35337,12 @@ draw2d.shape.basic.VertexResizeHandle = draw2d.ResizeHandle.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.basic.GhostVertexResizeHandle
  * ResizeHandle for a vertex edit policy. Click of this kind of resize handles
@@ -34383,10 +35463,12 @@ draw2d.shape.basic.GhostVertexResizeHandle = draw2d.shape.basic.LineResizeHandle
 
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.Port
  * A port is an object that is used to establish a connection between a node and a {@link draw2d.Connection}. The port can 
@@ -34415,7 +35497,8 @@ draw2d.Port = draw2d.shape.basic.Circle.extend({
 
         this.locator = null;
         this.lighterBgColor =null;
-        
+        this.name = null;
+
         this._super($.extend({
                 bgColor: "#4f6870",
                 stroke:1,
@@ -34441,8 +35524,6 @@ draw2d.Port = draw2d.shape.basic.Circle.extend({
         this.connections = new draw2d.util.ArrayList();
         
     
-        // avoid "undefined" values. This breaks the code on iOS.
-        this.name = name?name:null;
 
         this.moveListener = function( emitter, event){
             _this.repaint();
@@ -34830,8 +35911,9 @@ draw2d.Port = draw2d.shape.basic.Circle.extend({
      *
      * @private
      **/
-    onDrag: function(dx, dy, dx2, dy2)
+    onDrag: function(dx, dy, dx2, dy2, shiftKey, ctrlKey)
     {
+        // TODO: warum wurde diese methode �berschrieben?!
         this._super( dx, dy);
     },
     
@@ -35011,8 +36093,6 @@ draw2d.Port = draw2d.shape.basic.Circle.extend({
      * <br>
      * DON'T fire this event if the Port is during a Drag&Drop operation. This can happen
      * if we try to connect two ports
-     * 
-     * @private
      **/
     fireEvent: function(event, args)
     {
@@ -35120,10 +36200,12 @@ draw2d.Corona = draw2d.shape.basic.Circle.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.InputPort
  * A InputPort is the start anchor for a {@link draw2d.Connection}.
  * 
@@ -35165,10 +36247,12 @@ draw2d.InputPort = draw2d.Port.extend({
        return this._super(request);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.OutputPort
  * A OutputPort is the start anchor for a {@link draw2d.Connection}.
  * 
@@ -35211,10 +36295,12 @@ draw2d.OutputPort = draw2d.Port.extend({
        return this._super(request);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.HybridPort
  * A HybridPort can work as Input and as Output port in the same way for a {@link draw2d.Connection}.
  * 
@@ -35273,10 +36359,12 @@ draw2d.HybridPort = draw2d.Port.extend({
        return this._super(request);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.layout.anchor.ConnectionAnchor
  *  An object to which a {@link draw2d.Connection} will be anchored.
@@ -35364,10 +36452,12 @@ draw2d.layout.anchor.ConnectionAnchor = Class.extend({
        return this.getOwner().getAbsolutePosition();
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.anchor.ChopboxConnectionAnchor
  * 
  * The ChopboxAnchor's location is found by calculating the intersection of a
@@ -35461,10 +36551,12 @@ draw2d.layout.anchor.ChopboxConnectionAnchor = draw2d.layout.anchor.ConnectionAn
 	}
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.anchor.FanConnectionAnchor
  * 
  * The FanConnectionAnchor's location is found by calculating the intersection of a
@@ -35620,10 +36712,12 @@ draw2d.layout.anchor.FanConnectionAnchor = draw2d.layout.anchor.ConnectionAnchor
 	}
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.anchor.ShortesPathConnectionAnchor
  * 
  * The ChopboxAnchor's location is found by calculating the intersection of a
@@ -35734,10 +36828,12 @@ draw2d.layout.anchor.ShortesPathConnectionAnchor = draw2d.layout.anchor.Connecti
 	}
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.layout.anchor.CenterEdgeConnectionAnchor
  * 
  * The CenterEdgeConnectionAnchor's location is found by calculating the intersection of a
@@ -35832,10 +36928,12 @@ draw2d.layout.anchor.CenterEdgeConnectionAnchor = draw2d.layout.anchor.Connectio
 	}
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.arrow.CalligrapherArrowLeft
  * Hand drawn arrow to the left.
@@ -35892,10 +36990,12 @@ draw2d.shape.arrow.CalligrapherArrowLeft = draw2d.SVGFigure.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.arrow.CalligrapherArrowDownLeft
  * Hand drawn arrow which points down left
@@ -35952,10 +37052,12 @@ draw2d.shape.arrow.CalligrapherArrowDownLeft = draw2d.SVGFigure.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.Start
  * 
@@ -35991,10 +37093,12 @@ draw2d.shape.node.Start = draw2d.shape.basic.Rectangle.extend({
  
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.node.End
  * A simple Node which has a InputPort. Mainly used for demo and examples.
@@ -36030,10 +37134,12 @@ draw2d.shape.node.End = draw2d.shape.basic.Rectangle.extend({
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.node.Between
  * A simple Node which has a  InputPort and OutputPort. Mainly used for demo and examples.
  * 
@@ -36067,10 +37173,12 @@ draw2d.shape.node.Between = draw2d.shape.basic.Rectangle.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.note.PostIt
  * 
@@ -36117,10 +37225,12 @@ draw2d.shape.note.PostIt= draw2d.shape.basic.Label.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.shape.flowchart.Document
  * 
  * Typical flowchart <b>Document</b> shape
@@ -36235,10 +37345,12 @@ draw2d.shape.flowchart.Document = draw2d.VectorFigure.extend({
    }*/
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.widget.Widget
  * Base class for all diagrams.
@@ -36251,10 +37363,12 @@ draw2d.shape.widget.Widget = draw2d.SetFigure.extend({
         this._super( attr, setter, getter);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.widget.Slider
  * See the example:
@@ -36560,10 +37674,12 @@ draw2d.shape.widget.Slider = draw2d.shape.widget.Widget.extend({
     }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.diagram.Diagram
  * 
@@ -36674,18 +37790,14 @@ draw2d.shape.diagram.Diagram = draw2d.SetFigure.extend({
     repaint: function(attributes)
     {
         if(this.repaintBlocked===true || this.shape==null){
-            return;
+            return this;
         }
         
         attributes= attributes || {};
 
-        if(typeof attributes.fill ==="undefined"){
-            attributes.fill= "none";
-        }
-         
-        this._super(attributes);
-        
-        return this;
+        draw2d.util.JSON.ensureDefault(attributes,"fill" ,"none");
+
+        return this._super(attributes);
     },
     
     applyTransformation: function()
@@ -36702,10 +37814,12 @@ draw2d.shape.diagram.Diagram = draw2d.SetFigure.extend({
     
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.diagram.Pie
  * 
@@ -36931,10 +38045,12 @@ draw2d.shape.diagram.Pie = draw2d.shape.diagram.Diagram.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.diagram.Sparkline
  * 
@@ -37062,10 +38178,12 @@ draw2d.shape.diagram.Sparkline = draw2d.shape.diagram.Diagram.extend({
         return this;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.analog.OpAmp
  * Hand drawn arrow which points down left
@@ -37154,10 +38272,12 @@ draw2d.shape.analog.OpAmp = draw2d.SVGFigure.extend({
      }
 
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.analog.ResistorBridge
  * 
@@ -37246,10 +38366,12 @@ draw2d.shape.analog.ResistorBridge = draw2d.SVGFigure.extend({
                 '</svg>';
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.analog.ResistorVertical
  * 
@@ -37319,10 +38441,12 @@ draw2d.shape.analog.ResistorVertical = draw2d.SetFigure.extend({
     	return set;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.analog.VoltageSupplyHorizontal
  * 
@@ -37387,10 +38511,12 @@ draw2d.shape.analog.VoltageSupplyHorizontal = draw2d.SVGFigure.extend({
                 '</svg>';
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.analog.VoltageSupplyVertical
  * 
@@ -37459,10 +38585,12 @@ draw2d.shape.analog.VoltageSupplyVertical = draw2d.SVGFigure.extend({
                 '</svg>';
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.layout.Layout
  * 
@@ -37640,10 +38768,12 @@ draw2d.shape.layout.Layout= draw2d.shape.basic.Rectangle.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.layout.HorizontalLayout
  * The HorizontalLayout class arranges the layout elements in a horizontal sequence, 
@@ -37881,10 +39011,12 @@ draw2d.shape.layout.HorizontalLayout= draw2d.shape.layout.Layout.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.layout.VerticalLayout
  * The VerticalLayout class arranges the layout elements in a vertical sequence, 
@@ -38104,10 +39236,12 @@ draw2d.shape.layout.VerticalLayout= draw2d.shape.layout.Layout.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.layout.TableLayout
  * 
@@ -38197,10 +39331,10 @@ draw2d.shape.layout.TableLayout= draw2d.shape.layout.Layout.extend({
                 	//
                 	switch(layout.valign){
                 	case "middle":
-                		y=y+ (layout.h-height)/2;
+                		y=y+ (layout.h-(height+layout.padding.top+layout.padding.bottom))/2;
                 		break;
                 	case "bottom":
-                		y=y+ (layout.h-height);
+                		y=y+ (layout.h-(height+layout.padding.top+layout.padding.bottom));
                 		break;
                 	}
                 	
@@ -38208,10 +39342,10 @@ draw2d.shape.layout.TableLayout= draw2d.shape.layout.Layout.extend({
                 	//
                 	switch(layout.align){
                 	case "center":
-                		x=x+ (layout.w-width)/2+(widthOffset/2);
+                		x=x+ (layout.w-(width+layout.padding.left+layout.padding.right))/2+(widthOffset/2);
                 		break;
                 	case "right":
-                		x=x+ (layout.w-width)+widthOffset;
+                		x=x+ (layout.w-(width+layout.padding.left+layout.padding.right))+widthOffset;
                 		break;
                 	}                	
                 }
@@ -38350,7 +39484,7 @@ draw2d.shape.layout.TableLayout= draw2d.shape.layout.Layout.extend({
 
         this.setDimension(1,1);
 
-//        return r;
+        return this;
     },
 
     /**
@@ -38647,10 +39781,12 @@ draw2d.shape.layout.TableLayout= draw2d.shape.layout.Layout.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.layout.FlexGridLayout
  * 
@@ -38855,7 +39991,7 @@ draw2d.shape.layout.FlexGridLayout= draw2d.shape.layout.Layout.extend({
     add: function(figure, cellConstraint){
 
         figure.__cellConstraint=  $.extend({},{row:0, col:0, rowspan:1, colspan:1, align:"left", valign:"top", width:1, height:1}, cellConstraint);
-      
+        this.gridDef.layoutRequired=true;
         this._super(figure, this.cellLocator);
         this._layout();
     },
@@ -39119,10 +40255,12 @@ draw2d.shape.layout.FlexGridLayout= draw2d.shape.layout.Layout.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.layout.StackLayout
  * Using the StackLayout as their layout shape have their children placed on top of one another.
@@ -39271,10 +40409,12 @@ draw2d.shape.layout.StackLayout= draw2d.shape.layout.Layout.extend({
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Icon
  * @inheritable
@@ -39367,10 +40507,12 @@ draw2d.shape.icon.Icon = draw2d.SetFigure.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Thunder
 
@@ -39410,10 +40552,12 @@ draw2d.shape.icon.Thunder = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Snow
 
@@ -39453,10 +40597,12 @@ draw2d.shape.icon.Snow = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Hail
 
@@ -39496,10 +40642,12 @@ draw2d.shape.icon.Hail = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Rain
 
@@ -39539,10 +40687,12 @@ draw2d.shape.icon.Rain = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Cloudy
 
@@ -39582,10 +40732,12 @@ draw2d.shape.icon.Cloudy = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Sun
 
@@ -39625,10 +40777,12 @@ draw2d.shape.icon.Sun = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Undo
 
@@ -39668,10 +40822,12 @@ draw2d.shape.icon.Undo = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Detour
 
@@ -39711,10 +40867,12 @@ draw2d.shape.icon.Detour = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Merge
 
@@ -39754,10 +40912,12 @@ draw2d.shape.icon.Merge = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Split
 
@@ -39797,10 +40957,12 @@ draw2d.shape.icon.Split = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Fork
 
@@ -39840,10 +41002,12 @@ draw2d.shape.icon.Fork = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ForkAlt
 
@@ -39883,10 +41047,12 @@ draw2d.shape.icon.ForkAlt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Exchange
 
@@ -39926,10 +41092,12 @@ draw2d.shape.icon.Exchange = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Shuffle
 
@@ -39969,10 +41137,12 @@ draw2d.shape.icon.Shuffle = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Refresh
 
@@ -40012,10 +41182,12 @@ draw2d.shape.icon.Refresh = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ccw
 
@@ -40055,10 +41227,12 @@ draw2d.shape.icon.Ccw = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Acw
 
@@ -40098,10 +41272,12 @@ draw2d.shape.icon.Acw = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Contract
 
@@ -40141,10 +41317,12 @@ draw2d.shape.icon.Contract = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Expand
 
@@ -40184,10 +41362,12 @@ draw2d.shape.icon.Expand = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Stop
 
@@ -40227,10 +41407,12 @@ draw2d.shape.icon.Stop = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.End
 
@@ -40270,10 +41452,12 @@ draw2d.shape.icon.End = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Start
 
@@ -40313,10 +41497,12 @@ draw2d.shape.icon.Start = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ff
 
@@ -40356,10 +41542,12 @@ draw2d.shape.icon.Ff = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Rw
 
@@ -40399,10 +41587,12 @@ draw2d.shape.icon.Rw = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ArrowRight
 
@@ -40442,10 +41632,12 @@ draw2d.shape.icon.ArrowRight = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ArrowLeft
 
@@ -40485,10 +41677,12 @@ draw2d.shape.icon.ArrowLeft = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ArrowUp
 
@@ -40528,10 +41722,12 @@ draw2d.shape.icon.ArrowUp = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ArrowDown
 
@@ -40571,10 +41767,12 @@ draw2d.shape.icon.ArrowDown = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ArrowLeft2
 
@@ -40614,10 +41812,12 @@ draw2d.shape.icon.ArrowLeft2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ArrowRight2
 
@@ -40657,10 +41857,12 @@ draw2d.shape.icon.ArrowRight2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Smile2
 
@@ -40700,10 +41902,12 @@ draw2d.shape.icon.Smile2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Smile
 
@@ -40743,10 +41947,12 @@ draw2d.shape.icon.Smile = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Alarm
 
@@ -40786,10 +41992,12 @@ draw2d.shape.icon.Alarm = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Clock
 
@@ -40829,10 +42037,12 @@ draw2d.shape.icon.Clock = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.StopWatch
 
@@ -40872,10 +42082,12 @@ draw2d.shape.icon.StopWatch = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.History
 
@@ -40915,10 +42127,12 @@ draw2d.shape.icon.History = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Future
 
@@ -40958,10 +42172,12 @@ draw2d.shape.icon.Future = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.GlobeAlt2
 
@@ -41001,10 +42217,12 @@ draw2d.shape.icon.GlobeAlt2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.GlobeAlt
 
@@ -41044,10 +42262,12 @@ draw2d.shape.icon.GlobeAlt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Globe
 
@@ -41087,10 +42307,12 @@ draw2d.shape.icon.Globe = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Warning
 
@@ -41130,10 +42352,12 @@ draw2d.shape.icon.Warning = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Code
 
@@ -41173,10 +42397,12 @@ draw2d.shape.icon.Code = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Pensil
 
@@ -41216,10 +42442,12 @@ draw2d.shape.icon.Pensil = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Pen
 
@@ -41259,10 +42487,12 @@ draw2d.shape.icon.Pen = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Plus
 
@@ -41302,10 +42532,12 @@ draw2d.shape.icon.Plus = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Minus
 
@@ -41345,10 +42577,12 @@ draw2d.shape.icon.Minus = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.TShirt
 
@@ -41388,10 +42622,12 @@ draw2d.shape.icon.TShirt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Sticker
 
@@ -41431,10 +42667,12 @@ draw2d.shape.icon.Sticker = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Page2
 
@@ -41474,10 +42712,12 @@ draw2d.shape.icon.Page2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Page
 
@@ -41517,10 +42757,12 @@ draw2d.shape.icon.Page = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Landscape1
 
@@ -41560,10 +42802,12 @@ draw2d.shape.icon.Landscape1 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Landscape2
 
@@ -41603,10 +42847,12 @@ draw2d.shape.icon.Landscape2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Plugin
 
@@ -41646,10 +42892,12 @@ draw2d.shape.icon.Plugin = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Bookmark
 
@@ -41689,10 +42937,12 @@ draw2d.shape.icon.Bookmark = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Hammer
 
@@ -41732,10 +42982,12 @@ draw2d.shape.icon.Hammer = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Users
 
@@ -41775,10 +43027,12 @@ draw2d.shape.icon.Users = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.User
 
@@ -41818,10 +43072,12 @@ draw2d.shape.icon.User = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Customer
 
@@ -41861,10 +43117,12 @@ draw2d.shape.icon.Customer = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Employee
 
@@ -41904,10 +43162,12 @@ draw2d.shape.icon.Employee = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Anonymous
 
@@ -41947,10 +43207,12 @@ draw2d.shape.icon.Anonymous = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Skull
 
@@ -41990,10 +43252,12 @@ draw2d.shape.icon.Skull = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Mail
 
@@ -42033,10 +43297,12 @@ draw2d.shape.icon.Mail = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Picture
 
@@ -42076,10 +43342,12 @@ draw2d.shape.icon.Picture = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Bubble
 
@@ -42119,10 +43387,12 @@ draw2d.shape.icon.Bubble = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.CodeTalk
 
@@ -42162,10 +43432,12 @@ draw2d.shape.icon.CodeTalk = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Talkq
 
@@ -42205,10 +43477,12 @@ draw2d.shape.icon.Talkq = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Talke
 
@@ -42248,10 +43522,12 @@ draw2d.shape.icon.Talke = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Home
 
@@ -42291,10 +43567,12 @@ draw2d.shape.icon.Home = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Lock
 
@@ -42334,10 +43612,12 @@ draw2d.shape.icon.Lock = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Clip
 
@@ -42377,10 +43657,12 @@ draw2d.shape.icon.Clip = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Star
 
@@ -42420,10 +43702,12 @@ draw2d.shape.icon.Star = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.StarOff
 
@@ -42463,10 +43747,12 @@ draw2d.shape.icon.StarOff = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Star2
 
@@ -42506,10 +43792,12 @@ draw2d.shape.icon.Star2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Star2Off
 
@@ -42549,10 +43837,12 @@ draw2d.shape.icon.Star2Off = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Star3
 
@@ -42592,10 +43882,12 @@ draw2d.shape.icon.Star3 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Star3Off
 
@@ -42635,10 +43927,12 @@ draw2d.shape.icon.Star3Off = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Chat
 
@@ -42678,10 +43972,12 @@ draw2d.shape.icon.Chat = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Quote
 
@@ -42721,10 +44017,12 @@ draw2d.shape.icon.Quote = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Gear2
 
@@ -42764,10 +44062,12 @@ draw2d.shape.icon.Gear2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Gear
 
@@ -42807,10 +44107,12 @@ draw2d.shape.icon.Gear = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Wrench
 
@@ -42850,10 +44152,12 @@ draw2d.shape.icon.Wrench = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Wrench2
 
@@ -42893,10 +44197,12 @@ draw2d.shape.icon.Wrench2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Wrench3
 
@@ -42936,10 +44242,12 @@ draw2d.shape.icon.Wrench3 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ScrewDriver
 
@@ -42979,10 +44287,12 @@ draw2d.shape.icon.ScrewDriver = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.HammerAndScrewDriver
 
@@ -43022,10 +44332,12 @@ draw2d.shape.icon.HammerAndScrewDriver = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Magic
 
@@ -43065,10 +44377,12 @@ draw2d.shape.icon.Magic = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Download
 
@@ -43108,10 +44422,12 @@ draw2d.shape.icon.Download = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.View
 
@@ -43151,10 +44467,12 @@ draw2d.shape.icon.View = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Noview
 
@@ -43194,10 +44512,12 @@ draw2d.shape.icon.Noview = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Cloud
 
@@ -43237,10 +44557,12 @@ draw2d.shape.icon.Cloud = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Cloud2
 
@@ -43280,10 +44602,12 @@ draw2d.shape.icon.Cloud2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.CloudDown
 
@@ -43323,10 +44647,12 @@ draw2d.shape.icon.CloudDown = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.CloudUp
 
@@ -43366,10 +44692,12 @@ draw2d.shape.icon.CloudUp = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Location
 
@@ -43409,10 +44737,12 @@ draw2d.shape.icon.Location = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Volume0
 
@@ -43452,10 +44782,12 @@ draw2d.shape.icon.Volume0 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Volume1
 
@@ -43495,10 +44827,12 @@ draw2d.shape.icon.Volume1 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Volume2
 
@@ -43538,10 +44872,12 @@ draw2d.shape.icon.Volume2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Volume3
 
@@ -43581,10 +44917,12 @@ draw2d.shape.icon.Volume3 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Key
 
@@ -43624,10 +44962,12 @@ draw2d.shape.icon.Key = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ruler
 
@@ -43667,10 +45007,12 @@ draw2d.shape.icon.Ruler = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Power
 
@@ -43710,10 +45052,12 @@ draw2d.shape.icon.Power = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Unlock
 
@@ -43753,10 +45097,12 @@ draw2d.shape.icon.Unlock = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Flag
 
@@ -43796,10 +45142,12 @@ draw2d.shape.icon.Flag = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Tag
 
@@ -43839,10 +45187,12 @@ draw2d.shape.icon.Tag = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Search
 
@@ -43882,10 +45232,12 @@ draw2d.shape.icon.Search = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ZoomOut
 
@@ -43925,10 +45277,12 @@ draw2d.shape.icon.ZoomOut = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ZoomIn
 
@@ -43968,10 +45322,12 @@ draw2d.shape.icon.ZoomIn = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Cross
 
@@ -44011,10 +45367,12 @@ draw2d.shape.icon.Cross = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Check
 
@@ -44054,10 +45412,12 @@ draw2d.shape.icon.Check = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Settings
 
@@ -44097,10 +45457,12 @@ draw2d.shape.icon.Settings = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.SettingsAlt
 
@@ -44140,10 +45502,12 @@ draw2d.shape.icon.SettingsAlt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Feed
 
@@ -44183,10 +45547,12 @@ draw2d.shape.icon.Feed = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Bug
 
@@ -44226,10 +45592,12 @@ draw2d.shape.icon.Bug = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Link
 
@@ -44269,10 +45637,12 @@ draw2d.shape.icon.Link = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Calendar
 
@@ -44312,10 +45682,12 @@ draw2d.shape.icon.Calendar = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Picker
 
@@ -44355,10 +45727,12 @@ draw2d.shape.icon.Picker = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.No
 
@@ -44398,10 +45772,12 @@ draw2d.shape.icon.No = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.CommandLine
 
@@ -44441,10 +45817,12 @@ draw2d.shape.icon.CommandLine = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Photo
 
@@ -44484,10 +45862,12 @@ draw2d.shape.icon.Photo = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Printer
 
@@ -44527,10 +45907,12 @@ draw2d.shape.icon.Printer = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Export
 
@@ -44570,10 +45952,12 @@ draw2d.shape.icon.Export = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Import
 
@@ -44613,10 +45997,12 @@ draw2d.shape.icon.Import = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Run
 
@@ -44656,10 +46042,12 @@ draw2d.shape.icon.Run = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Magnet
 
@@ -44699,10 +46087,12 @@ draw2d.shape.icon.Magnet = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.NoMagnet
 
@@ -44742,10 +46132,12 @@ draw2d.shape.icon.NoMagnet = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ReflectH
 
@@ -44785,10 +46177,12 @@ draw2d.shape.icon.ReflectH = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.ReflectV
 
@@ -44828,10 +46222,12 @@ draw2d.shape.icon.ReflectV = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Resize2
 
@@ -44871,10 +46267,12 @@ draw2d.shape.icon.Resize2 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Rotate
 
@@ -44914,10 +46312,12 @@ draw2d.shape.icon.Rotate = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Connect
 
@@ -44957,10 +46357,12 @@ draw2d.shape.icon.Connect = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Disconnect
 
@@ -45000,10 +46402,12 @@ draw2d.shape.icon.Disconnect = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Folder
 
@@ -45043,10 +46447,12 @@ draw2d.shape.icon.Folder = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Man
 
@@ -45086,10 +46492,12 @@ draw2d.shape.icon.Man = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Woman
 
@@ -45129,10 +46537,12 @@ draw2d.shape.icon.Woman = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.People
 
@@ -45172,10 +46582,12 @@ draw2d.shape.icon.People = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Parent
 
@@ -45215,10 +46627,12 @@ draw2d.shape.icon.Parent = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Notebook
 
@@ -45258,10 +46672,12 @@ draw2d.shape.icon.Notebook = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Diagram
 
@@ -45301,10 +46717,12 @@ draw2d.shape.icon.Diagram = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.BarChart
 
@@ -45344,10 +46762,12 @@ draw2d.shape.icon.BarChart = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.PieChart
 
@@ -45387,10 +46807,12 @@ draw2d.shape.icon.PieChart = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.LineChart
 
@@ -45430,10 +46852,12 @@ draw2d.shape.icon.LineChart = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Apps
 
@@ -45473,10 +46897,12 @@ draw2d.shape.icon.Apps = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Locked
 
@@ -45516,10 +46942,12 @@ draw2d.shape.icon.Locked = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ppt
 
@@ -45559,10 +46987,12 @@ draw2d.shape.icon.Ppt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Lab
 
@@ -45602,10 +47032,12 @@ draw2d.shape.icon.Lab = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Umbrella
 
@@ -45645,10 +47077,12 @@ draw2d.shape.icon.Umbrella = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Dry
 
@@ -45688,10 +47122,12 @@ draw2d.shape.icon.Dry = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ipad
 
@@ -45731,10 +47167,12 @@ draw2d.shape.icon.Ipad = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Iphone
 
@@ -45774,10 +47212,12 @@ draw2d.shape.icon.Iphone = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Jigsaw
 
@@ -45817,10 +47257,12 @@ draw2d.shape.icon.Jigsaw = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Lamp
 
@@ -45860,10 +47302,12 @@ draw2d.shape.icon.Lamp = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Lamp_alt
 
@@ -45903,10 +47347,12 @@ draw2d.shape.icon.Lamp_alt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Video
 
@@ -45946,10 +47392,12 @@ draw2d.shape.icon.Video = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Palm
 
@@ -45989,10 +47437,12 @@ draw2d.shape.icon.Palm = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Fave
 
@@ -46032,10 +47482,12 @@ draw2d.shape.icon.Fave = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Help
 
@@ -46075,10 +47527,12 @@ draw2d.shape.icon.Help = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Crop
 
@@ -46118,10 +47572,12 @@ draw2d.shape.icon.Crop = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.BioHazard
 
@@ -46161,10 +47617,12 @@ draw2d.shape.icon.BioHazard = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.WheelChair
 
@@ -46204,10 +47662,12 @@ draw2d.shape.icon.WheelChair = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Mic
 
@@ -46247,10 +47707,12 @@ draw2d.shape.icon.Mic = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.MicMute
 
@@ -46290,10 +47752,12 @@ draw2d.shape.icon.MicMute = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.IMac
 
@@ -46333,10 +47797,12 @@ draw2d.shape.icon.IMac = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Pc
 
@@ -46376,10 +47842,12 @@ draw2d.shape.icon.Pc = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Cube
 
@@ -46419,10 +47887,12 @@ draw2d.shape.icon.Cube = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.FullCube
 
@@ -46462,10 +47932,12 @@ draw2d.shape.icon.FullCube = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Font
 
@@ -46505,10 +47977,12 @@ draw2d.shape.icon.Font = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Trash
 
@@ -46548,10 +48022,12 @@ draw2d.shape.icon.Trash = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.NewWindow
 
@@ -46591,10 +48067,12 @@ draw2d.shape.icon.NewWindow = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.DockRight
 
@@ -46634,10 +48112,12 @@ draw2d.shape.icon.DockRight = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.DockLeft
 
@@ -46677,10 +48157,12 @@ draw2d.shape.icon.DockLeft = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.DockBottom
 
@@ -46720,10 +48202,12 @@ draw2d.shape.icon.DockBottom = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.DockTop
 
@@ -46763,10 +48247,12 @@ draw2d.shape.icon.DockTop = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Pallete
 
@@ -46806,10 +48292,12 @@ draw2d.shape.icon.Pallete = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Cart
 
@@ -46849,10 +48337,12 @@ draw2d.shape.icon.Cart = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Glasses
 
@@ -46892,10 +48382,12 @@ draw2d.shape.icon.Glasses = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Package
 
@@ -46935,10 +48427,12 @@ draw2d.shape.icon.Package = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Book
 
@@ -46978,10 +48472,12 @@ draw2d.shape.icon.Book = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Books
 
@@ -47021,10 +48517,12 @@ draw2d.shape.icon.Books = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Icons
 
@@ -47064,10 +48562,12 @@ draw2d.shape.icon.Icons = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.List
 
@@ -47107,10 +48607,12 @@ draw2d.shape.icon.List = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Db
 
@@ -47150,10 +48652,12 @@ draw2d.shape.icon.Db = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Paper
 
@@ -47193,10 +48697,12 @@ draw2d.shape.icon.Paper = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.TakeOff
 
@@ -47236,10 +48742,12 @@ draw2d.shape.icon.TakeOff = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Landing
 
@@ -47279,10 +48787,12 @@ draw2d.shape.icon.Landing = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Plane
 
@@ -47322,10 +48832,12 @@ draw2d.shape.icon.Plane = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Phone
 
@@ -47365,10 +48877,12 @@ draw2d.shape.icon.Phone = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.HangUp
 
@@ -47408,10 +48922,12 @@ draw2d.shape.icon.HangUp = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.SlideShare
 
@@ -47451,10 +48967,12 @@ draw2d.shape.icon.SlideShare = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Twitter
 
@@ -47494,10 +49012,12 @@ draw2d.shape.icon.Twitter = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.TwitterBird
 
@@ -47537,10 +49057,12 @@ draw2d.shape.icon.TwitterBird = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Skype
 
@@ -47580,10 +49102,12 @@ draw2d.shape.icon.Skype = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Windows
 
@@ -47623,10 +49147,12 @@ draw2d.shape.icon.Windows = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Apple
 
@@ -47666,10 +49192,12 @@ draw2d.shape.icon.Apple = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Linux
 
@@ -47709,10 +49237,12 @@ draw2d.shape.icon.Linux = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.NodeJs
 
@@ -47752,10 +49282,12 @@ draw2d.shape.icon.NodeJs = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.JQuery
 
@@ -47795,10 +49327,12 @@ draw2d.shape.icon.JQuery = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Sencha
 
@@ -47838,10 +49372,12 @@ draw2d.shape.icon.Sencha = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Vim
 
@@ -47881,10 +49417,12 @@ draw2d.shape.icon.Vim = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.InkScape
 
@@ -47924,10 +49462,12 @@ draw2d.shape.icon.InkScape = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Aumade
 
@@ -47967,10 +49507,12 @@ draw2d.shape.icon.Aumade = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Firefox
 
@@ -48010,10 +49552,12 @@ draw2d.shape.icon.Firefox = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ie
 
@@ -48053,10 +49597,12 @@ draw2d.shape.icon.Ie = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ie9
 
@@ -48096,10 +49642,12 @@ draw2d.shape.icon.Ie9 = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Opera
 
@@ -48139,10 +49687,12 @@ draw2d.shape.icon.Opera = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Chrome
 
@@ -48182,10 +49732,12 @@ draw2d.shape.icon.Chrome = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Safari
 
@@ -48225,10 +49777,12 @@ draw2d.shape.icon.Safari = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.LinkedIn
 
@@ -48268,10 +49822,12 @@ draw2d.shape.icon.LinkedIn = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Flickr
 
@@ -48311,10 +49867,12 @@ draw2d.shape.icon.Flickr = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.GitHub
 
@@ -48354,10 +49912,12 @@ draw2d.shape.icon.GitHub = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.GitHubAlt
 
@@ -48397,10 +49957,12 @@ draw2d.shape.icon.GitHubAlt = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Raphael
 
@@ -48440,10 +50002,12 @@ draw2d.shape.icon.Raphael = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.GRaphael
 
@@ -48483,10 +50047,12 @@ draw2d.shape.icon.GRaphael = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Svg
 
@@ -48526,10 +50092,12 @@ draw2d.shape.icon.Svg = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Usb
 
@@ -48569,10 +50137,12 @@ draw2d.shape.icon.Usb = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.icon.Ethernet
 
@@ -48612,10 +50182,12 @@ draw2d.shape.icon.Ethernet = draw2d.shape.icon.Icon.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.pert.Activity
  * 
@@ -48869,10 +50441,12 @@ draw2d.shape.pert.Activity = draw2d.shape.layout.VerticalLayout.extend({
      }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.pert.Start
  * 
@@ -49087,10 +50661,12 @@ draw2d.shape.pert.Start = draw2d.shape.layout.VerticalLayout.extend({
      }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.state.Start
  * 
@@ -49134,10 +50710,12 @@ draw2d.shape.state.Start = draw2d.shape.basic.Circle.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.state.End
  * 
@@ -49190,10 +50768,12 @@ draw2d.shape.state.End = draw2d.shape.basic.Circle.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.state.State
  * 
@@ -49341,10 +50921,12 @@ draw2d.shape.state.State = draw2d.shape.layout.VerticalLayout.extend({
     }
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.shape.state.Connection
  * 
@@ -49450,10 +51032,12 @@ draw2d.shape.state.Connection = draw2d.Connection.extend({
 
 });
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.ui.LabelEditor
  * Base class for all draw2d.shape.basic.Label editors. The default implementation is to open
  * a simple javascript prompt dialog.<br>
@@ -49515,10 +51099,12 @@ draw2d.ui.LabelEditor = Class.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.ui.LabelInplaceEditor
  * 
  * Inplace editor for draw2d.shape.base.Label 
@@ -49669,10 +51255,12 @@ draw2d.ui.LabelInplaceEditor =  draw2d.ui.LabelEditor.extend({
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.decoration.connection.Decorator 
  * 
  * 
@@ -49773,10 +51361,12 @@ draw2d.decoration.connection.Decorator = Class.extend({
     }
 	
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.decoration.connection.ArrowDecorator
  * 
  * See the example:
@@ -49863,10 +51453,12 @@ draw2d.decoration.connection.ArrowDecorator = draw2d.decoration.connection.Decor
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.decoration.connection.DiamondDecorator
  * See the example:
  *
@@ -49947,10 +51539,12 @@ draw2d.decoration.connection.DiamondDecorator = draw2d.decoration.connection.Dec
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.decoration.connection.CircleDecorator
  * 
  * See the example:
@@ -50026,10 +51620,12 @@ draw2d.decoration.connection.CircleDecorator = draw2d.decoration.connection.Deco
 
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.decoration.connection.BarDecorator
  * 
  * See the example:
@@ -50106,10 +51702,12 @@ draw2d.decoration.connection.BarDecorator = draw2d.decoration.connection.Decorat
 });
 
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.io.Reader
  * Template class for general import of a document into the canvas.
@@ -50142,10 +51740,12 @@ draw2d.io.Reader = Class.extend({
     }
     
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.io.Writer
  * Serialize the canvas to an external format. This is only a template/interface class.
@@ -50201,18 +51801,18 @@ draw2d.io.Writer = Class.extend({
      */
     formatXml: function(xml) {
         var formatted = '';
-        var reg = /(>)(<)(\/*)/g;
+        var reg = new RegExp("(>)(<)(\/*)","g");
         xml = xml.replace(reg, '$1\r\n$2$3');
         var pad = 0;
         jQuery.each(xml.split('\r\n'), function(index, node) {
             var indent = 0;
-            if (node.match( /.+<\/\w[^>]*>$/ )) {
+            if (node.match( new RegExp(".+<\/\w[^>]*>$") )) {
                 indent = 0;
-            } else if (node.match( /^<\/\w/ )) {
+            } else if (node.match( new RegExp("^<\/\w") )) {
                 if (pad != 0) {
                     pad -= 1;
                 }
-            } else if (node.match( /^<\w[^>]*[^\/]>.*$/ )) {
+            } else if (node.match( new RegExp("^<\w[^>]*[^\/]>.*$") )) {
                 indent = 1;
             } else {
                 indent = 0;
@@ -50230,10 +51830,12 @@ draw2d.io.Writer = Class.extend({
         return formatted;
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.io.svg.Writer
@@ -50297,10 +51899,12 @@ draw2d.io.svg.Writer = draw2d.io.Writer.extend({
     	callback( svg, base64Content);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.io.png.Writer
  * Convert the canvas document into a PNG Image.
  * 
@@ -50432,10 +52036,12 @@ draw2d.io.png.Writer = draw2d.io.Writer.extend({
         }) ;   
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 
 /**
  * @class draw2d.io.json.Writer
@@ -50506,10 +52112,12 @@ draw2d.io.json.Writer = draw2d.io.Writer.extend({
     	resultCallback(result, base64Content);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.io.json.Reader
  * Read a JSON data and import them into the canvas. The JSON must be generated with the
@@ -50562,6 +52170,7 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend({
      * @param {Object} document the json object to load.
      */
     unmarshal: function(canvas, json){
+        var _this = this;
         var result = new draw2d.util.ArrayList();
         
         if(typeof json ==="string"){
@@ -50571,7 +52180,7 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend({
         var node=null;
         $.each(json, $.proxy(function(i, element){
             try{
-                var o = eval("new "+element.type+"()");
+                var o = _this.createFigureFromType(element.type);
                 var source= null;
                 var target=null;
                 for(i in element){
@@ -50640,12 +52249,26 @@ draw2d.io.json.Reader = draw2d.io.Reader.extend({
         canvas.showDecoration();
         
         return result;
+    },
+
+    /**
+     * @method
+     * Factory method to create an instance of the given element type.
+     *
+     * @param {String} type
+     * @return {draw2d.Figure}
+     */
+    createFigureFromType:function(type)
+    {
+        return eval("new "+type+"()");
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.storage.FileStorage
  * 
@@ -50771,10 +52394,12 @@ draw2d.storage.FileStorage = Class.extend({
     {
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * <b>BETA: changes can happen without notice</b>
  * <br>
  * <br>
@@ -51241,10 +52866,12 @@ draw2d.storage.GoogleDrive = draw2d.storage.FileStorage.extend({
 draw2d.storage.GoogleDrive.developerKey = "";
 draw2d.storage.GoogleDrive.clientId     = "";   
 
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
- ****************************************//**
+ ****************************************/
+/**
  * @class draw2d.storage.LocalFileStorage
  * 
  * <b>BETA: changes can happen without notice</b>
@@ -51423,10 +53050,12 @@ draw2d.storage.LocalFileStorage = draw2d.storage.FileStorage.extend({
         this.saveFile(fileName, content, contentIsBase64, successCallback);
     }
 });
+
 /*****************************************
  *   Library is under GPL License (GPL)
  *   Copyright (c) 2012 Andreas Herz
  ****************************************/
+
 /**
  * @class draw2d.storage.TideSDKStorage
  * 

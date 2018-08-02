@@ -3,12 +3,12 @@ ESTDesigner.connection.Connection=draw2d.Connection.extend({
 		this.name=null;
 		this._super($.extend({
 			id:draw2d.util.UUID.create(),
-	        router:new draw2d.layout.connection.InteractiveManhattanConnectionRouter(),
+	        router:new draw2d.layout.connection.ManhattanBridgedConnectionRouter(),
 	        outlineStroke:1,
 	        outlineColor:"#303030",
 	        stroke:2,
 	        color:"#00a8f0",
-	        radius:20,
+	        radius:4,
 	        targetDecorator:new draw2d.decoration.connection.ArrowDecorator()
 	    },attr));
 		var connectionNameLabel = new draw2d.shape.basic.Label();

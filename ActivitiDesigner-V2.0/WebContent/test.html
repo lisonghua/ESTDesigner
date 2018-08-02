@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, , maximum-scale=1.0" />
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<!-- Draw2d CSS-->
+<link type="text/css" rel="stylesheet" href="css/draw2d.css" />
+<link type="text/css" rel="stylesheet" href="css/contextmenu.css" />
+<!-- ESTDesigner CSS-->
+<link href="js/ESTDesigner/designer.css" type="text/css"
+	rel="stylesheet" />
+<!-- JQuery EasyUi CSS-->
+<link type="text/css" href="js/easyui/themes/default/easyui.css"
+	rel="stylesheet" title="blue">
+<link href="js/easyui/themes/icon.css" type="text/css" rel="stylesheet" />
+<!-- JQuery AutoComplete -->
+<link rel="stylesheet" type="text/css"
+	href="js/jquery-autocomplete/jquery.autocomplete.css" />
+<!--<link rel="stylesheet" type="text/css" href="js/jquery-autocomplete/lib/thickbox.css" />-->
+
+<SCRIPT src="js/draw2D/lib/jquery-1.12.0.min.js"></SCRIPT>
+<!-- JQuery AutoComplete -->
+<script type='text/javascript'
+	src='js/jquery-autocomplete/lib/jquery.bgiframe.min.js'></script>
+<script type='text/javascript'
+	src='js/jquery-autocomplete/lib/jquery.ajaxQueue.js'></script>
+<!--<script type='text/javascript' src='js/jquery-autocomplete/lib/thickbox-compressed.js'></script>-->
+<script type='text/javascript'
+	src='js/jquery-autocomplete/jquery.autocomplete.min.js'></script>
+<!-- JQuery EasyUi JS-->
+<script src="js/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<!-- Draw2d JS-->
+<SCRIPT src="js/draw2D/lib/shifty.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/raphael.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/jquery.autoresize.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/jquery-touch_punch.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/jquery.contextmenu.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/rgbcolor.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/canvg.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/Class.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/json2.js"></SCRIPT>
+<SCRIPT src="js/draw2D/lib/pathfinding-browser.min.js"></SCRIPT>
+<SCRIPT src="js/draw2D/draw2d.js"></SCRIPT>
+<!-- ESTDesigner JS-->
+<SCRIPT src="js/ESTDesigner/Application.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Canvas.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Task.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Event.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Connection.js"></SCRIPT>
+<SCRIPT src="js/ESTDesigner/Gateway.js"></SCRIPT>
+
+</head>
+<script type="text/javascript">
+	var processDefinitionId = "";
+	var processDefinitionName = "";
+	var processDefinitionVariables = "";
+	var _process_def_provided_listeners = "";
+	var is_open_properties_panel = false;
+	var task;
+	var line;
+	$(window).load(
+			function() {
+
+				var canvas = new ESTDesigner.Canvas("gfx_holder");
+
+				_designer = $('#designer');
+				_properties_panel_obj = _designer.layout('panel', 'east');
+				_properties_panel_obj.panel({
+					onOpen : function() {
+						is_open_properties_panel = true;
+					},
+					onClose : function() {
+						is_open_properties_panel = false;
+					}
+				});
+				_process_panel_obj = _designer.layout('panel', 'center');
+				_designer.layout('collapse', 'east');
+				//var canvas = new ESTDesigner.Canvas("paintarea");
+				var start = new ESTDesigner.event.Start();
+				var end = new ESTDesigner.event.End();
+				canvas.add(start, 200, 50);
+				canvas.add(end, 200, 400);
+
+				function addModel(name, x, y, icon, type) {
+					var model = null;
+					model = eval("new " + name);
+					model.contextMenuHandler = contextMenuHandler;
+					canvas.add(model, x, y);
+				}
+				//右键菜单处理函数
+				function contextMenuHandler(t, key) {
+					if (!is_open_properties_panel)
+						_designer.layout('expand', 'east');
+					task = t;
+					if (task.type == "ESTDesigner.task.UserTask")
+						_properties_panel_obj.panel('refresh',
+								'userTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.ManualTask")
+						_properties_panel_obj.panel('refresh',
+								'manualTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.ServiceTask")
+						_properties_panel_obj.panel('refresh',
+								'serviceTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.ScriptTask")
+						_properties_panel_obj.panel('refresh',
+								'scriptTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.ReceiveTask")
+						_properties_panel_obj.panel('refresh',
+								'receiveTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.MailTask")
+						_properties_panel_obj.panel('refresh',
+								'mailTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.BusinessRuleTask")
+						_properties_panel_obj.panel('refresh',
+								'businessRuleTaskProperties.html');
+					else if (task.type == "ESTDesigner.task.CallActivityTask")
+						_properties_panel_obj.panel('refresh',
+								'callActivityProperties.html');
+				}
+			});
+</script>
+<body id="designer" class="easyui-layout">
+
+	<div id="process-panel" region="center" split="true"
+		iconCls="process-icon" title="Process">
+		<div id="process-definition-tab">
+			<div id="gfx_holder" title="Diagram"
+				style="POSITION: absolute; width: 100%; height: 100%; padding: 0; border: none; overflow: auto;">
+
+			</div>
+		</div>
+	</div>
+	<div id="properties-panel" region="east" split="true"
+		iconCls="properties-icon" title="Properties" style="width: 300px;">
+
+	</div>
+
+
+
+</body>
+</html>

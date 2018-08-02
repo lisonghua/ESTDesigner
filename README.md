@@ -17,11 +17,18 @@
 - 可视化定制
 - 代码简洁易维护
 
-###原理说明
+###依赖
+- Draw2D V6.1.66
+- Jquery V1.12.0
+- EasyUI V1.4.5
 
 
+###安装部署
 
-### 下载安装
+直接导入Eclipse，用HttpReview运行
+
+访问地址
+http://localhost:8080/estd/index.html
 
 
 ###使用方法
@@ -30,7 +37,8 @@
 ### 注意事项
 
 
-###TODO
+###开发计划
+1.支持子流程
+2.多语言
 
-## License
 
